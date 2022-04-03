@@ -185,7 +185,6 @@ set foldlevel=99
 "  configure nerdtree
 " ---------------------------------------------------------------------------
 
-
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
@@ -365,18 +364,3 @@ let g:ale_lint_on_text_changed='never'
 
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
-
-" ---------------------------------------------------------------------------
-"  miscelaneous stuff
-" ---------------------------------------------------------------------------
-
-"let g:python_highlight_all = 1
-
-"au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-"au BufEnter *.org call org#SetOrgFileType()
-
-" some gui stuff
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
