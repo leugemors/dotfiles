@@ -7,63 +7,51 @@
 "  type: :so % to refresh .vimrc after making changes
 
 " ---------------------------------------------------------------------------
-"  manage the plugins and install them if necessary
-" ---------------------------------------------------------------------------
-
-let need_to_install_plugins = 0
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let need_to_install_plugins = 1
-endif
-
-call plug#begin('~/.vim/plugged')
-
-    " basic plugins
-    "Plug 'itchyny/lightline.vim'                      " lightline statusbar
-    Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
-    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    Plug 'vim-airline/vim-airline'                     " airlien statusbar
-    Plug 'vim-airline/vim-airline-themes'
-
-    " file management
-    Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
-    Plug 'scrooloose/nerdtree'                         " nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
-    Plug 'vifm/vifm.vim'                               " vifm
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-
-    " productivity
-    Plug 'airblade/vim-gitgutter'                      " show git diff per line
-    Plug 'alvan/vim-closetag'                          " auto close (x)html tags
-    Plug 'dense-analysis/ale'                          " some syntax checking
-    Plug 'jiangmiao/auto-pairs'                        " auto pair brackets etc.
-    Plug 'jreybert/vimagit'                            " magit-like plugin for vim
-    Plug 'majutsushi/tagbar'                           " use ctags in vim
-    Plug 'tpope/vim-surround'                          " change surrounding marks
-    Plug 'vimwiki/vimwiki'                             " vimwiki
-
-    " colours and syntax highlighting
-    Plug 'joshdick/onedark.vim'                        " onedark colour theme
-    Plug 'sheerun/vim-polyglot'                        " support for many languages
-    Plug 'pedrohdz/vim-yaml-folds'
-    Plug 'Yggdroot/indentLine'                         " visuallize indenations
-
-call plug#end()
-
-if need_to_install_plugins == 1
-    echo "Installing plugins..."
-    silent! PlugInstall
-    echo "Done!"
-    q
-endif
-
-" ---------------------------------------------------------------------------
 "  no need to be compatible with the original vi (required)
 " ---------------------------------------------------------------------------
 
 set nocompatible
+filetype off
+
+" ---------------------------------------------------------------------------
+"  manage plugins, install them with :PlugInstall (:PlugClean)
+" ---------------------------------------------------------------------------
+
+call plug#begin('~/.vim/plugged')
+
+    " basic plugins
+    Plug 'gmarik/Vundle.vim'                           " vim bundle pluin manager
+    Plug 'itchyny/lightline.vim'                       " lightline statusbar
+    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
+    Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
+    "Plug 'vim-airline/vim-airline'                    " airline statusbar
+    "Plug 'vim-airline/vim-airline-themes'
+
+    " file management
+    Plug 'vifm/vifm.vim'                               " vifm
+    Plug 'scrooloose/nerdtree'                         " nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
+    Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    " productivity
+    Plug 'vimwiki/vimwiki'                             " my personal wiki
+    Plug 'jreybert/vimagit'                            " magit-like plugin for vim
+    Plug 'tpope/vim-surround'                          " change surrounding marks
+    Plug 'airblade/vim-gitgutter'                      " show git diff per line
+    Plug 'alvan/vim-closetag'                          " auto close (x)html tags
+    Plug 'dense-analysis/ale'                          " some syntax checking
+    Plug 'jiangmiao/auto-pairs'                        " auto pair brackets etc.
+    Plug 'majutsushi/tagbar'                           " use ctags in vim
+
+    " colours and syntax highlighting
+    Plug 'joshdick/onedark.vim'                        " onedark colour theme
+    Plug 'sheerun/vim-polyglot'                        " support for many languages
+    Plug 'ap/vim-css-color'                            " show hex colours
+    Plug 'Yggdroot/indentLine'                         " visuallize indenations
+    Plug 'pedrohdz/vim-yaml-folds'
+ 
+call plug#end()
 
 " ---------------------------------------------------------------------------
 "  basic settings
@@ -81,12 +69,12 @@ set number                    " display line numbers
 "set number relativenumber    " display line numbers
 set numberwidth=5             " set width for numbers to 5
 set so=3                      " show 3 lines to the cursor
+let g:rehash256 = 1
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
 " ---------------------------------------------------------------------------
 
-filetype on
 filetype plugin indent on
 
 " ---------------------------------------------------------------------------
@@ -131,8 +119,7 @@ set wildignore=*.o,*~,*.pyc   " ignore these file extensions
 "  status line
 " ---------------------------------------------------------------------------
 "
-"let g:lightline={ 'colorscheme': 'darcula', }
-"let g:lightline={ 'colorscheme': 'onedark', }
+let g:lightline={ 'colorscheme': 'onedark', }
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
 set laststatus=2              " always show the status line
@@ -190,10 +177,10 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
 let g:NERDTreeDirArrowExpandable='►'
 let g:NERDTreeDirArrowCollapsible='▼'
-let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=0
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
-let g:NERDTreeWinSize=38
+let g:NERDTreeWinSize=42
 
 " ---------------------------------------------------------------------------
 "  move through split windows
@@ -221,21 +208,15 @@ syntax on                     " enable syntax highlighting
 set t_Co=256                  " set if term supports 256 colours
 set t_ut=                     " clearing uses the current backgroupd colour
 
-" the dracula colour theme (pack)
-"packadd! dracula             " load dracula colour defenitions
-"let g:dracula_colorterm = 0
-"let g:dracula_italic = 1
-"colorscheme dracula
+set termguicolors
+set background=dark
 
-" the onedar colour theme (plugin)
-let g:onedark_color_overrides={"background":{"gui":"#161616","cterm":"235","cterm16":"0"}}
-colorscheme onedark
+" the onedark colour theme
+let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
 let g:onedark_hide_endofbuffer=1
 let g:onedark_termcolors=256
 let g:onedark_terminal_italics=1
-
-set termguicolors
-set background=dark
+colorscheme onedark
 
 " colour schemes
 "colorscheme blue
@@ -264,19 +245,19 @@ set background=dark
 let g:indentLine_setColors=1
 let g:indentLine_char='⦙'
 
-" Vim
+" vim
 let g:indentLine_color_term=239
 
-" GVim
-let g:indentLine_color_gui='#555555'
+" gvim
+let g:indentLine_color_gui='#444444'
 
-" none X terminal
+" none x terminal
 let g:indentLine_color_tty_light=7 " (default: 4)
 let g:indentLine_color_dark=1 " (default: 2)
 
-" Background (Vim, GVim)
+" background (vim, gvim)
 "let g:indentLine_bgcolor_term=202
-"let g:indentLine_bgcolor_gui='#FF5F00'
+"let g:indentLine_bgcolor_gui='#ff5f00'
 
 " ---------------------------------------------------------------------------
 "  autopair brackets
@@ -346,8 +327,8 @@ noremap <silent> <C-Down> :resize -3<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
-" removes pipes | that act as seperators on splits
-set fillchars+=vert:\
+" set split seperators
+set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
 " ---------------------------------------------------------------------------
 "  syntax checking with ale
@@ -364,3 +345,25 @@ let g:ale_lint_on_text_changed='never'
 
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
+
+" ---------------------------------------------------------------------------
+"  some handy abriviations
+" ---------------------------------------------------------------------------
+
+ab mvg Met vriendelijke groet,
+ab rkl Richard Klein Leugemors
+
+" ---------------------------------------------------------------------------
+"  miscelaneous stuff
+" ---------------------------------------------------------------------------
+
+let g:python_highlight_all = 1
+
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
+au BufEnter *.org call org#SetOrgFileType()
+
+" some gui stuff
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
