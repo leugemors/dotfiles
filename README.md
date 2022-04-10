@@ -5,6 +5,7 @@ A location to keep my personal configuration files. Feel free to take a look, us
 - .tmux.conf
 - .vimrc
 - .zshrc
+- .config/terminator/config
 
-# License
+## License
 [GPL](https://choosealicense.com/licenses/gpl/)
