@@ -1,0 +1,51 @@
+[global_config]
+  borderless = False
+  geometry_hinting = True
+  handle_size=20
+  title_transmit_bg_color = "#5c3566"
+  title_receive_bg_color = "#ff0000"
+  inactive_color_offset = 0.5
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  suppress_multiple_term_dialog = True
+  title_use_system_font = False
+  title_font = RobotoMono Nerd Font Light 9
+  window_state = fullscreen
+
+[keybindings]
+  new_tab = <Ctrl><Shift>t
+  cycle_next = <Ctrl>Tab
+  split_horiz = <Ctrl><Shift>O
+  split_vert = <Ctrl><Shift>E
+  close_window = <Ctrl><Shift>W
+  next_tab = <Ctrl><Tab>
+
+[profiles]
+  [[default]]
+    background_color = "#111111"
+    background_darkness = 0.95
+    background_type = transparent
+    cursor_shape = underline
+    #cursor_color = "#f8f8f2"
+    cursor_color = "#aaaaaa"
+    #font = RobotoMono Nerd Font Light 12
+    font = UbuntuMonoDerivativePowerline Nerd Font 12
+    foreground_color = "#f8f8f2"
+    scrollbar_position = hidden
+    scrollback_lines = 2000
+    palette = "#330066:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#efa554:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#ffb86c"
+    use_system_font = False
+    copy_on_selection = True
+    autoclean_groups = False
+
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+      size = 1150, 760
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+
+[plugins]
+  enable_real_transparency = False
