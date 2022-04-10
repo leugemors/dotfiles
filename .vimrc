@@ -4,7 +4,7 @@
 "  | |  |   <| |   https://www.github.com/leugemors/
 "  |_|  |_|\_\_|
 "
-"  type: :so % to refresh .vimrc after making changes
+"  Type  :so %  to refresh .vimrc after making changes.
 
 " ---------------------------------------------------------------------------
 "  no need to be compatible with the original vi (required)
@@ -328,7 +328,7 @@ map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
 " set split seperators
-set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
+"set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
 " ---------------------------------------------------------------------------
 "  syntax checking with ale
