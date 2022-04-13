@@ -21,14 +21,14 @@ call plug#begin('~/.vim/plugged')
 
     " basic plugins
     Plug 'gmarik/Vundle.vim'                           " vim bundle pluin manager
-    Plug 'itchyny/lightline.vim'                       " lightline statusbar
+    "Plug 'itchyny/lightline.vim'                      " lightline statusbar
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
-    "Plug 'vim-airline/vim-airline'                    " airline statusbar
-    "Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline'                     " airline statusbar
+    Plug 'vim-airline/vim-airline-themes'
 
     " file management
-    Plug 'vifm/vifm.vim'                               " vifm
+    Plug 'vifm/vifm.vim'                               " vi file manager
     Plug 'scrooloose/nerdtree'                         " nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
     Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
@@ -65,8 +65,8 @@ set hidden                    " needed to keep multiple buffers open
 set history=2000              " how many lines of history should vim remember
 set lazyredraw                " don't redraw while executing macros
 set magic                     " turn magic on for regular expressions
-set number                    " display line numbers
-"set number relativenumber    " display line numbers
+"set number                   " display line numbers
+set number relativenumber     " display line numbers
 set numberwidth=5             " set width for numbers to 5
 set so=3                      " show 3 lines to the cursor
 let g:rehash256 = 1
@@ -215,7 +215,7 @@ set background=dark
 let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
 let g:onedark_hide_endofbuffer=1
 let g:onedark_termcolors=256
-let g:onedark_terminal_italics=1
+let g:onedark_terminal_italics=0
 colorscheme onedark
 
 " colour schemes
@@ -350,8 +350,37 @@ map <C-r> <Plug>(ale_previous_wrap)
 "  some handy abriviations
 " ---------------------------------------------------------------------------
 
-ab mvg Met vriendelijke groet,
-ab rkl Richard Klein Leugemors
+ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors
+ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><head><cr><body><cr></body><cr></html>
+
+" some handy abbriviations for c
+iab com /*<cr><cr>/<up>
+iab #i #include
+iab #d #define
+
+" some handy abbriviations for java
+ab psvm public static void main(string[] args){<cr>}<esc>o
+ab sysout system.out.println("");<esc>2hi
+ab sop system.out.println("");<esc>2hi
+ab syserr system.err.println("");<esc>2hi
+ab sep system.err.println("");<esc>2hi
+
+ab forl for (int i = 0; i < ; i++) {<esc>7hi
+ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
+ab const public static final int
+
+ab ctm system.currenttimemillis()
+ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
+
+iab forl for (i=1; i<=NUM; i++) {<CR><CR>}<Esc>?NUM<CR>cw
+
+autocmd FileType c iab start #include <stdio.h><cr>
+    \#include <stdlib.h><cr>
+    \#include <stdbool.h><cr><cr>
+    \int main() {<cr>
+    \printf("hello\n");<cr>
+    \return 0;<cr>
+    \}<up><up>
 
 " ---------------------------------------------------------------------------
 "  miscelaneous stuff
