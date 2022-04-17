@@ -14,14 +14,23 @@ set nocompatible
 filetype off
 
 " ---------------------------------------------------------------------------
-"  manage plugins, install them with :PlugInstall (:PlugClean)
+"  manage plugins, install with :PlugInstall (:PlugClean :PlugUpdate)
 " ---------------------------------------------------------------------------
+
+let need_to_install_plugins = 0
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let need_to_install_plugins = 1
+endif
 
 call plug#begin('~/.vim/plugged')
 
     " basic plugins
-    Plug 'gmarik/Vundle.vim'                           " vim bundle pluin manager
     "Plug 'itchyny/lightline.vim'                      " lightline statusbar
+    Plug 'gmarik/Vundle.vim'                           " vim bundle pluin manager
+    Plug 'tpope/vim-sensible'                          " some sensible defaults
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
     Plug 'vim-airline/vim-airline'                     " airline statusbar
@@ -52,6 +61,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'pedrohdz/vim-yaml-folds'
  
 call plug#end()
+
+if need_to_install_plugins == 1
+    echo "Installing plugins..."
+    silent! PlugInstall
+    echo "Done!"
+    q
+endif
 
 " ---------------------------------------------------------------------------
 "  basic settings
@@ -218,7 +234,7 @@ let g:onedark_termcolors=256
 let g:onedark_terminal_italics=0
 colorscheme onedark
 
-" colour schemes
+" default colour schemes
 "colorscheme blue
 "colorscheme darkblue
 "colorscheme default
@@ -249,7 +265,7 @@ let g:indentLine_char='⦙'
 let g:indentLine_color_term=239
 
 " gvim
-let g:indentLine_color_gui='#444444'
+let g:indentLine_color_gui='#333333'
 
 " none x terminal
 let g:indentLine_color_tty_light=7 " (default: 4)
@@ -347,7 +363,7 @@ map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
 
 " ---------------------------------------------------------------------------
-"  some handy abriviations
+"  playing around with abriviations
 " ---------------------------------------------------------------------------
 
 ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors
@@ -378,9 +394,9 @@ autocmd FileType c iab start #include <stdio.h><cr>
     \#include <stdlib.h><cr>
     \#include <stdbool.h><cr><cr>
     \int main() {<cr>
-    \printf("hello\n");<cr>
+    \printf("hello\n");<cr><cr>
     \return 0;<cr>
-    \}<up><up>
+    \}<up><up><up>
 
 " ---------------------------------------------------------------------------
 "  miscelaneous stuff
