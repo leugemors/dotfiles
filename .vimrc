@@ -7,14 +7,14 @@
 "  Type  :so %  to refresh .vimrc after making changes.
 
 " ---------------------------------------------------------------------------
-"  no need to be compatible with the original vi (required)
+"  some required settings for the plugins
 " ---------------------------------------------------------------------------
 
-set nocompatible
-filetype off
+set nocompatible      " no need to be compatible with the original vi
+filetype off          " needs to be switched off while loading plugins
 
 " ---------------------------------------------------------------------------
-"  manage plugins, install with :PlugInstall (:PlugClean :PlugUpdate)
+"  manage plugins (PlugInstall :PlugClean :PlugUpdate, etc.)
 " ---------------------------------------------------------------------------
 
 let need_to_install_plugins = 0
@@ -28,37 +28,34 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " basic plugins
-    "Plug 'itchyny/lightline.vim'                      " lightline statusbar
-    Plug 'gmarik/Vundle.vim'                           " vim bundle pluin manager
-    Plug 'tpope/vim-sensible'                          " some sensible defaults
+    Plug 'itchyny/lightline.vim'                   " lightline statusbar
+    Plug 'tpope/vim-sensible'                      " some sensible defaults
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
-    Plug 'vim-airline/vim-airline'                     " airline statusbar
-    Plug 'vim-airline/vim-airline-themes'
+    "Plug 'vim-airline/vim-airline'                " airline statusbar
+    "Plug 'vim-airline/vim-airline-themes'
 
     " file management
-    Plug 'vifm/vifm.vim'                               " vi file manager
-    Plug 'scrooloose/nerdtree'                         " nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
-    Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'vifm/vifm.vim'                           " vi file manager
+    Plug 'scrooloose/nerdtree'                     " nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
+    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
+    Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
 
     " productivity
-    Plug 'vimwiki/vimwiki'                             " my personal wiki
-    Plug 'jreybert/vimagit'                            " magit-like plugin for vim
-    Plug 'tpope/vim-surround'                          " change surrounding marks
-    Plug 'airblade/vim-gitgutter'                      " show git diff per line
-    Plug 'alvan/vim-closetag'                          " auto close (x)html tags
-    Plug 'dense-analysis/ale'                          " some syntax checking
-    Plug 'jiangmiao/auto-pairs'                        " auto pair brackets etc.
-    Plug 'majutsushi/tagbar'                           " use ctags in vim
+    Plug 'jreybert/vimagit'                      " magit-like plugin for vim
+    Plug 'tpope/vim-surround'                    " change surrounding marks
+    Plug 'airblade/vim-gitgutter'                " show git diff per line
+    Plug 'alvan/vim-closetag'                    " auto close (x)html tags
+    Plug 'dense-analysis/ale'                    " some syntax checking
+    Plug 'jiangmiao/auto-pairs'                  " auto pair brackets
+    Plug 'majutsushi/tagbar'                     " use ctags in vim
 
     " colours and syntax highlighting
-    Plug 'joshdick/onedark.vim'                        " onedark colour theme
-    Plug 'sheerun/vim-polyglot'                        " support for many languages
-    Plug 'ap/vim-css-color'                            " show hex colours
-    Plug 'Yggdroot/indentLine'                         " visuallize indenations
-    Plug 'pedrohdz/vim-yaml-folds'
+    Plug 'joshdick/onedark.vim'                  " onedark colour theme
+    Plug 'sheerun/vim-polyglot'                  " support for many languages
+    Plug 'ap/vim-css-color'                      " show hex colours
+    Plug 'frazrepo/vim-rainbow'                  " rainbow brackets for vim
+    Plug 'Yggdroot/indentLine'                   " visualize indenations
  
 call plug#end()
 
@@ -73,19 +70,36 @@ endif
 "  basic settings
 " ---------------------------------------------------------------------------
 
-set autoread                  " auto read when a file has changed from outside
-set clipboard=unnamedplus     " copy/paste between vim and other programs
-set colorcolumn=80            " show a line at column 80
-set cursorline                " underline the current line
-set hidden                    " needed to keep multiple buffers open
-set history=2000              " how many lines of history should vim remember
-set lazyredraw                " don't redraw while executing macros
-set magic                     " turn magic on for regular expressions
-"set number                   " display line numbers
-set number relativenumber     " display line numbers
-set numberwidth=5             " set width for numbers to 5
-set so=3                      " show 3 lines to the cursor
-let g:rehash256 = 1
+set autoread                   " auto read when a file has changed from outside
+set backspace=start,eol,indent " better use of backspace
+set clipboard=unnamedplus      " copy/paste between vim and other programs
+set colorcolumn=80             " show a line at column 80
+set cursorline                 " underline the current line
+set hidden                     " needed to keep multiple buffers open
+set history=2000               " how many lines of history should vim remember
+set lazyredraw                 " don't redraw while executing macros
+set magic                      " turn magic on for regular expressions
+set number                     " display line numbers
+"set number relativenumber     " display line numbers
+set numberwidth=5              " set width for numbers to 5
+set so=3                       " show 3 lines to the cursor
+syntax on                      " enable syntax highlighting
+
+" ---------------------------------------------------------------------------
+"  use line cursor within insert mode and block cursor everywhere else
+" ---------------------------------------------------------------------------
+
+" Reference chart of values: (default: 6,2)
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+
+let &t_EI = "\e[2 q"   " normal mode
+let &t_SI = "\e[5 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
@@ -180,10 +194,6 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-" code folding
-set foldmethod=indent
-set foldlevel=99
-
 " ---------------------------------------------------------------------------
 "  configure nerdtree
 " ---------------------------------------------------------------------------
@@ -191,11 +201,12 @@ set foldlevel=99
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
-let g:NERDTreeDirArrowExpandable='►'
-let g:NERDTreeDirArrowCollapsible='▼'
 let NERDTreeShowLineNumbers=0
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable='►'
+let g:NERDTreeDirArrowCollapsible='▼'
+let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
 " ---------------------------------------------------------------------------
@@ -219,18 +230,18 @@ nmap <leader>x :bp<bar>bd#<CR>
 "  colours and theming
 " ---------------------------------------------------------------------------
 
-syntax on                     " enable syntax highlighting
-
-set t_Co=256                  " set if term supports 256 colours
-set t_ut=                     " clearing uses the current backgroupd colour
+set t_Co=256            " set if term supports 256 colours
+set t_ut=               " clearing uses the current backgroupd colour
 
 set termguicolors
 set background=dark
 
+let g:rehash256 = 1     " molokai mode to match dark gui version
+
 " the onedark colour theme
 let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
-let g:onedark_hide_endofbuffer=1
 let g:onedark_termcolors=256
+let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=0
 colorscheme onedark
 
@@ -261,19 +272,12 @@ colorscheme onedark
 let g:indentLine_setColors=1
 let g:indentLine_char='⦙'
 
-" vim
 let g:indentLine_color_term=239
-
-" gvim
-let g:indentLine_color_gui='#333333'
+let g:indentLine_color_gui='#444444'
 
 " none x terminal
 let g:indentLine_color_tty_light=7 " (default: 4)
 let g:indentLine_color_dark=1 " (default: 2)
-
-" background (vim, gvim)
-"let g:indentLine_bgcolor_term=202
-"let g:indentLine_bgcolor_gui='#ff5f00'
 
 " ---------------------------------------------------------------------------
 "  autopair brackets
@@ -301,12 +305,6 @@ map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
 
 " ---------------------------------------------------------------------------
-"  settings for vimwiki
-" ---------------------------------------------------------------------------
-
-let g:vimwiki_list=[{'path':'~/vimwiki/','syntax':'markdown','ext':'.md'}]
-
-" ---------------------------------------------------------------------------
 "  instant markdown
 " ---------------------------------------------------------------------------
 
@@ -322,7 +320,7 @@ map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
 map <Leader>tt :vnew term://zsh<CR>
 
 " ---------------------------------------------------------------------------
-"  splits and tabbed files
+"  split and tabbed files
 " ---------------------------------------------------------------------------
 
 set splitbelow splitright
@@ -343,16 +341,9 @@ noremap <silent> <C-Down> :resize -3<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
-" set split seperators
-"set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
-
 " ---------------------------------------------------------------------------
 "  syntax checking with ale
 " ---------------------------------------------------------------------------
-
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-set foldlevelstart=20
 
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 let g:ale_sign_error='✘'
@@ -366,29 +357,21 @@ map <C-r> <Plug>(ale_previous_wrap)
 "  playing around with abriviations
 " ---------------------------------------------------------------------------
 
-ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors
+ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
+
 ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><head><cr><body><cr></body><cr></html>
 
 " some handy abbriviations for c
-iab com /*<cr><cr>/<up>
+iab com /*<cr><cr>*/<up>
 iab #i #include
 iab #d #define
 
-" some handy abbriviations for java
-ab psvm public static void main(string[] args){<cr>}<esc>o
-ab sysout system.out.println("");<esc>2hi
-ab sop system.out.println("");<esc>2hi
-ab syserr system.err.println("");<esc>2hi
-ab sep system.err.println("");<esc>2hi
-
-ab forl for (int i = 0; i < ; i++) {<esc>7hi
+ab forl for (int i = 0; i < ; i++) {<esc>8hi
 ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
 ab const public static final int
 
 ab ctm system.currenttimemillis()
 ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
-
-iab forl for (i=1; i<=NUM; i++) {<CR><CR>}<Esc>?NUM<CR>cw
 
 autocmd FileType c iab start #include <stdio.h><cr>
     \#include <stdlib.h><cr>
