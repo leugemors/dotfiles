@@ -12,8 +12,8 @@
 # support 256 colours
 export TERM="xterm-256color"
 
-# set bat as manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# set batcat as manpager
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -26,14 +26,10 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-#ZSH_THEME="amuse"
-#ZSH_THEME="bira"
-#ZSH_THEME="fino"
-#ZSH_THEME="fino-time"
+#ZSH_THEME="agnoster"             # one line
+#ZSH_THEME="amuse"                # two lines, incl time.
+ZSH_THEME="bira"                  # two lines, incl user/host
 #ZSH_THEME="fox"
-#ZSH_THEME="gentoo"
-#ZSH_THEME="kphoen"
 #ZSH_THEME="rkj-repos"
 
 # Set list of themes to pick from when loading at random
@@ -160,9 +156,10 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive tab
 
 # history configurations
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=2000
+HISTSIZE=2000
+SAVEHIST=4000
 HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)" 
+HISTTIMEFORMAT="%F %T - "
 
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
@@ -192,14 +189,10 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 fi
 
 export ANSIBLE_NOCOWS=1
+export EDITOR=vim
 
 # a nice intro screen
-cat /etc/motd
-#colorscript -r
-#echo
+#cat /etc/motd
 
-# deze moet van thijs :-)
-cycles
-#nundinal_cycle
-echo ""
-
+fortune | cowsay | lolcat
+gcal_wrapper; echo; romeinse_kalender; cycles; echo

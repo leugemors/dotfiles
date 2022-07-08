@@ -14,7 +14,7 @@ set nocompatible      " no need to be compatible with the original vi
 filetype off          " needs to be switched off while loading plugins
 
 " ---------------------------------------------------------------------------
-"  manage plugins (PlugInstall :PlugClean :PlugUpdate, etc.)
+"  manage plugins (:PlugInstall :PlugClean :PlugUpdate, etc.)
 " ---------------------------------------------------------------------------
 
 let need_to_install_plugins = 0
@@ -73,7 +73,7 @@ endif
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-set colorcolumn=80             " show a line at column 80
+"set colorcolumn=80            " show a line at column 80
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
@@ -99,7 +99,7 @@ syntax on                      " enable syntax highlighting
 "   Ps = 6  -> steady bar (xterm).
 
 let &t_EI = "\e[2 q"   " normal mode
-let &t_SI = "\e[5 q"   " insert mode
+let &t_SI = "\e[1 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
@@ -150,8 +150,8 @@ set wildignore=*.o,*~,*.pyc   " ignore these file extensions
 " ---------------------------------------------------------------------------
 "
 let g:lightline={ 'colorscheme': 'onedark', }
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'onedark'
+let g:airline_powerline_fonts=1
+let g:airline_theme='onedark'
 set laststatus=2              " always show the status line
 set noshowmode                " don't show non-normal modes in powerline
 
@@ -195,6 +195,14 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " ---------------------------------------------------------------------------
+"  mouse support
+" ---------------------------------------------------------------------------
+
+set mouse=a
+map <C-c> "+y
+map <C-v> "+p
+
+" ---------------------------------------------------------------------------
 "  configure nerdtree
 " ---------------------------------------------------------------------------
 
@@ -225,6 +233,16 @@ nmap <leader><Right> :wincmd l<CR>
 nmap <leader>[ :bp!<CR>
 nmap <leader>] :bn!<CR>
 nmap <leader>x :bp<bar>bd#<CR>
+
+" ---------------------------------------------------------------------------
+"  remove trailing white spaces
+" ---------------------------------------------------------------------------
+
+map <F12> :call TrimWhiteSpaces()<CR>
+func! TrimWhiteSpaces()
+    %s/\s*$//
+    ''
+:endfunction
 
 " ---------------------------------------------------------------------------
 "  colours and theming
@@ -362,7 +380,7 @@ ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
 ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><head><cr><body><cr></body><cr></html>
 
 " some handy abbriviations for c
-iab com /*<cr><cr>*/<up>
+"iab com /*<cr><cr>*/<up>
 iab #i #include
 iab #d #define
 
