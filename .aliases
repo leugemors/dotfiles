@@ -1,0 +1,166 @@
+#        _    _ 
+#   _ __| | _| |
+#  | '__| |/ / |   Richard Klein Leugemors 
+#  | |  |   <| |   https://www.github.com/leugemors/
+#  |_|  |_|\_\_| 
+#            
+#  Just a bunch of handy aliases for my personal use.
+#
+
+#alias mc='mc --nosubshell'
+
+# ---------------------------------------------------------------------------
+#  enable colour support for ls and add some colourful aliases
+# ---------------------------------------------------------------------------
+
+if [ -x /usr/bin/dircolors ]; then
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias diff='diff --color=auto'
+    alias ip='ip --color=auto'
+fi
+
+#alias ls='ls --color=auto -CF'
+#alias l='ls -lF'
+#alias la='ls -AF'
+#alias ll='ls -AlF'
+#alias l.='ls -AF | egrep "^.".'
+
+# ---------------------------------------------------------------------------
+#  changing ls to exa
+# ---------------------------------------------------------------------------
+
+alias ls='exa -gF --color=always --group-directories-first'
+alias la='exa -aF --color=always --group-directories-first'
+alias ll='exa -algF --color=always --group-directories-first'
+alias lt='exa -aT --color=always --group-directories-first'
+alias l.='exa -aF | egrep "^\."'
+
+# ---------------------------------------------------------------------------
+#  easy cd
+# ---------------------------------------------------------------------------
+
+alias up='cd ..'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+
+alias dl='cd ~/Downloads'
+alias work='cd ~/Working'
+
+alias ans='cd ~/Working/ansible'
+alias edu='cd ~/Working/eduarte'
+alias leug='cd ~/Working/leugemors'
+alias misc='cd ~/Working/python/misc'
+alias uzori='cd ~/Working/uzori'
+alias thijs='cd ~/Working/thijs'
+
+alias prive='cd ~/Prive'
+alias bba='cd ~/Prive/brassband'
+alias doc='cd ~/Prive/documents'
+alias rwf='cd ~/Prive/rwf'
+
+alias cursus='cd ~/Working/cursus'
+alias iso='cd /files/iso'
+
+alias iddink='cd /mnt/iddink'
+alias nassi='cd /mnt/nassi'
+alias stack='cd /mnt/stack'
+
+# ---------------------------------------------------------------------------
+#  git aliasses
+# ---------------------------------------------------------------------------
+
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias master='git checkout master && git branch'
+alias prune='git pull --prune'
+alias pull='git pull origin'
+alias push='git push origin'
+alias stat='git status'  # 'status' is protected name so using 'stat' instead
+alias tag='git tag'
+alias newtag='git tag -a' 
+
+# I got these aliasses from Coen
+alias gitpurge='git branch -d $( git branch | grep -Ev "master|main" ) && git branch'
+
+# ---------------------------------------------------------------------------
+#  some handy aliasses
+# ---------------------------------------------------------------------------
+
+alias check="shellcheck --color=auto -o all -x -S style"
+alias diff='colordiff -Nuar'
+alias dus='du -h --max-depth=1 | sort -h'
+alias flush='sudo systemd-resolve --flush-caches'
+alias he='hexedit --color'
+alias jctl='journalctl -p 3 -xb'
+alias ncdu='ncdu -x -e --color dark'
+alias play='ansible-playbook main.yaml'
+alias ports='netstat -tulpan'
+alias repl='cinnamon --replace -d :0.0 &'
+alias showip='curl ipv4.icanhazip.com'
+alias ssha='eval $(ssh-agent) && ssh-add'
+alias tf='/usr/local/bin/terraform'
+
+# ---------------------------------------------------------------------------
+#  fun stuff
+# ---------------------------------------------------------------------------
+
+alias epoch='date +%s'
+alias kaart='telnet mapscii.me'
+alias klok='watch -t -n1 "date +%T | figlet"'
+alias maan='curl wttr.in/Moon'
+alias pdp='cd ~/Working/simh/pdp11; ./pdp11'
+alias please='sudo'
+alias starwars='telnet towel.blinkenlights.nl'
+alias verse='/usr/bin/random_verse'
+alias weer='curl wttr.in/malburgen'
+
+# ---------------------------------------------------------------------------
+#  one letter aliases
+# ---------------------------------------------------------------------------
+
+alias a='vim ~/.aliases && source ~/.aliases'
+alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias c='clear' # also possible with <Ctrl>L
+alias d='date +"%d-%m-%Y"'
+alias e='vi ~/.ssh/config.d/eduarte.conf'
+alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
+alias h='history -I 0 | tail -n 32'
+alias j='jobs -l'
+alias k='kubectl'
+alias m='mount | column -t'
+alias n='netstat -auntp'
+alias p='echo -e ${PATH//:/\\n}'
+alias s='cat ~/.aliases | grep "^alias .="'
+#alias t='vim ~/.config/terminator/config'
+alias t='vim ~/.config/alacritty/alacritty.yml'
+alias u='sudo /usr/local/bin/update'
+alias v='vim ~/.vimrc'
+alias z='vim ~/.zshrc && source ~/.zshrc'
+
+# ---------------------------------------------------------------------------
+#  misc
+# ---------------------------------------------------------------------------
+
+alias header='curl -I'
+alias shares='smbclient -U "richard.kleinleugemors@iddinkgroup.com" -L 10.15.11.115'
+alias fontvga='setfont Lat2-VGA32x16'
+alias fontterm='setfont Lat2-Terminus32x16'
+alias coin='python3 ~/Working/python/misc/crypto.py 2> /dev/null'
+
+# ---------------------------------------------------------------------------
+#  connect to the iddink vpn
+# ---------------------------------------------------------------------------
+
+alias vpn='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+
+#alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+#alias vifm='./.config/vifm/scripts/vifmrun'
