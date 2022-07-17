@@ -5,122 +5,25 @@
 ##  | |  |   <| |   https://www.github.com/leugemors/
 ##  |_|  |_|\_\_|
 ##
-##  My personal zsh configuration, using oh-my-zsh.
+##  my personal zsh configuration, using a starship prompt
 ##
 #############################################################################
 
-# support 256 colours
+# ---------------------------------------------------------------------------
+#  support 256 colours
+# ---------------------------------------------------------------------------
+
 export TERM="xterm-256color"
 
-# set batcat as manpager
+# ---------------------------------------------------------------------------
+#  set batcat as manpager
+# ---------------------------------------------------------------------------
+
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"             # one line
-#ZSH_THEME="amuse"                # two lines, incl time.
-ZSH_THEME="bira"                  # two lines, incl user/host
-#ZSH_THEME="fox"
-#ZSH_THEME="rkj-repos"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# ---------------------------------------------------------------------------
+#  set auto correct options
+# ---------------------------------------------------------------------------
 
 setopt autocd              # change directory just by typing its name
 setopt correct             # auto correct mistakes
@@ -131,11 +34,22 @@ setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 
-# hide EOL sign ('%')
+# ---------------------------------------------------------------------------
+#  don't consider certain characters part of the word
+# ---------------------------------------------------------------------------
+
+WORDCHARS=${WORDCHARS//\/}
+
+# ---------------------------------------------------------------------------
+#  hide EOL sign ('%')
+# ---------------------------------------------------------------------------
+
 PROMPT_EOL_MARK=""
 
-# configure key keybindings
-#bindkey -e                                       # emacs key bindings
+# ---------------------------------------------------------------------------
+#  configure key keybindings
+# ---------------------------------------------------------------------------
+
 bindkey -v                                        # vim key bindings
 bindkey ' ' magic-space                           # do history expansion on space
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
@@ -148,18 +62,39 @@ bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
-# enable completion features
+# ---------------------------------------------------------------------------
+#  enable completion features
+# ---------------------------------------------------------------------------
+
 autoload -Uz compinit
 compinit -d ~/.cache/zcompdump
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive tab completion
 
-# history configurations
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+# take advantage of $LS_COLORS for completion as well
+# zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# ---------------------------------------------------------------------------
+#  history configurations
+# ---------------------------------------------------------------------------
+
 HISTFILE=~/.zsh_history
-HISTSIZE=2000
-SAVEHIST=4000
+HISTSIZE=20000
+SAVEHIST=40000
+
 HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)" 
-HISTTIMEFORMAT="%F %T - "
+HISTTIMEFORMAT="[%F %T] - "
 
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
@@ -167,32 +102,79 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
 
-# force zsh to show the complete history
-alias history="history 0"
+# ---------------------------------------------------------------------------
+#  configure `time` format
+# ---------------------------------------------------------------------------
 
-# load my custom aliasses
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
+TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
+
+# ---------------------------------------------------------------------------
+#  make less more friendly for non-text input files, see lesspipe(1)
+# ---------------------------------------------------------------------------
+
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# ---------------------------------------------------------------------------
+#  set variable identifying the chroot you work in (used in the prompt below)
+# ---------------------------------------------------------------------------
+
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# load my k8s configuration
-#source <(kubectl completion zsh)
+# ---------------------------------------------------------------------------
+#  enable auto-suggestions based on the history
+# ---------------------------------------------------------------------------
 
-# take advantage of $LS_COLORS for completion as well
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
+# ---------------------------------------------------------------------------
+#  load my k8s configuration
+# ---------------------------------------------------------------------------
+
+#source <(kubectl completion zsh)
+
+# ---------------------------------------------------------------------------
+#  load my custom aliasses
+# ---------------------------------------------------------------------------
+
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+
+# ---------------------------------------------------------------------------
+#  otherwise all ansible messages will also get parsed through cowsay
+# ---------------------------------------------------------------------------
+
 export ANSIBLE_NOCOWS=1
+
+# ---------------------------------------------------------------------------
+#  use vim keys to edit the command line
+# ---------------------------------------------------------------------------
+
 export EDITOR=vim
 
-# a nice intro screen
-#cat /etc/motd
+# ---------------------------------------------------------------------------
+#  load the starship prompt
+# ---------------------------------------------------------------------------
+
+eval "$(starship init zsh)"
+
+# ---------------------------------------------------------------------------
+#  enable command-not-found if installed
+# ---------------------------------------------------------------------------
+
+if [ -f /etc/zsh_command_not_found ]; then
+    . /etc/zsh_command_not_found
+fi
+
+# ---------------------------------------------------------------------------
+#  by request of thijs :-)
+# ---------------------------------------------------------------------------
 
 fortune | cowsay | lolcat
-gcal_wrapper; echo; romeinse_kalender; cycles; echo
+gcal_wrapper; echo; romeinse_kalender; cycles
