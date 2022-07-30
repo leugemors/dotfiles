@@ -26,13 +26,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
-    " basic plugins
-    Plug 'itchyny/lightline.vim'                   " lightline statusbar
+  
+    "Plug 'itchyny/lightline.vim'                   " lightline statusbar
     Plug 'tpope/vim-sensible'                      " some sensible defaults
-    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    "Plug 'vim-airline/vim-airline'                " airline statusbar
-    "Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline'                " airline statusbar
+    Plug 'vim-airline/vim-airline-themes'
 
     " file management
     Plug 'vifm/vifm.vim'                           " vi file manager
@@ -49,6 +47,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'dense-analysis/ale'                    " some syntax checking
     Plug 'jiangmiao/auto-pairs'                  " auto pair brackets
     Plug 'majutsushi/tagbar'                     " use ctags in vim
+    Plug 'vimwiki/vimwiki'                       " taking notes from within vim
+    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
+
+    " nog uitzoeken
+    Plug 'honza/vim-snippets'
+    Plug 'rust-lang/rust.vim'
 
     " colours and syntax highlighting
     Plug 'joshdick/onedark.vim'                  " onedark colour theme
@@ -148,10 +152,16 @@ set wildignore=*.o,*~,*.pyc   " ignore these file extensions
 " ---------------------------------------------------------------------------
 "  status line
 " ---------------------------------------------------------------------------
-"
-let g:lightline={ 'colorscheme': 'onedark', }
-let g:airline_powerline_fonts=1
+
+"let g:lightline={ 'colorscheme': 'onedark', }
+
+let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+
 set laststatus=2              " always show the status line
 set noshowmode                " don't show non-normal modes in powerline
 
@@ -256,12 +266,15 @@ set background=dark
 
 let g:rehash256 = 1     " molokai mode to match dark gui version
 
-" the onedark colour theme
+" onedark colour theme
 let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
 let g:onedark_termcolors=256
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=0
 colorscheme onedark
+
+" synthwave84 colour theme
+"colorscheme synthwave84
 
 " default colour schemes
 "colorscheme blue
