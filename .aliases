@@ -1,11 +1,13 @@
-#        _    _ 
-#   _ __| | _| |
-#  | '__| |/ / |   Richard Klein Leugemors 
-#  | |  |   <| |   https://www.github.com/leugemors/
-#  |_|  |_|\_\_| 
-#            
-#  Just a bunch of handy aliases for my personal use.
-#
+#############################################################################
+##         _    _ 
+##    _ __| | _| |
+##   | '__| |/ / |   Richard Klein Leugemors 
+##   | |  |   <| |   https://www.github.com/leugemors/
+##   |_|  |_|\_\_| 
+##            
+##   Just a bunch of handy aliases for my personal use.
+##
+#############################################################################
 
 #alias mc='mc --nosubshell'
 
@@ -28,14 +30,20 @@ fi
 #alias l.='ls -AF | egrep "^.".'
 
 # ---------------------------------------------------------------------------
+#  use batcat instead of cat
+# ---------------------------------------------------------------------------
+
+alias cat='batcat'
+
+# ---------------------------------------------------------------------------
 #  changing ls to exa
 # ---------------------------------------------------------------------------
 
-alias ls='exa -gF --color=always --group-directories-first'
-alias la='exa -aF --color=always --group-directories-first'
-alias ll='exa -algF --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias l.='exa -aF | egrep "^\."'
+alias ls='exa -gF --color=always --group-directories-first --icons'
+alias la='exa -aF --color=always --group-directories-first --icons'
+alias ll='exa -algF --color=always --group-directories-first --icons'
+alias lt='exa -aT --color=always --group-directories-first --icons'
+alias l.='exa -aF | egrep "^\." --icons'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -80,16 +88,14 @@ alias checkout='git checkout'
 alias clone='git clone'
 alias commit='git commit -m'
 alias fetch='git fetch'
-alias master='git checkout master && git branch'
+alias master='(git checkout master || git checkout main) && git branch'
+alias newtag='git tag -a' 
 alias prune='git pull --prune'
 alias pull='git pull origin'
+alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias push='git push origin'
 alias stat='git status'  # 'status' is protected name so using 'stat' instead
 alias tag='git tag'
-alias newtag='git tag -a' 
-
-# I got these aliasses from Coen
-alias gitpurge='git branch -d $( git branch | grep -Ev "master|main" ) && git branch'
 
 # ---------------------------------------------------------------------------
 #  some handy aliasses
@@ -104,6 +110,8 @@ alias jctl='journalctl -p 3 -xb'
 alias ncdu='ncdu -x -e --color dark'
 alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias repl='cinnamon --replace -d :0.0 &'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
@@ -133,34 +141,38 @@ alias c='clear' # also possible with <Ctrl>L
 alias d='date +"%d-%m-%Y"'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
-alias h='history -I 0 | tail -n 32'
+alias g='cat ~/.aliases | grep "git"'
+alias h='history -i 0 | tail -n 48'
 alias j='jobs -l'
 alias k='kubectl'
-alias m='mount | column -t'
-alias n='netstat -auntp'
+alias m='mount | column -t -s","'
+alias n='newsboat'
 alias p='echo -e ${PATH//:/\\n}'
 alias s='cat ~/.aliases | grep "^alias .="'
-#alias t='vim ~/.config/terminator/config'
 alias t='vim ~/.config/alacritty/alacritty.yml'
 alias u='sudo /usr/local/bin/update'
 alias v='vim ~/.vimrc'
+alias x='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias z='vim ~/.zshrc && source ~/.zshrc'
+
+#alias n='netstat -auntp'
+#alias t='vim ~/.config/terminator/config'
 
 # ---------------------------------------------------------------------------
 #  misc
 # ---------------------------------------------------------------------------
 
-alias header='curl -I'
-alias shares='smbclient -U "richard.kleinleugemors@iddinkgroup.com" -L 10.15.11.115'
+alias coin='python3 ~/Working/python/misc/crypto.py 2> /dev/null'
 alias fontvga='setfont Lat2-VGA32x16'
 alias fontterm='setfont Lat2-Terminus32x16'
-alias coin='python3 ~/Working/python/misc/crypto.py 2> /dev/null'
+alias header='curl -I'
+
+#alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+#alias vifm='./.config/vifm/scripts/vifmrun'
 
 # ---------------------------------------------------------------------------
 #  connect to the iddink vpn
 # ---------------------------------------------------------------------------
 
+alias shares='smbclient -U "richard.kleinleugemors@iddinkgroup.com" -L 10.15.11.115'
 alias vpn='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
-
-#alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-#alias vifm='./.config/vifm/scripts/vifmrun'

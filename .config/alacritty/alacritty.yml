@@ -1,4 +1,13 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+#############################################################################
+##         _    _
+##    _ __| | _| |
+##   | '__| |/ / |   Richard Klein Leugemors
+##   | |  |   <| |   https://www.github.com/leugemors/
+##   |_|  |_|\_\_|
+##
+##   Configuration for Alacritty, the GPU enhanced terminal emulator.
+##
+#############################################################################
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -45,7 +54,7 @@ window:
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
   # opacity: 1.0
-  opacity: 0.90
+  opacity: 0.98
 
   # Window decorations
   #
@@ -117,15 +126,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro
-    # family: CodeNewRoman Nerd Font
+    family: JetBrains Mono Nerd Font
     # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
+    # family: Source Code Pro
     # family: UbuntuMono Nerd Font
-    # family: Monofur Nerd Font
-    # family: TerminessTTF Nerd Font
-    # family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -136,18 +140,13 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofur Nerd Font
-    # family: TerminessTTF Nerd Font
-    # family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
+    family: JetBrains Mono Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: Source Code Pro
+    # family: UbuntuMono Nerd Font
 
   # Italic font face
   italic:
@@ -155,18 +154,13 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofuritalic Nerd Font Mono
-    # family: TerminessTTF Nerd Font
-    # family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Italic
+    family: JetBrains Mono Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: Source Code Pro
+    # family: UbuntuMono Nerd Font
 
   # Bold italic font face
   bold_italic:
@@ -174,18 +168,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofuritalic Nerd Font Mono
-    # family: TerminessTTF Nerd Font
-    # family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
+    family: JetBrains Mono Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: Source Code Pro
+    # family: UbuntuMono Nerd Font
 
   # Point size
   # rkl: size: 12.0
@@ -378,7 +367,8 @@ schemes:
   Nord: &Nord
     # Default colors
     primary:
-      background: '#2E3440'
+      # rkl: background: '#2E3440'
+      background: '#111111'
       foreground: '#D8DEE9'
 
     # Normal colors
@@ -583,8 +573,10 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-# rkl: colors: *DoomOne
+# rkl
+# colors: *DoomOne # lnav onleesbaar en kleuren mc onduidelijk
 colors: *Dracula
+#colors: *Nord
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

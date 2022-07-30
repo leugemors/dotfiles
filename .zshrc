@@ -5,7 +5,7 @@
 ##  | |  |   <| |   https://www.github.com/leugemors/
 ##  |_|  |_|\_\_|
 ##
-##  my personal zsh configuration, using a starship prompt
+##  my personal zsh configuration, using a nice starship prompt
 ##
 #############################################################################
 
@@ -115,14 +115,6 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ---------------------------------------------------------------------------
-#  set variable identifying the chroot you work in (used in the prompt below)
-# ---------------------------------------------------------------------------
-
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# ---------------------------------------------------------------------------
 #  enable auto-suggestions based on the history
 # ---------------------------------------------------------------------------
 
@@ -130,6 +122,22 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+fi
+
+# ---------------------------------------------------------------------------
+# enable syntax highlighting
+# ---------------------------------------------------------------------------
+
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# ---------------------------------------------------------------------------
+#  enable command-not-found if installed
+# ---------------------------------------------------------------------------
+
+if [ -f /etc/zsh_command_not_found ]; then
+    . /etc/zsh_command_not_found
 fi
 
 # ---------------------------------------------------------------------------
@@ -163,14 +171,6 @@ export EDITOR=vim
 # ---------------------------------------------------------------------------
 
 eval "$(starship init zsh)"
-
-# ---------------------------------------------------------------------------
-#  enable command-not-found if installed
-# ---------------------------------------------------------------------------
-
-if [ -f /etc/zsh_command_not_found ]; then
-    . /etc/zsh_command_not_found
-fi
 
 # ---------------------------------------------------------------------------
 #  by request of thijs :-)
