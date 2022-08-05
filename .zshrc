@@ -176,5 +176,6 @@ eval "$(starship init zsh)"
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
-fortune | cowsay | lolcat
+#fortune | cowsay | lolcat
+verse | cowsay | lolcat
 gcal_wrapper; echo; romeinse_kalender; cycles
