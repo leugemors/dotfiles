@@ -63,12 +63,12 @@ alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/python/misc'
 alias uzori='cd ~/Working/uzori'
-alias thijs='cd ~/Working/thijs'
 
 alias prive='cd ~/Prive'
 alias bba='cd ~/Prive/brassband'
 alias doc='cd ~/Prive/documents'
 alias rwf='cd ~/Prive/rwf'
+alias thijs='cd ~/Prive/thijs'
 
 alias cursus='cd ~/Working/cursus'
 alias iso='cd /files/iso'
@@ -76,6 +76,10 @@ alias iso='cd /files/iso'
 alias iddink='cd /mnt/iddink'
 alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
+
+# the project I am currently working on
+#alias nu='cd ~/Working/eduarte/eduarte-ansible-scripts'
+alias nu='cd ~/Working/eduarte/eduarte-cron-ansible-control-node'
 
 # ---------------------------------------------------------------------------
 #  git aliasses
@@ -112,7 +116,7 @@ alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
-alias repl='cinnamon --replace -d :0.0 &'
+#alias repl='cinnamon --replace -d :0.0 &'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tf='/usr/local/bin/terraform'
@@ -155,14 +159,10 @@ alias v='vim ~/.vimrc'
 alias x='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-#alias n='netstat -auntp'
-#alias t='vim ~/.config/terminator/config'
-
 # ---------------------------------------------------------------------------
 #  misc
 # ---------------------------------------------------------------------------
 
-alias coin='python3 ~/Working/python/misc/crypto.py 2> /dev/null'
 alias fontvga='setfont Lat2-VGA32x16'
 alias fontterm='setfont Lat2-Terminus32x16'
 alias header='curl -I'
@@ -174,5 +174,5 @@ alias header='curl -I'
 #  connect to the iddink vpn
 # ---------------------------------------------------------------------------
 
-alias shares='smbclient -U "richard.kleinleugemors@iddinkgroup.com" -L 10.15.11.115'
+alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
 alias vpn='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
