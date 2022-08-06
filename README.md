@@ -6,7 +6,7 @@ A location to keep my personal configuration files. Feel free to take a look, us
 - .tmux.conf
 - .vimrc
 - .zshrc
-- .xmonad
+- .xmonad/
 - .config/alacritty/alacritty.yml
 - .config/terminator/config
 - .config/xmobar/xmobar.config
