@@ -75,7 +75,6 @@ zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 # take advantage of $LS_COLORS for completion as well
-# zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -173,9 +172,29 @@ export EDITOR=vim
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
+#  conda initialize
+# ---------------------------------------------------------------------------
+
+#__conda_setup="$('/home/richard/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+    #eval "$__conda_setup"
+#else
+    #if [ -f "/home/richard/anaconda3/etc/profile.d/conda.sh" ]; then
+        #. "/home/richard/anaconda3/etc/profile.d/conda.sh"
+    #else
+        #export PATH="/home/richard/anaconda3/bin:$PATH"
+    #fi
+#fi
+#unset __conda_setup
+
+#conda deactivate
+
+# ---------------------------------------------------------------------------
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
 #fortune | cowsay | lolcat
 verse | cowsay | lolcat
 gcal_wrapper; echo; romeinse_kalender; cycles
+
+### eof #####################################################################

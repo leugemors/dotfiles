@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 #############################################################################
 ##         _    _ 
 ##    _ __| | _| |
@@ -5,10 +6,11 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_| 
 ##            
-##   Just a bunch of handy aliases for my personal use.
+##   just a bunch of handy aliases for my personal use
 ##
 #############################################################################
 
+# sometimes mc can start very slowly when using a sub-shell
 #alias mc='mc --nosubshell'
 
 # ---------------------------------------------------------------------------
@@ -23,27 +25,28 @@ if [ -x /usr/bin/dircolors ]; then
     alias ip='ip --color=auto'
 fi
 
+# ---------------------------------------------------------------------------
+#  when using the old-fashioned ls command
+# ---------------------------------------------------------------------------
+
 #alias ls='ls --color=auto -CF'
-#alias l='ls -lF'
 #alias la='ls -AF'
 #alias ll='ls -AlF'
-#alias l.='ls -AF | egrep "^.".'
 
 # ---------------------------------------------------------------------------
-#  use batcat instead of cat
-# ---------------------------------------------------------------------------
-
-alias cat='batcat'
-
-# ---------------------------------------------------------------------------
-#  changing ls to exa
+#  changing ls to exa (suckless tools)
 # ---------------------------------------------------------------------------
 
 alias ls='exa -gF --color=always --group-directories-first --icons'
 alias la='exa -aF --color=always --group-directories-first --icons'
 alias ll='exa -algF --color=always --group-directories-first --icons'
 alias lt='exa -aT --color=always --group-directories-first --icons'
-alias l.='exa -aF | egrep "^\." --icons'
+
+# ---------------------------------------------------------------------------
+#  use batcat instead of cat (suckless tools)
+# ---------------------------------------------------------------------------
+
+alias cat='batcat'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -116,7 +119,6 @@ alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
-#alias repl='cinnamon --replace -d :0.0 &'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tf='/usr/local/bin/terraform'
@@ -132,6 +134,7 @@ alias maan='curl wttr.in/Moon'
 alias pdp='cd ~/Working/simh/pdp11; ./pdp11'
 alias please='sudo'
 alias starwars='telnet towel.blinkenlights.nl'
+alias tt='/usr/local/bin/teletekst.py'
 alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
 
@@ -141,22 +144,29 @@ alias weer='curl wttr.in/malburgen'
 
 alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias c='clear' # also possible with <Ctrl>L
-alias d='date +"%d-%m-%Y"'
+alias c='cmatrix -b -s -C magenta'
+alias d='datumpje'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
-alias g='cat ~/.aliases | grep "git"'
+alias g='cat ~/.aliases | grep -v "cat" | grep "git"'
 alias h='history -i 0 | tail -n 48'
+alias i='echo "This alias is not in use."'
 alias j='jobs -l'
 alias k='kubectl'
+alias l='echo "This alias is not in use."'
 alias m='mount | column -t -s","'
 alias n='newsboat'
+alias o='echo "This alias is not in use."'
 alias p='echo -e ${PATH//:/\\n}'
-alias s='cat ~/.aliases | grep "^alias .="'
+alias q='echo "This alias is not in use."'
+alias r='echo "This alias is not in use."'
+alias s='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7-'
 alias t='vim ~/.config/alacritty/alacritty.yml'
 alias u='sudo /usr/local/bin/update'
 alias v='vim ~/.vimrc'
+alias w='echo "This alias is not in use."'
 alias x='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
+alias y='echo "This alias is not in use."'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
 # ---------------------------------------------------------------------------
@@ -171,8 +181,11 @@ alias header='curl -I'
 #alias vifm='./.config/vifm/scripts/vifmrun'
 
 # ---------------------------------------------------------------------------
-#  connect to the iddink vpn
+#  connect to my work vpn
 # ---------------------------------------------------------------------------
 
 alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
 alias vpn='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+alias topicus='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
+
+### eof #####################################################################

@@ -1,10 +1,13 @@
-"        _    _
-"   _ __| | _| |
-"  | '__| |/ / |   Richard Klein Leugemors
-"  | |  |   <| |   https://www.github.com/leugemors/
-"  |_|  |_|\_\_|
-"
-"  Type  :so %  to refresh .vimrc after making changes.
+"############################################################################
+"##        _    _
+"##   _ __| | _| |
+"##  | '__| |/ / |   Richard Klein Leugemors
+"##  | |  |   <| |   https://www.github.com/leugemors/
+"##  |_|  |_|\_\_|
+"##
+"##  Type  :so %  to refresh .vimrc after making changes.
+"##
+"############################################################################
 
 " ---------------------------------------------------------------------------
 "  some required settings for the plugins
@@ -26,9 +29,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-  
-    "Plug 'itchyny/lightline.vim'                   " lightline statusbar
-    Plug 'tpope/vim-sensible'                      " some sensible defaults
+
+    Plug 'tpope/vim-sensible'                     " some sensible defaults
     Plug 'vim-airline/vim-airline'                " airline statusbar
     Plug 'vim-airline/vim-airline-themes'
 
@@ -60,7 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ap/vim-css-color'                      " show hex colours
     Plug 'frazrepo/vim-rainbow'                  " rainbow brackets for vim
     Plug 'Yggdroot/indentLine'                   " visualize indenations
- 
+
 call plug#end()
 
 if need_to_install_plugins == 1
@@ -77,7 +79,7 @@ endif
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-"set colorcolumn=80            " show a line at column 80
+set colorcolumn=96             " show a line at column 80
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
@@ -152,8 +154,6 @@ set wildignore=*.o,*~,*.pyc   " ignore these file extensions
 " ---------------------------------------------------------------------------
 "  status line
 " ---------------------------------------------------------------------------
-
-"let g:lightline={ 'colorscheme': 'onedark', }
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
@@ -273,9 +273,6 @@ let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=0
 colorscheme onedark
 
-" synthwave84 colour theme
-"colorscheme synthwave84
-
 " default colour schemes
 "colorscheme blue
 "colorscheme darkblue
@@ -299,7 +296,7 @@ colorscheme onedark
 " ---------------------------------------------------------------------------
 "  configure indentline
 " ---------------------------------------------------------------------------
- 
+
 let g:indentLine_setColors=1
 let g:indentLine_char='⦙'
 
@@ -426,3 +423,5 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+
+"### eof ####################################################################
