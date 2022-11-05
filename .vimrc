@@ -30,38 +30,36 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-    Plug 'tpope/vim-sensible'                     " some sensible defaults
-    Plug 'vim-airline/vim-airline'                " airline statusbar
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-sensible'                      " some sensible defaults
+    Plug 'vim-airline/vim-airline'                 " airline statusbar
+    Plug 'vim-airline/vim-airline-themes'          " themes for airline statusbar
 
     " file management
-    Plug 'vifm/vifm.vim'                           " vi file manager
+    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
     Plug 'scrooloose/nerdtree'                     " nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
-    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
+    Plug 'vifm/vifm.vim'                           " vi file manager
     Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
 
     " productivity
-    Plug 'jreybert/vimagit'                      " magit-like plugin for vim
-    Plug 'tpope/vim-surround'                    " change surrounding marks
-    Plug 'airblade/vim-gitgutter'                " show git diff per line
-    Plug 'alvan/vim-closetag'                    " auto close (x)html tags
-    Plug 'dense-analysis/ale'                    " some syntax checking
-    Plug 'jiangmiao/auto-pairs'                  " auto pair brackets
-    Plug 'majutsushi/tagbar'                     " use ctags in vim
-    Plug 'vimwiki/vimwiki'                       " taking notes from within vim
+    Plug 'airblade/vim-gitgutter'                  " show git diff per line
+    Plug 'alvan/vim-closetag'                      " auto close (x)html tags
+    Plug 'dense-analysis/ale'                      " some syntax checking
+    Plug 'honza/vim-snippets'                      " using snippets for some comman languages
+    Plug 'jiangmiao/auto-pairs'                    " auto pair brackets
+    Plug 'jreybert/vimagit'                        " magit-like plugin for vim
+    Plug 'majutsushi/tagbar'                       " use ctags in vim
+    Plug 'rust-lang/rust.vim'                      " syntax highlighting for rust
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-
-    " nog uitzoeken
-    Plug 'honza/vim-snippets'
-    Plug 'rust-lang/rust.vim'
+    Plug 'tpope/vim-surround'                      " change surrounding marks
+    Plug 'vimwiki/vimwiki'                         " taking notes from within vim
 
     " colours and syntax highlighting
-    Plug 'joshdick/onedark.vim'                  " onedark colour theme
-    Plug 'sheerun/vim-polyglot'                  " support for many languages
-    Plug 'ap/vim-css-color'                      " show hex colours
-    Plug 'frazrepo/vim-rainbow'                  " rainbow brackets for vim
-    Plug 'Yggdroot/indentLine'                   " visualize indenations
+    Plug 'ap/vim-css-color'                        " show hex colours
+    Plug 'frazrepo/vim-rainbow'                    " rainbow brackets for vim
+    Plug 'joshdick/onedark.vim'                    " onedark colour theme
+    Plug 'sheerun/vim-polyglot'                    " support for many languages
+    Plug 'Yggdroot/indentLine'                     " visualize indentions
 
 call plug#end()
 
@@ -86,9 +84,9 @@ set history=2000               " how many lines of history should vim remember
 set lazyredraw                 " don't redraw while executing macros
 set magic                      " turn magic on for regular expressions
 set number                     " display line numbers
-"set number relativenumber     " display line numbers
+"set number relativenumber     " display relative line numbers
 set numberwidth=5              " set width for numbers to 5
-set so=3                       " show 3 lines to the cursor
+set scrolloff=3                " show 3 lines to the cursor
 syntax on                      " enable syntax highlighting
 
 " ---------------------------------------------------------------------------
@@ -136,8 +134,8 @@ set fileformats=unix,dos,mac
 " ---------------------------------------------------------------------------
 
 set nobackup                  " no auto backups
-set nowritebackup             " no backup before overwriting files
 set noswapfile                " no swap
+set nowritebackup             " no backup before overwriting files
 
 " ---------------------------------------------------------------------------
 "  search settings
@@ -294,6 +292,12 @@ colorscheme onedark
 "colorscheme zellner
 
 " ---------------------------------------------------------------------------
+"  make background transparent (set this *after* colorscheme)
+" ---------------------------------------------------------------------------
+
+hi Normal guibg=NONE ctermbg=NONE
+
+" ---------------------------------------------------------------------------
 "  configure indentline
 " ---------------------------------------------------------------------------
 
@@ -405,9 +409,9 @@ autocmd FileType c iab start #include <stdio.h><cr>
     \#include <stdlib.h><cr>
     \#include <stdbool.h><cr><cr>
     \int main() {<cr>
-    \printf("hello\n");<cr><cr>
-    \return 0;<cr>
-    \}<up><up><up>
+    \printf("Hello World!\n");<cr><cr>
+    \return 0;
+    \}<up><up><cr>
 
 " ---------------------------------------------------------------------------
 "  miscelaneous stuff

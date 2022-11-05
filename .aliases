@@ -31,7 +31,7 @@ fi
 
 #alias ls='ls --color=auto -CF'
 #alias la='ls -AF'
-#alias ll='ls -AlF'
+#alias ll='ls --group-directories-first -AlF'
 
 # ---------------------------------------------------------------------------
 #  changing ls to exa (suckless tools)
@@ -46,7 +46,7 @@ alias lt='exa -aT --color=always --group-directories-first --icons'
 #  use batcat instead of cat (suckless tools)
 # ---------------------------------------------------------------------------
 
-alias cat='batcat'
+alias cat='bat'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -58,34 +58,29 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+alias doc='cd ~/Documents'
 alias dl='cd ~/Downloads'
 alias work='cd ~/Working'
 
 alias ans='cd ~/Working/ansible'
+alias cursus='cd ~/Working/cursus'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
-alias misc='cd ~/Working/python/misc'
-alias uzori='cd ~/Working/uzori'
+alias misc='cd ~/Working/misc'
+alias topicus='cd ~/Working/topicus'
 
 alias prive='cd ~/Prive'
-alias bba='cd ~/Prive/brassband'
-alias doc='cd ~/Prive/documents'
 alias rwf='cd ~/Prive/rwf'
 alias thijs='cd ~/Prive/thijs'
 
-alias cursus='cd ~/Working/cursus'
 alias iso='cd /files/iso'
 
 alias iddink='cd /mnt/iddink'
 alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
-# the project I am currently working on
-#alias nu='cd ~/Working/eduarte/eduarte-ansible-scripts'
-alias nu='cd ~/Working/eduarte/eduarte-cron-ansible-control-node'
-
 # ---------------------------------------------------------------------------
-#  git aliasses
+#  g1t aliasses
 # ---------------------------------------------------------------------------
 
 alias addup='git add -u'
@@ -99,7 +94,7 @@ alias master='(git checkout master || git checkout main) && git branch'
 alias newtag='git tag -a' 
 alias prune='git pull --prune'
 alias pull='git pull origin'
-alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
+llias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias push='git push origin'
 alias stat='git status'  # 'status' is protected name so using 'stat' instead
 alias tag='git tag'
@@ -121,7 +116,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
-alias tf='/usr/local/bin/terraform'
+alias speed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
@@ -148,23 +143,23 @@ alias c='cmatrix -b -s -C magenta'
 alias d='datumpje'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
-alias g='cat ~/.aliases | grep -v "cat" | grep "git"'
+alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | bat'
 alias h='history -i 0 | tail -n 48'
-alias i='echo "This alias is not in use."'
+alias i='sudo apt install '
 alias j='jobs -l'
 alias k='kubectl'
 alias l='echo "This alias is not in use."'
 alias m='mount | column -t -s","'
 alias n='newsboat'
 alias o='echo "This alias is not in use."'
-alias p='echo -e ${PATH//:/\\n}'
+alias p='echo -e ${PATH//:/\\n} | bat'
 alias q='echo "This alias is not in use."'
 alias r='echo "This alias is not in use."'
-alias s='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7-'
+alias s='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
 alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update'
+alias u='sudo /usr/local/bin/update && flatpak update'
 alias v='vim ~/.vimrc'
-alias w='echo "This alias is not in use."'
+alias w='curl wttr.in/malburgen'
 alias x='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias y='echo "This alias is not in use."'
 alias z='vim ~/.zshrc && source ~/.zshrc'
@@ -185,7 +180,8 @@ alias header='curl -I'
 # ---------------------------------------------------------------------------
 
 alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
-alias vpn='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
-alias topicus='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
+
+alias vpni='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
 
 ### eof #####################################################################

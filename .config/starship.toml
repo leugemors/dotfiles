@@ -1,20 +1,48 @@
-# Don't print a new line at the start of the prompt
+#############################################################################
+##        _    _
+##   _ __| | _| |
+##  | '__| |/ / |   Richard Klein Leugemors
+##  | |  |   <| |   https://www.github.com/leugemors/
+##  |_|  |_|\_\_|
+##
+##  Configuring my beautiful starfish prompt.
+##
+#############################################################################
+
+# ---------------------------------------------------------------------------
+#  don't print a new line at the start of the prompt
+# ---------------------------------------------------------------------------
+
 add_newline = false
 
-# Make prompt a single line instead of two lines
+# ---------------------------------------------------------------------------
+#  make prompt a single line instead of two lines
+# ---------------------------------------------------------------------------
+
 [line_break]
 disabled = false
 
-# Replace the "❯" symbol in the prompt with "➜"
+# ---------------------------------------------------------------------------
+#  replace the "❯" symbol in the prompt with "➜"
+# ---------------------------------------------------------------------------
+
 # [character]                         # The name of the module we are configuring is "character"
 # success_symbol = "[➜](bold green)"  # The "success_symbol" is set to "➜" with color "bold green"
 
-# Use custom format
+# ---------------------------------------------------------------------------
+#  use custom format
+# ---------------------------------------------------------------------------
+
 # format = """
 # [┌───────────────────>](bold green)
 # [│](bold green)$directory$rust$package
 # [└─>](bold green) """
 
-# Disable the package module, hiding it from the prompt completely
+# ---------------------------------------------------------------------------
+#  disable the package module, hiding it from the prompt completely
+# ---------------------------------------------------------------------------
+
 [package]
 disabled = false
+
+### eof #####################################################################

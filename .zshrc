@@ -19,7 +19,7 @@ export TERM="xterm-256color"
 #  set batcat as manpager
 # ---------------------------------------------------------------------------
 
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ---------------------------------------------------------------------------
 #  set auto correct options
@@ -193,6 +193,7 @@ eval "$(starship init zsh)"
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
+clear
 #fortune | cowsay | lolcat
 verse | cowsay | lolcat
 gcal_wrapper; echo; romeinse_kalender; cycles
