@@ -5,7 +5,7 @@
 "##  | |  |   <| |   https://www.github.com/leugemors/
 "##  |_|  |_|\_\_|
 "##
-"##  Type  :so %  to refresh .vimrc after making changes.
+"##  Type  :so ~/.vimrc  to refresh after making changes.
 "##
 "############################################################################
 
@@ -30,36 +30,35 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-    Plug 'tpope/vim-sensible'                      " some sensible defaults
-    Plug 'vim-airline/vim-airline'                 " airline statusbar
-    Plug 'vim-airline/vim-airline-themes'          " themes for airline statusbar
+    " a nice statusbar
+    Plug 'vim-airline/vim-airline'                     " airline statusbar
+    Plug 'vim-airline/vim-airline-themes'              " themes for airline statusbar
 
-    " file management
-    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
-    Plug 'scrooloose/nerdtree'                     " nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
-    Plug 'vifm/vifm.vim'                           " vi file manager
-    Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
+    " nerdtree file management
+    Plug 'scrooloose/nerdtree'                         " nerdtree
+    Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
+    Plug 'Xuyuanp/nerdtree-git-plugin'                 " git support for nerdtree
 
     " productivity
-    Plug 'airblade/vim-gitgutter'                  " show git diff per line
-    Plug 'alvan/vim-closetag'                      " auto close (x)html tags
-    Plug 'dense-analysis/ale'                      " some syntax checking
-    Plug 'honza/vim-snippets'                      " using snippets for some comman languages
-    Plug 'jiangmiao/auto-pairs'                    " auto pair brackets
-    Plug 'jreybert/vimagit'                        " magit-like plugin for vim
-    Plug 'majutsushi/tagbar'                       " use ctags in vim
-    Plug 'rust-lang/rust.vim'                      " syntax highlighting for rust
+    Plug 'airblade/vim-gitgutter'                      " show git diff per line
+    Plug 'alvan/vim-closetag'                          " auto close (x)html tags
+    Plug 'dense-analysis/ale'                          " some syntax checking
+    Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
+    Plug 'majutsushi/tagbar'                           " use ctags in vim
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}    " completion for c and c++
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    Plug 'tpope/vim-surround'                      " change surrounding marks
-    Plug 'vimwiki/vimwiki'                         " taking notes from within vim
 
     " colours and syntax highlighting
-    Plug 'ap/vim-css-color'                        " show hex colours
-    Plug 'frazrepo/vim-rainbow'                    " rainbow brackets for vim
-    Plug 'joshdick/onedark.vim'                    " onedark colour theme
-    Plug 'sheerun/vim-polyglot'                    " support for many languages
-    Plug 'Yggdroot/indentLine'                     " visualize indentions
+    Plug 'ap/vim-css-color'                            " show hex colours
+    Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
+    Plug 'joshdick/onedark.vim'                        " onedark colour theme
+    Plug 'sheerun/vim-polyglot'                        " support for many languages
+    Plug 'Yggdroot/indentLine'                         " visualize indentions
+
+    " integrate some external tools
+    Plug 'vifm/vifm.vim'                               " vi file manager
+    Plug 'vimwiki/vimwiki'                             " taking notes from within vim
 
 call plug#end()
 
@@ -76,7 +75,7 @@ endif
 
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
-set clipboard=unnamedplus      " copy/paste between vim and other programs
+"set clipboard=unnamedplus      " copy/paste between vim and other programs
 set colorcolumn=96             " show a line at column 80
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
@@ -207,8 +206,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " ---------------------------------------------------------------------------
 
 set mouse=a
-map <C-c> "+y
-map <C-v> "+p
 
 " ---------------------------------------------------------------------------
 "  configure nerdtree
@@ -247,6 +244,7 @@ nmap <leader>x :bp<bar>bd#<CR>
 " ---------------------------------------------------------------------------
 
 map <F12> :call TrimWhiteSpaces()<CR>
+
 func! TrimWhiteSpaces()
     %s/\s*$//
     ''
@@ -337,6 +335,12 @@ map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
 
 " ---------------------------------------------------------------------------
+"  settings for vimwiki
+" ---------------------------------------------------------------------------
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" ---------------------------------------------------------------------------
 "  instant markdown
 " ---------------------------------------------------------------------------
 
@@ -386,12 +390,21 @@ map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
 
 " ---------------------------------------------------------------------------
+"  some gui stuff
+" ---------------------------------------------------------------------------
+
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+" ---------------------------------------------------------------------------
 "  playing around with abriviations
 " ---------------------------------------------------------------------------
 
 ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
 
-ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><head><cr><body><cr></body><cr></html>
+ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
 
 " some handy abbriviations for c
 "iab com /*<cr><cr>*/<up>
@@ -412,20 +425,5 @@ autocmd FileType c iab start #include <stdio.h><cr>
     \printf("Hello World!\n");<cr><cr>
     \return 0;
     \}<up><up><cr>
-
-" ---------------------------------------------------------------------------
-"  miscelaneous stuff
-" ---------------------------------------------------------------------------
-
-let g:python_highlight_all = 1
-
-au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-au BufEnter *.org call org#SetOrgFileType()
-
-" some gui stuff
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
 
 "### eof ####################################################################
