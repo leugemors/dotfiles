@@ -14,7 +14,7 @@
 #alias mc='mc --nosubshell'
 
 # ---------------------------------------------------------------------------
-#  enable colour support for ls and add some colourful aliases
+#  enable colour support and add some colourful aliases
 # ---------------------------------------------------------------------------
 
 if [ -x /usr/bin/dircolors ]; then
@@ -46,7 +46,7 @@ alias lt='exa -aT --color=always --group-directories-first --icons'
 #  use batcat instead of cat (suckless tools)
 # ---------------------------------------------------------------------------
 
-alias cat='bat'
+#alias cat='bat'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -64,6 +64,7 @@ alias work='cd ~/Working'
 
 alias ans='cd ~/Working/ansible'
 alias cursus='cd ~/Working/cursus'
+alias dt='cd ~/Working/dt'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/misc'
@@ -75,9 +76,11 @@ alias thijs='cd ~/Prive/thijs'
 
 alias iso='cd /files/iso'
 
-alias iddink='cd /mnt/iddink'
 alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
+
+# project i am working on right now
+alias nu='cd ~/Working/topicus/eduarte-ansible-scripts'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -94,9 +97,9 @@ alias master='(git checkout master || git checkout main) && git branch'
 alias newtag='git tag -a' 
 alias prune='git pull --prune'
 alias pull='git pull origin'
-llias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
+alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias push='git push origin'
-alias stat='git status'  # 'status' is protected name so using 'stat' instead
+alias status='git status'
 alias tag='git tag'
 
 # ---------------------------------------------------------------------------
@@ -116,7 +119,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
-alias speed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+alias speed='python3 /usr/local/bin/speedtest.py'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
@@ -140,48 +143,49 @@ alias weer='curl wttr.in/malburgen'
 alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias c='cmatrix -b -s -C magenta'
-alias d='datumpje'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
-alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
+alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | bat'
 alias h='history -i 0 | tail -n 48'
 alias i='sudo apt install '
 alias j='jobs -l'
-alias k='kubectl'
-alias l='echo "This alias is not in use."'
-alias m='mount | column -t -s","'
+alias l='exa -lgF --color=always --group-directories-first --icons'
+alias m='toot tui'
 alias n='newsboat'
-alias o='echo "This alias is not in use."'
 alias p='echo -e ${PATH//:/\\n} | bat'
-alias q='echo "This alias is not in use."'
-alias r='echo "This alias is not in use."'
-alias s='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
+alias q='vi ~/vimwiki/index.md'
+alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update && flatpak update'
+alias u='sudo /usr/local/bin/update && flatpak -y update'
 alias v='vim ~/.vimrc'
-alias w='curl wttr.in/malburgen'
-alias x='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
-alias y='echo "This alias is not in use."'
+alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
+alias d='echo "This alias is not in use."'
+alias k='echo "This alias is not in use."'
+alias o='echo "This alias is not in use."'
+alias r='echo "This alias is not in use."'
+alias y='echo "This alias is not in use."'
+
+#alias w='This letter is not available."
+
 # ---------------------------------------------------------------------------
-#  misc
+#  set font for text terminals
 # ---------------------------------------------------------------------------
 
 alias fontvga='setfont Lat2-VGA32x16'
 alias fontterm='setfont Lat2-Terminus32x16'
-alias header='curl -I'
-
-#alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-#alias vifm='./.config/vifm/scripts/vifmrun'
 
 # ---------------------------------------------------------------------------
 #  connect to my work vpn
 # ---------------------------------------------------------------------------
 
-alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
-
-alias vpni='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+# topicus
+alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 2; route -n'
 alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
+
+# iddink/sanoma
+alias vpni='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
 
 ### eof #####################################################################
