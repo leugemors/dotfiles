@@ -180,7 +180,10 @@ clear
 #colorscript -r
 #fortune | cowsay | lolcat
 verse | cowsay | lolcat
+
 #gcal_wrapper; echo; romeinse_kalender; cycles
-echo; djdnx "$(getjdn)"
+#echo; djdnx "$(getjdn)"
+echo; branches_time;lammaet2
+echo
 
 ### eof #####################################################################
