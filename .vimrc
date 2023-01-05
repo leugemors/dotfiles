@@ -75,7 +75,7 @@ endif
 
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
-"set clipboard=unnamedplus      " copy/paste between vim and other programs
+set clipboard=unnamedplus      " copy/paste between vim and other programs
 set colorcolumn=96             " show a line at column 80
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
