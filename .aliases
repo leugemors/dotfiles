@@ -39,7 +39,7 @@ fi
 
 alias ls='exa -gF --color=always --group-directories-first --icons'
 alias la='exa -aF --color=always --group-directories-first --icons'
-alias ll='exa -algF --color=always --group-directories-first --icons'
+alias ll='exa -algFh --color=always --group-directories-first --icons'
 alias lt='exa -aT --color=always --group-directories-first --icons'
 
 # ---------------------------------------------------------------------------
@@ -58,6 +58,8 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+alias nd='dir(){mkdir $1; cd $1; unset -f dir}; dir'
+
 alias doc='cd ~/Documents'
 alias dl='cd ~/Downloads'
 alias work='cd ~/Working'
@@ -68,7 +70,6 @@ alias dt='cd ~/Working/dt'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/misc'
-alias topicus='cd ~/Working/topicus'
 
 alias prive='cd ~/Prive'
 alias rwf='cd ~/Prive/rwf'
@@ -80,7 +81,8 @@ alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
 # project i am working on right now
-alias nu='cd ~/Working/topicus/eduarte-etap-configs'
+#alias nu='cd ~/Working/eduarte/etap-infra'
+alias nu='cd ~/Working/eduarte/etap-configs'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -88,6 +90,7 @@ alias nu='cd ~/Working/topicus/eduarte-etap-configs'
 
 alias addup='git add -u'
 alias addall='git add .'
+alias blame='git blame'
 alias branch='git branch'
 alias checkout='git checkout'
 alias clone='git clone'
@@ -145,12 +148,14 @@ alias coin='~/Working/misc/python/crypto.py'
 alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias c='cmatrix -b -s -C magenta'
+alias d='ncdu -x -e --color dark'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | bat'
 alias h='history -i 0 | tail -n 48'
 alias i='sudo nala install '
 alias j='jobs -l'
+alias k='vim ~/.config/kitty/kitty.conf'
 alias l='exa -lgF --color=always --group-directories-first --icons'
 alias m='toot tui'
 alias n='newsboat'
@@ -163,8 +168,6 @@ alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-alias d='echo "This alias is not in use."'
-alias k='echo "This alias is not in use."'
 alias o='echo "This alias is not in use."'
 alias r='echo "This alias is not in use."'
 alias y='echo "This alias is not in use."'
@@ -182,8 +185,10 @@ alias fontterm='setfont Lat2-Terminus32x16'
 #  connect to my work vpn
 # ---------------------------------------------------------------------------
 
+# azure
+alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 4; route -n'
+
 # topicus
-alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 3; route -n'
 alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
 
 # iddink/sanoma
