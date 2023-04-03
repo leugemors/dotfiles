@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ap/vim-css-color'                            " show hex colours
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
     Plug 'joshdick/onedark.vim'                        " onedark colour theme
+    Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
     Plug 'sheerun/vim-polyglot'                        " support for many languages
     Plug 'Yggdroot/indentLine'                         " visualize indentions
 
@@ -78,7 +79,7 @@ endif
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-set colorcolumn=96             " show a line at column 80
+set colorcolumn=96             " show a line at column 96
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
@@ -89,6 +90,13 @@ set number                     " display line numbers
 set numberwidth=5              " set width for numbers to 5
 set scrolloff=3                " show 3 lines to the cursor
 syntax on                      " enable syntax highlighting
+
+" ---------------------------------------------------------------------------
+"  tougle line numbers for easier copying
+" ---------------------------------------------------------------------------
+
+map <F3> :set number!<CR>
+map <F4> :set relativenumber!<CR>
 
 " ---------------------------------------------------------------------------
 "  use line cursor within insert mode and block cursor everywhere else
@@ -104,7 +112,7 @@ syntax on                      " enable syntax highlighting
 "   Ps = 6  -> steady bar (xterm).
 
 let &t_EI = "\e[2 q"   " normal mode
-let &t_SI = "\e[1 q"   " insert mode
+let &t_SI = "\e[3 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
@@ -191,7 +199,7 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set smartindent
-set wrap
+set nowrap
 
 " indent/unindent with tab/shift-tab
 nmap <Tab> >>
@@ -216,7 +224,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 "  mouse support
 " ---------------------------------------------------------------------------
 
-set mouse=a
+" mouse support breaks the copy/past functionality
+"set mouse=a
 
 " ---------------------------------------------------------------------------
 "  configure nerdtree
@@ -274,11 +283,13 @@ set background=dark
 let g:rehash256 = 1     " molokai mode to match dark gui version
 
 " onedark colour theme
-let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
-let g:onedark_termcolors=256
-let g:onedark_hide_endofbuffer=1
-let g:onedark_terminal_italics=0
-colorscheme onedark
+"let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
+"let g:onedark_termcolors=256
+"let g:onedark_hide_endofbuffer=1
+"let g:onedark_terminal_italics=0
+"colorscheme onedark
+
+colorscheme dracula
 
 " default colour schemes
 "colorscheme blue
@@ -311,7 +322,8 @@ hi Normal guibg=NONE ctermbg=NONE
 " ---------------------------------------------------------------------------
 
 let g:indentLine_setColors=1
-let g:indentLine_char='⦙'
+"let g:indentLine_char='⦙'
+let g:indentLine_char='|'
 
 let g:indentLine_color_term=239
 let g:indentLine_color_gui='#444444'
