@@ -60,6 +60,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vifm/vifm.vim'                               " vi file manager
     Plug 'vimwiki/vimwiki'                             " taking notes from within vim
 
+    Plug 'kshenoy/vim-signature'                       " show marks before the line number
+
 call plug#end()
 
 if need_to_install_plugins == 1
@@ -147,6 +149,15 @@ set path+=**                  " searches current directory recursively
 set smartcase                 " try to be smart about cases
 set wildmenu                  " display all matches when tab complete
 set wildignore=*.o,*~,*.pyc   " ignore these file extensions
+
+" ---------------------------------------------------------------------------
+"  setup code folding
+" ---------------------------------------------------------------------------
+
+set foldmethod=indent
+set foldlevel=99
+
+nnoremap <space> za
 
 " ---------------------------------------------------------------------------
 "  status line

@@ -16,7 +16,7 @@
 export TERM="xterm-256color"
 
 # ---------------------------------------------------------------------------
-#  set batcat as manpager
+#  set bat as manpager
 # ---------------------------------------------------------------------------
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -50,7 +50,7 @@ PROMPT_EOL_MARK=""
 #  configure key keybindings
 # ---------------------------------------------------------------------------
 
-bindkey -v                                        # vim key bindings
+bindkey -v                                        # use vim key bindings
 bindkey ' ' magic-space                           # do history expansion on space
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
 bindkey '^[[3~' delete-char                       # delete
@@ -143,7 +143,7 @@ fi
 #  load my k8s configuration
 # ---------------------------------------------------------------------------
 
-#source <(kubectl completion zsh)
+source <(kubectl completion zsh)
 
 # ---------------------------------------------------------------------------
 #  load my custom aliasses
@@ -172,18 +172,25 @@ export EDITOR=vim
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
+#  for wildfly and dmaoin.xml configuration
+# ---------------------------------------------------------------------------
+
+export JBOSS_HOME="/opt/wildfly/latest"
+
+# ---------------------------------------------------------------------------
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
 clear
+
 #neofetch
 #colorscript -r
 #fortune | cowsay | lolcat
-verse | cowsay | lolcat
-
 #gcal_wrapper; echo; romeinse_kalender; cycles
 #echo; djdnx "$(getjdn)"
-echo; branches_time;lammaet2
-echo
+
+verse | cowsay | lolcat
+echo; emucal; branches_time; echo
+#echo; branches_time;lammaet2
 
 ### eof #####################################################################

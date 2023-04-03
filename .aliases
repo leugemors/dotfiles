@@ -80,7 +80,7 @@ alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
 # project i am working on right now
-alias nu='cd ~/Working/topicus/eduarte-ansible-scripts'
+alias nu='cd ~/Working/topicus/eduarte-etap-configs'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -120,6 +120,7 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias speed='python3 /usr/local/bin/speedtest.py'
+alias tf='terraform'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
@@ -135,6 +136,7 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias tt='/usr/local/bin/teletekst.py'
 alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
+alias coin='~/Working/misc/python/crypto.py'
 
 # ---------------------------------------------------------------------------
 #  one letter aliases
@@ -147,7 +149,7 @@ alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | bat'
 alias h='history -i 0 | tail -n 48'
-alias i='sudo apt install '
+alias i='sudo nala install '
 alias j='jobs -l'
 alias l='exa -lgF --color=always --group-directories-first --icons'
 alias m='toot tui'
@@ -181,7 +183,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # topicus
-alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 2; route -n'
+alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 3; route -n'
 alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
 
 # iddink/sanoma
