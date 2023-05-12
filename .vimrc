@@ -54,14 +54,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
     Plug 'joshdick/onedark.vim'                        " onedark colour theme
     Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
+    Plug 'kshenoy/vim-signature'                       " show marks before the line number
     Plug 'sheerun/vim-polyglot'                        " support for many languages
     Plug 'Yggdroot/indentLine'                         " visualize indentions
 
     " integrate some external tools
     Plug 'vifm/vifm.vim'                               " vi file manager
     Plug 'vimwiki/vimwiki'                             " taking notes from within vim
-
-    Plug 'kshenoy/vim-signature'                       " show marks before the line number
 
 call plug#end()
 
@@ -358,10 +357,10 @@ map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
 
 " ---------------------------------------------------------------------------
-"  settings for vimwiki
+"  settings for vimwiki (use \ww)
 " ---------------------------------------------------------------------------
 
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " ---------------------------------------------------------------------------
 "  instant markdown
