@@ -19,7 +19,7 @@ export TERM="xterm-256color"
 #  set bat as manpager
 # ---------------------------------------------------------------------------
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # ---------------------------------------------------------------------------
 #  set auto correct options
@@ -189,8 +189,9 @@ clear
 #gcal_wrapper; echo; romeinse_kalender; cycles
 #echo; djdnx "$(getjdn)"
 
-verse | cowsay | lolcat
-echo; emucal; branches_time; echo
+bible_verse | cowsay | lolcat
+#echo; ~/.local/bin/emucal; ~/.local/bin/branches_time; echo
 #echo; branches_time;lammaet2
+echo; dierenriem; echo
 
 ### eof #####################################################################
