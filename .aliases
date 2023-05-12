@@ -11,7 +11,7 @@
 #############################################################################
 
 # sometimes mc can start very slowly when using a sub-shell
-#alias mc='mc --nosubshell'
+alias mc='mc --nosubshell'
 
 # ---------------------------------------------------------------------------
 #  enable colour support and add some colourful aliases
@@ -99,7 +99,7 @@ alias fetch='git fetch'
 alias master='(git checkout master || git checkout main) && git branch'
 alias newtag='git tag -a' 
 alias prune='git pull --prune'
-alias pull='git pull origin'
+alias pull='git pull origin --prune'
 alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
 alias push='git push origin'
 alias status='git status'
@@ -151,26 +151,26 @@ alias c='cmatrix -b -s -C magenta'
 alias d='ncdu -x -e --color dark'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
-alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | bat'
+alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | batcat'
 alias h='history -i 0 | tail -n 48'
 alias i='sudo nala install '
 alias j='jobs -l'
 alias k='vim ~/.config/kitty/kitty.conf'
 alias l='exa -lgF --color=always --group-directories-first --icons'
 alias m='toot tui'
-alias n='newsboat'
-alias p='echo -e ${PATH//:/\\n} | bat'
+alias n='newsboat -r'
+alias p='echo -e ${PATH//:/\\n} | batcat'
 alias q='vi ~/vimwiki/index.md'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update && flatpak -y update'
+alias u='sudo /usr/local/bin/update'
 alias v='vim ~/.vimrc'
-alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
+alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | batcat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-alias o='echo "This alias is not in use."'
+alias o='vim ~/.local/share/vimwiki/index.md'
 alias r='echo "This alias is not in use."'
-alias y='echo "This alias is not in use."'
+alias y='sexag'
 
 #alias w='This letter is not available."
 
@@ -186,7 +186,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # azure
-alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 4; route -n'
+alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; route -n'
 
 # topicus
 alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
