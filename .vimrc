@@ -46,7 +46,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'dense-analysis/ale'                          " some syntax checking
     Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
     Plug 'majutsushi/tagbar'                           " use ctags in vim
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}    " completion for c and c++
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
 
     " colours and syntax highlighting
@@ -78,7 +77,7 @@ endif
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-set colorcolumn=96             " show a line at column 96
+"set colorcolumn=96             " show a line at column 96
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
