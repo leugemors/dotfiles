@@ -99,7 +99,7 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
-#setopt share_history         # share command history data
+setopt share_history          # share command history data
 
 # ---------------------------------------------------------------------------
 #  configure `time` format
@@ -111,7 +111,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 #  make less more friendly for non-text input files, see lesspipe(1)
 # ---------------------------------------------------------------------------
 
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ---------------------------------------------------------------------------
 #  enable auto-suggestions based on the history
@@ -120,7 +120,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+    #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
 # ---------------------------------------------------------------------------
@@ -172,7 +172,7 @@ export EDITOR=vim
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
-#  for wildfly and dmaoin.xml configuration
+#  for wildfly and domain.xml configuration
 # ---------------------------------------------------------------------------
 
 export JBOSS_HOME="/opt/wildfly/latest"
@@ -182,16 +182,13 @@ export JBOSS_HOME="/opt/wildfly/latest"
 # ---------------------------------------------------------------------------
 
 clear
+bible_verse | cowsay | lolcat
 
-#neofetch
-#colorscript -r
-#fortune | cowsay | lolcat
 #gcal_wrapper; echo; romeinse_kalender; cycles
 #echo; djdnx "$(getjdn)"
-
-bible_verse | cowsay | lolcat
 #echo; ~/.local/bin/emucal; ~/.local/bin/branches_time; echo
 #echo; branches_time;lammaet2
-echo; dierenriem; echo
+echo; tk_round; echo
+dierenriem; echo
 
 ### eof #####################################################################
