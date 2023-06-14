@@ -11,7 +11,7 @@
 #############################################################################
 
 # sometimes mc can start very slowly when using a sub-shell
-alias mc='mc --nosubshell'
+#alias mc='mc --nosubshell'
 
 # ---------------------------------------------------------------------------
 #  enable colour support and add some colourful aliases
@@ -46,7 +46,7 @@ alias lt='exa -aT --color=always --group-directories-first --icons'
 #  use batcat instead of cat (suckless tools)
 # ---------------------------------------------------------------------------
 
-#alias cat='bat'
+alias cat='batcat'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -81,8 +81,9 @@ alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
 # project i am working on right now
-#alias nu='cd ~/Working/eduarte/etap-infra'
-alias nu='cd ~/Working/eduarte/etap-configs'
+alias conf='cd ~/Working/eduarte/etap-configs'
+alias infra='cd ~/Working/eduarte/etap-infra'
+alias power='cd ~/Working/powershell/scripts'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -186,7 +187,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # azure
-alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; route -n'
+alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; ip route'
 
 # topicus
 alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
