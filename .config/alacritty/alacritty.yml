@@ -43,7 +43,7 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  # rkl: x: 6, y: 6
+  # rv/kl: x: 6, y: 6
   padding:
     x: 2
     y: 2
@@ -56,7 +56,7 @@ window:
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
   # rkl: opacity: 1.0
-  opacity: 0.95
+  opacity: 0.99
 
   # Window decorations
   #
@@ -129,8 +129,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     # family: Code New Roman Nerd Font
-    # family: JetBrains Mono Nerd Font
-    family: LiterationMono Nerd Font
+    family: JetBrains Mono Nerd Font
+    # family: LiterationMono Nerd Font
     # family: RobotoMono Nerd Font
     # family: Source Code Pro
     # family: Space Mono Nerd Font
@@ -149,8 +149,8 @@ font:
 
     # The `style` can be specified to pick a specific face.
     style: Bold
-    # family: JetBrains Mono Nerd Font
-    family: LiterationMono Nerd Font
+    family: JetBrains Mono Nerd Font
+    # family: LiterationMono Nerd Font
     # family: RobotoMono Nerd Font
     # family: Source Code Pro
     # family: UbuntuMono Nerd Font
@@ -164,8 +164,8 @@ font:
 
     # The `style` can be specified to pick a specific face.
     style: Italic
-    # family: JetBrains Mono Nerd Font
-    family: LiterationMono Nerd Font
+    family: JetBrains Mono Nerd Font
+    # family: LiterationMono Nerd Font
     # family: RobotoMono Nerd Font
     # family: Source Code Pro
     # family: UbuntuMono Nerd Font
@@ -179,15 +179,15 @@ font:
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
-    # family: JetBrains Mono Nerd Font
-    family: LiterationMono Nerd Font
+    family: JetBrains Mono Nerd Font
+    # family: LiterationMono Nerd Font
     # family: RobotoMono Nerd Font
     # family: Source Code Pro
     # family: UbuntuMono Nerd Font
 
   # Point size
   # rkl: size: 12.0
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -582,10 +582,11 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-# rkl
+# rkl-c
 # colors: *DoomOne # lnav onleesbaar en kleuren mc onduidelijk
-colors: *Dracula
-# colors: *Nord
+# colors: *Dracula
+colors: *Nord
+# colors: *Palenight
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
