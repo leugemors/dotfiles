@@ -119,8 +119,6 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    # change suggestion color
-    #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
 # ---------------------------------------------------------------------------
@@ -172,6 +170,12 @@ export EDITOR=vim
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
+#  try the powerlevel zsh shell prompt (replace starship)
+# ---------------------------------------------------------------------------
+
+#. /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+
+# ---------------------------------------------------------------------------
 #  for wildfly and domain.xml configuration
 # ---------------------------------------------------------------------------
 
@@ -188,7 +192,10 @@ bible_verse | cowsay | lolcat
 #echo; djdnx "$(getjdn)"
 #echo; ~/.local/bin/emucal; ~/.local/bin/branches_time; echo
 #echo; branches_time;lammaet2
-echo; tk_round; echo
-dierenriem; echo
+#echo; tk_round; echo
+#echo; mesoamerica; echo
+echo; bukycal
+echo; ~/.local/bin/dierenriem
+echo
 
 ### eof #####################################################################
