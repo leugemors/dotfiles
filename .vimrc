@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'              " themes for airline statusbar
 
     " nerdtree file management
-    Plug 'scrooloose/nerdtree'                         " nerdtree
+    Plug 'preservim/nerdtree'                         " nerdtree
     Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
     Plug 'Xuyuanp/nerdtree-git-plugin'                 " git support for nerdtree
@@ -77,7 +77,7 @@ endif
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-"set colorcolumn=96             " show a line at column 96
+"set colorcolumn=96            " show a line at column 96
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
@@ -93,8 +93,9 @@ syntax on                      " enable syntax highlighting
 "  tougle line numbers for easier copying
 " ---------------------------------------------------------------------------
 
-map <F3> :set number!<CR>
-map <F4> :set relativenumber!<CR>
+map <F3> :set number!<cr>
+map <F4> :set relativenumber!<cr>
+map <F5> :set wrap!<cr>
 
 " ---------------------------------------------------------------------------
 "  use line cursor within insert mode and block cursor everywhere else
@@ -229,39 +230,46 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 "  configure nerdtree
 " ---------------------------------------------------------------------------
 
-"autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<cr>
+nnoremap <C-n> :NERDTreeToggle<cr>
+
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
+let NERDTreeMinimalUI=0
 let NERDTreeShowLineNumbers=0
 let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='►'
 let g:NERDTreeDirArrowCollapsible='▼'
 let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
+" start nerdtree and put the cursor back in the other window
+"autocmd vimenter * NERDTree | wincmd p
+
+" exit vim if nerdtree is the only window remaining in the only tab
+autocmd bufenter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " ---------------------------------------------------------------------------
 "  move through split windows
 " ---------------------------------------------------------------------------
 
-nmap <leader><Up> :wincmd k<CR>
-nmap <leader><Down> :wincmd j<CR>
-nmap <leader><Left> :wincmd h<CR>
-nmap <leader><Right> :wincmd l<CR>
+nmap <leader><Up> :wincmd k<cr>
+nmap <leader><Down> :wincmd j<cr>
+nmap <leader><Left> :wincmd h<cr>
+nmap <leader><Right> :wincmd l<cr>
 
 " ---------------------------------------------------------------------------
 "  move through buffers
 " ---------------------------------------------------------------------------
 
-nmap <leader>[ :bp!<CR>
-nmap <leader>] :bn!<CR>
-nmap <leader>x :bp<bar>bd#<CR>
+nmap <leader>[ :bp!<cr>
+nmap <leader>] :bn!<cr>
+nmap <leader>x :bp<bar>bd#<cr>
 
 " ---------------------------------------------------------------------------
 "  remove trailing white spaces
 " ---------------------------------------------------------------------------
 
-map <F12> :call TrimWhiteSpaces()<CR>
+map <F12> :call TrimWhiteSpaces()<cr>
 
 func! TrimWhiteSpaces()
     %s/\s*$//
@@ -279,6 +287,9 @@ set termguicolors
 set background=dark
 
 let g:rehash256 = 1     " molokai mode to match dark gui version
+
+" note the space at the end of this line
+set fillchars+=vert:\ 
 
 " onedark colour theme
 "let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
@@ -313,14 +324,13 @@ colorscheme dracula
 "  make background transparent (set this *after* colorscheme)
 " ---------------------------------------------------------------------------
 
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 
 " ---------------------------------------------------------------------------
 "  configure indentline
 " ---------------------------------------------------------------------------
 
 let g:indentLine_setColors=1
-"let g:indentLine_char='⦙'
 let g:indentLine_char='|'
 
 let g:indentLine_color_term=239
@@ -343,17 +353,17 @@ set mat=2          " blink 0.2 seconds when matching brackets
 "  settings for tags
 " ---------------------------------------------------------------------------
 
-map <C-t> :TagbarToggle<CR>
+map <C-t> :TagbarToggle<cr>
 
 " ---------------------------------------------------------------------------
 "  settings for vifm
 " ---------------------------------------------------------------------------
 
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
+map <Leader>vv :Vifm<cr>
+map <Leader>vs :VsplitVifm<cr>
+map <Leader>sp :SplitVifm<cr>
+map <Leader>dv :DiffVifm<cr>
+map <Leader>tv :TabVifm<cr>
 
 " ---------------------------------------------------------------------------
 "  settings for vimwiki (use \ww)
@@ -367,14 +377,22 @@ let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 
 
 let g:instant_markdown_autostart=0           " Turns off auto preview
 let g:instant_markdown_browser="surf"        " Uses surf for preview
-map <Leader>md :InstantMarkdownPreview<CR>   " Previews .md file
-map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
+map <Leader>md :InstantMarkdownPreview<cr>   " Previews .md file
+map <Leader>ms :InstantMarkdownStop<cr>      " Kills the preview
 
 " ---------------------------------------------------------------------------
 "  open a terminal inside vim
 " ---------------------------------------------------------------------------
 
-map <Leader>tt :vnew term://zsh<CR>
+set termwinsize=12*0
+
+" vim-powered terminal in split window
+map <Leader>t :term ++close<cr>
+tmap <Leader>t <c-w>:term ++close<cr>
+
+" vim-powered terminal in new tab
+map <Leader>T :tab term ++close<cr>
+tmap <Leader>T <c-w>:tab term ++close<cr>
 
 " ---------------------------------------------------------------------------
 "  split and tabbed files
@@ -389,10 +407,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " make adjusing split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
+noremap <silent> <C-Left> :vertical resize +3<cr>
+noremap <silent> <C-Right> :vertical resize -3<cr>
+noremap <silent> <C-Up> :resize +3<cr>
+noremap <silent> <C-Down> :resize -3<cr>
 
 " change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
