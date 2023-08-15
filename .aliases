@@ -160,8 +160,10 @@ alias k='vim ~/.config/kitty/kitty.conf'
 alias l='exa -lgF --color=always --group-directories-first --icons'
 alias m='toot tui'
 alias n='newsboat -r'
+alias o='vim ~/.local/share/vimwiki/index.md'
 alias p='echo -e ${PATH//:/\\n} | batcat'
 alias q='vi ~/vimwiki/index.md'
+alias r='virsh net-create /usr/share/libvirt/networks/default.xml'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
 alias u='sudo /usr/local/bin/update'
@@ -169,8 +171,6 @@ alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | batcat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-alias o='vim ~/.local/share/vimwiki/index.md'
-alias r='echo "This alias is not in use."'
 alias y='sexag'
 
 #alias w='This letter is not available."
@@ -187,10 +187,10 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # azure
-alias vpna='sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; ip route'
+alias vpna='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; ip route'
 
 # topicus
-alias vpnt='sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf'
+alias vpnt='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf; sleep5; ip route'
 
 # iddink/sanoma
 alias vpni='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
