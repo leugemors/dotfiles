@@ -1,11 +1,6 @@
 #############################################################################
-##         _    _ 
-##    _ __| | _| |
-##   | '__| |/ / |   Richard Klein Leugemors 
-##   | |  |   <| |   https://www.github.com/leugemors/
-##   |_|  |_|\_\_| 
 ##
-##   newsboat rss reader configuration file
+## newsboat configuration file
 ##
 #############################################################################
 
@@ -14,11 +9,27 @@
 # ---------------------------------------------------------------------------
 
 auto-reload yes
-reload-threads 100
-reload-time 120
+download-path "/home/richard/Downloads"
 download-retries 4
 download-timeout 10
+mark-as-read-on-hover yes
 prepopulate-query-feeds yes
+reload-threads 100
+reload-time 10 # every 10 minutes
+
+# ---------------------------------------------------------------------------
+#  log errors
+# ---------------------------------------------------------------------------
+
+error-log "~/.config/newsboat/error.log"
+
+# ---------------------------------------------------------------------------
+#  hide spam articles
+# ---------------------------------------------------------------------------
+
+ignore-article "*" "title =~ \"Sponsor\""
+ignore-article "*" "title =~ \"Advertisement\""
+ignore-mode "display"
 
 # ---------------------------------------------------------------------------
 #  display
@@ -51,10 +62,21 @@ highlight article ":.*\\(embedded flash\\)$" magenta default
 text-width 80
 
 # ---------------------------------------------------------------------------
+#  formatting
+# ---------------------------------------------------------------------------
+
+#feedlist-format "%4i %15T %30t %n %11u"
+#articlelist-format "%4i %f %D   %?T?|%-17T|  ?%t"
+#notify-format "%d new articles (%n unread articles, %f unread feeds)"
+
+# ---------------------------------------------------------------------------
 #  navigation
 # ---------------------------------------------------------------------------
 
 goto-next-feed no
+
+#browser "open -g -a 'Firefox' %u"
+browser "firefox --new-tab %u"
 
 bind-key j down feedlist
 bind-key k up feedlist
@@ -66,12 +88,10 @@ bind-key j down article
 bind-key k up article
 
 # ---------------------------------------------------------------------------
-#  bookmarks
+#  macro's, start with a comma, eg ,y
 # ---------------------------------------------------------------------------
 
-bookmark-cmd ~/.newsboat/bookmark.sh
-bookmark-interactive no
-bookmark-autopilot yes
+macro y set browser "mpv %u" ; open-in-browser ; set browser "elinks %u"
 
 # ---------------------------------------------------------------------------
 #  misc
