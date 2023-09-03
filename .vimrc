@@ -9,6 +9,8 @@
 "##
 "############################################################################
 
+" used nerd font icons:       ☰   ⚡✘ ⚠
+
 " ---------------------------------------------------------------------------
 "  some required settings for the plugins
 " ---------------------------------------------------------------------------
@@ -17,29 +19,29 @@ set nocompatible      " no need to be compatible with the original vi
 filetype off          " needs to be switched off while loading plugins
 
 " ---------------------------------------------------------------------------
-"  manage plugins (:PlugInstall :PlugClean :PlugUpdate, etc.)
+"  manage plugins (use :PlugInstall :PlugClean :PlugUpdate, etc.)
 " ---------------------------------------------------------------------------
 
+" to check if we need to install the plugins first
 let need_to_install_plugins = 0
 
+" install our plugin manager when needed
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     let need_to_install_plugins = 1
 endif
 
+" list of all the plugins I like to use
 call plug#begin('~/.vim/plugged')
-
     " a nice statusbar
     Plug 'vim-airline/vim-airline'                     " airline statusbar
     Plug 'vim-airline/vim-airline-themes'              " themes for airline statusbar
-
     " nerdtree file management
-    Plug 'preservim/nerdtree'                         " nerdtree
+    Plug 'preservim/nerdtree'                          " nerdtree
     Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
     Plug 'Xuyuanp/nerdtree-git-plugin'                 " git support for nerdtree
-
     " productivity
     Plug 'airblade/vim-gitgutter'                      " show git diff per line
     Plug 'alvan/vim-closetag'                          " auto close (x)html tags
@@ -47,22 +49,24 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
     Plug 'majutsushi/tagbar'                           " use ctags in vim
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-
+    Plug 'stylelint/stylelint'                         " css linter
+    Plug 'tpope/vim-commentary'                        " bulk (un)command lines
     " colours and syntax highlighting
     Plug 'ap/vim-css-color'                            " show hex colours
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
-    Plug 'joshdick/onedark.vim'                        " onedark colour theme
-    Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
     Plug 'kshenoy/vim-signature'                       " show marks before the line number
     Plug 'sheerun/vim-polyglot'                        " support for many languages
     Plug 'Yggdroot/indentLine'                         " visualize indentions
-
+    " colour themes
+    Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
+    Plug 'morhetz/gruvbox'                             " gruvbox colour theme
+    Plug 'joshdick/onedark.vim'                        " onedark colour theme
     " integrate some external tools
     Plug 'vifm/vifm.vim'                               " vi file manager
     Plug 'vimwiki/vimwiki'                             " taking notes from within vim
-
 call plug#end()
 
+" install all the plugins when needed
 if need_to_install_plugins == 1
     echo "Installing plugins..."
     silent! PlugInstall
@@ -74,23 +78,24 @@ endif
 "  basic settings
 " ---------------------------------------------------------------------------
 
+"set colorcolumn=80            " show a line at column 80
+"set relativenumber            " display relative line numbers
+
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
-"set colorcolumn=96            " show a line at column 96
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
 set lazyredraw                 " don't redraw while executing macros
 set magic                      " turn magic on for regular expressions
 set number                     " display line numbers
-"set number relativenumber     " display relative line numbers
 set numberwidth=5              " set width for numbers to 5
 set scrolloff=3                " show 3 lines to the cursor
 syntax on                      " enable syntax highlighting
 
 " ---------------------------------------------------------------------------
-"  tougle line numbers for easier copying
+"  tougle line numbers and wrapping for easier copying
 " ---------------------------------------------------------------------------
 
 map <F3> :set number!<cr>
@@ -111,7 +116,7 @@ map <F5> :set wrap!<cr>
 "   Ps = 6  -> steady bar (xterm).
 
 let &t_EI = "\e[2 q"   " normal mode
-let &t_SI = "\e[3 q"   " insert mode
+let &t_SI = "\e[5 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
@@ -126,7 +131,7 @@ filetype plugin indent on
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 " ---------------------------------------------------------------------------
 "  sane text files and unix file type as default
@@ -167,11 +172,10 @@ set foldlevel=99
 nnoremap <space> za
 
 " ---------------------------------------------------------------------------
-"  status line
+"  status line (set colour with colour themes)
 " ---------------------------------------------------------------------------
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:webdevicons_enable_airline_tabline = 1
@@ -231,22 +235,41 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " ---------------------------------------------------------------------------
 
 nnoremap <leader>n :NERDTreeFocus<cr>
+nnoremap <leader>f :NERDTreeFind<cr>
 nnoremap <C-n> :NERDTreeToggle<cr>
 
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
 let NERDTreeMinimalUI=0
 let NERDTreeShowLineNumbers=0
 let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable='►'
+let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeDirArrowCollapsible='▼'
 let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
 " start nerdtree and put the cursor back in the other window
-"autocmd vimenter * NERDTree | wincmd p
+autocmd vimenter * NERDTree | wincmd p
 
 " exit vim if nerdtree is the only window remaining in the only tab
-autocmd bufenter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" clsoe tab if nerdtree is the only window remaining on it
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" open existing nerdtree on each new tab
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" ---------------------------------------------------------------------------
+"  settings for tags
+" ---------------------------------------------------------------------------
+
+map <C-t> :TagbarToggle<cr>
+
+" show the tagbar
+"autocmd vimenter * TagbarToggle 
+
+" unfold all tags to one level
+"autocmd vimenter * TagbarSetFoldlevel! 1
 
 " ---------------------------------------------------------------------------
 "  move through split windows
@@ -292,15 +315,31 @@ let g:rehash256 = 1     " molokai mode to match dark gui version
 set fillchars+=vert:\ 
 
 " onedark colour theme
-"let g:onedark_color_overrides={"background":{"gui":"#111111","cterm":"235","cterm16":"0"}}
-"let g:onedark_termcolors=256
-"let g:onedark_hide_endofbuffer=1
-"let g:onedark_terminal_italics=0
-"colorscheme onedark
+" let g:airline_theme='onedark'
+" let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
+" let g:onedark_termcolors=256
+" let g:onedark_hide_endofbuffer=1
+" let g:onedark_terminal_italics=1
+" colorscheme onedark
 
+" dracula colour theme
+let g:airline_theme='dracula'
+let g:dracula_bold = 1                        " include bold attributes in highlighting
+let g:dracula_italic = 1                      " include italic attributes in highlighting
+let g:dracula_underline = 1                   " include underline attributes in highlighting
+let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
+let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
+let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
+let g:dracula_inverse = 1                     " include inverse attributes in highlighting
+let g:dracula_colorterm = 1                   " include background fill colors (0 for transp bg)
 colorscheme dracula
 
-" default colour schemes
+" grubbox colour theme
+" let g:airline_theme='gruvbox'
+" let g:gruvbox_termcolors=256
+" colorscheme gruvbox
+
+" some default colour schemes
 "colorscheme blue
 "colorscheme darkblue
 "colorscheme default
@@ -324,7 +363,7 @@ colorscheme dracula
 "  make background transparent (set this *after* colorscheme)
 " ---------------------------------------------------------------------------
 
-"hi Normal guibg=NONE ctermbg=NONE
+"highlight Normal guibg=NONE ctermbg=NONE
 
 " ---------------------------------------------------------------------------
 "  configure indentline
@@ -334,7 +373,7 @@ let g:indentLine_setColors=1
 let g:indentLine_char='|'
 
 let g:indentLine_color_term=239
-let g:indentLine_color_gui='#444444'
+let g:indentLine_color_gui='#333333'
 
 " none x terminal
 let g:indentLine_color_tty_light=7 " (default: 4)
@@ -348,12 +387,6 @@ au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b
 
 set showmatch      " show matching brackets
 set mat=2          " blink 0.2 seconds when matching brackets
-
-" ---------------------------------------------------------------------------
-"  settings for tags
-" ---------------------------------------------------------------------------
-
-map <C-t> :TagbarToggle<cr>
 
 " ---------------------------------------------------------------------------
 "  settings for vifm
@@ -377,6 +410,7 @@ let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 
 
 let g:instant_markdown_autostart=0           " Turns off auto preview
 let g:instant_markdown_browser="surf"        " Uses surf for preview
+
 map <Leader>md :InstantMarkdownPreview<cr>   " Previews .md file
 map <Leader>ms :InstantMarkdownStop<cr>      " Kills the preview
 
@@ -384,7 +418,7 @@ map <Leader>ms :InstantMarkdownStop<cr>      " Kills the preview
 "  open a terminal inside vim
 " ---------------------------------------------------------------------------
 
-set termwinsize=12*0
+set termwinsize=16*0
 
 " vim-powered terminal in split window
 map <Leader>t :term ++close<cr>
@@ -425,8 +459,19 @@ let g:ale_sign_error='✘'
 let g:ale_sign_warning='⚠'
 let g:ale_lint_on_text_changed='never'
 
+let g:ale_completion_enabled=1
+
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
+
+nmap gd :ALEGoToDefinition<cr>
+nmap gr :ALEFindReferences<cr>
+
+nmap K :ALEHover<cr>
+
+"nmap gd :ALEGoToDefinitionInSplit<cr>
+"nmap gd :ALEGoToDefinitionInVSplit<cr>
+"nmap gd :ALEGoToDefinitionInTab<cr>
 
 " ---------------------------------------------------------------------------
 "  some gui stuff
