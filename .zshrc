@@ -16,7 +16,7 @@
 export TERM="xterm-256color"
 
 # ---------------------------------------------------------------------------
-#  set bat as manpager
+#  set batcat as manpager
 # ---------------------------------------------------------------------------
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
@@ -92,7 +92,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=40000
 
-HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)" 
+HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 HISTTIMEFORMAT="[%F %T] - "
 
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -188,14 +188,8 @@ export JBOSS_HOME="/opt/wildfly/latest"
 clear
 bible_verse | cowsay | lolcat
 
-#gcal_wrapper; echo; romeinse_kalender; cycles
-#echo; djdnx "$(getjdn)"
-#echo; ~/.local/bin/emucal; ~/.local/bin/branches_time; echo
-#echo; branches_time;lammaet2
-#echo; tk_round; echo
-#echo; mesoamerica; echo
 echo; bukycal
-echo; ~/.local/bin/dierenriem
+echo; ~/.local/bin/new_dierenriem
 echo
 
 ### eof #####################################################################
