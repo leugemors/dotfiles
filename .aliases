@@ -1,11 +1,11 @@
-#!/usr/bin/env zsh
+#!/usr/bin/zsh
 #############################################################################
-##         _    _ 
+##         _    _
 ##    _ __| | _| |
-##   | '__| |/ / |   Richard Klein Leugemors 
+##   | '__| |/ / |   Richard Klein Leugemors
 ##   | |  |   <| |   https://www.github.com/leugemors/
-##   |_|  |_|\_\_| 
-##            
+##   |_|  |_|\_\_|
+##
 ##   just a bunch of handy aliases for my personal use
 ##
 #############################################################################
@@ -98,7 +98,7 @@ alias clone='git clone'
 alias commit='git commit -m'
 alias fetch='git fetch'
 alias master='(git checkout master || git checkout main) && git branch'
-alias newtag='git tag -a' 
+alias newtag='git tag -a'
 alias prune='git pull --prune'
 alias pull='git pull origin --prune'
 alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
@@ -117,6 +117,7 @@ alias flush='sudo systemd-resolve --flush-caches'
 alias he='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
 alias ncdu='ncdu -x -e --color dark'
+alias vnet='virsh net-create /usr/share/libvirt/networks/default.xml'
 alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
@@ -152,7 +153,7 @@ alias c='cmatrix -b -s -C magenta'
 alias d='ncdu -x -e --color dark'
 alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
-alias g='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | batcat'
+alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
 alias i='sudo nala install '
 alias j='jobs -l'
@@ -163,16 +164,15 @@ alias n='newsboat -r'
 alias o='vim ~/.local/share/vimwiki/index.md'
 alias p='echo -e ${PATH//:/\\n} | batcat'
 alias q='vi ~/vimwiki/index.md'
-alias r='virsh net-create /usr/share/libvirt/networks/default.xml'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update'
+alias u='sudo /usr/local/bin/update; flatpak update'
 alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | batcat'
+alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | batcat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-alias y='sexag'
-
+#alias r='This letter is not available."
 #alias w='This letter is not available."
 
 # ---------------------------------------------------------------------------
@@ -187,13 +187,14 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # azure
-alias vpna='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure_vpn.ovpn &; sleep 5; ip route'
+alias vpn-i='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-iddink.conf &; sleep 5; ip route'
+alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; ip route'
 
 # topicus
-alias vpnt='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf; sleep5; ip route'
+alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf; sleep 5; ip route'
 
-# iddink/sanoma
-alias vpni='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
+# sanoma/previder
+alias vpn-s='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
 alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
 
 ### eof #####################################################################
