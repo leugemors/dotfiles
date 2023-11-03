@@ -38,13 +38,13 @@ setopt promptsubst         # enable command substitution in prompt
 #  don't consider certain characters part of the word
 # ---------------------------------------------------------------------------
 
-WORDCHARS=${WORDCHARS//\/}
+export WORDCHARS=${WORDCHARS//\/}
 
 # ---------------------------------------------------------------------------
 #  hide EOL sign ('%')
 # ---------------------------------------------------------------------------
 
-PROMPT_EOL_MARK=""
+export PROMPT_EOL_MARK=""
 
 # ---------------------------------------------------------------------------
 #  configure key keybindings
@@ -89,8 +89,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # ---------------------------------------------------------------------------
 
 HISTFILE=~/.zsh_history
-HISTSIZE=20000
-SAVEHIST=40000
+HISTSIZE=5000
+SAVEHIST=5000
 
 HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 HISTTIMEFORMAT="[%F %T] - "
@@ -168,6 +168,13 @@ export EDITOR=vim
 # ---------------------------------------------------------------------------
 
 eval "$(starship init zsh)"
+
+# ---------------------------------------------------------------------------
+#  exa color scheme
+# ---------------------------------------------------------------------------
+
+export EXA_COLORS="uu=36:gu=37:sn=32:sb=32:da=34:ur=34:\
+uw=35:ux=36:ue=36:gr=34:gw=35:gx=36:tr=34:tw=35:tx=36:"
 
 # ---------------------------------------------------------------------------
 #  try the powerlevel zsh shell prompt (replace starship)
