@@ -8,6 +8,11 @@
 ##   Configuration for Alacritty, the GPU enhanced terminal emulator.
 ##
 #############################################################################
+---
+# import:
+#  - ~/.config/alacritty/fonts.yaml
+#  - ~/.config/alacritty/keys.yaml
+#  - ~/.config/alacritty/themes.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -27,7 +32,7 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
+  # dimensions:
   #  columns: 0
   #  lines: 0
 
@@ -35,7 +40,7 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  #position:
+  # position:
   #  x: 0
   #  y: 0
 
@@ -45,8 +50,8 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   # rv/kl: x: 6, y: 6
   padding:
-    x: 2
-    y: 2
+    x: 6
+    y: 6
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -56,7 +61,7 @@ window:
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
   # rkl: opacity: 1.0
-  opacity: 0.99
+  opacity: 0.95
 
   # Window decorations
   #
@@ -129,71 +134,71 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     # family: Code New Roman Nerd Font
-    family: JetBrains Mono Nerd Font
+    family: Fira Code Nerd Font
+    # family: Hack Nerd Font
+    # family: JetBrains Mono Nerd Font
     # family: LiterationMono Nerd Font
     # family: RobotoMono Nerd Font
-    # family: Source Code Pro
+    # family: Sauce Code Pro Nerd Font
     # family: Space Mono Nerd Font
     # family: Ubuntu Mono Nerd Font
-    # family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Bold font face
-  bold:
+  #bold:
     # Font family
     #
-    # If the bo ld family is not specified, it will fall back to the
+    # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
-    family: JetBrains Mono Nerd Font
-    # family: LiterationMono Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Source Code Pro
-    # family: UbuntuMono Nerd Font
+    #style: Bold
+    #family: JetBrains Mono Nerd Font
+    #family: LiterationMono Nerd Font
+    #family: RobotoMono Nerd Font
+    #family: Source Code Pro
+    #family: UbuntuMono Nerd Font
 
   # Italic font face
-  italic:
+  #italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
-    family: JetBrains Mono Nerd Font
-    # family: LiterationMono Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Source Code Pro
-    # family: UbuntuMono Nerd Font
+    #style: Italic
+    #family: JetBrains Mono Nerd Font
+    #family: LiterationMono Nerd Font
+    #family: RobotoMono Nerd Font
+    #family: Source Code Pro
+    #family: UbuntuMono Nerd Font
 
   # Bold italic font face
-  bold_italic:
+  #bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
-    family: JetBrains Mono Nerd Font
-    # family: LiterationMono Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Source Code Pro
-    # family: UbuntuMono Nerd Font
+    #style: Bold Italic
+    #family: JetBrains Mono Nerd Font
+    #family: LiterationMono Nerd Font
+    #family: RobotoMono Nerd Font
+    #family: Source Code Pro
+    #family: UbuntuMono Nerd Font
 
   # Point size
-  # rkl: size: 12.0
-  size: 12.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 1
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -229,7 +234,7 @@ schemes:
   DoomOne: &DoomOne
     primary:
       # rkl: background: '#282c34'
-      background: '#000000'
+      background: '#111111'
       foreground: '#bbc2cf'
     cursor:
       text: CellBackground
@@ -260,7 +265,7 @@ schemes:
   Dracula: &Dracula
     primary:
       # rkl: background: '#282a36'
-      background: '#000000'
+      background: '#282a36'
       foreground: '#f8f8f2'
     cursor:
       text: CellBackground
@@ -585,6 +590,7 @@ schemes:
 # rkl-c
 # colors: *DoomOne # lnav onleesbaar en kleuren mc onduidelijk
 # colors: *Dracula
+# colors: *GruvboxDark
 colors: *Nord
 # colors: *Palenight
 
