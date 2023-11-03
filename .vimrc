@@ -32,38 +32,48 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     let need_to_install_plugins = 1
 endif
 
+"kiteco/vim-plugin
+"
 " list of all the plugins I like to use
 call plug#begin('~/.vim/plugged')
+
     " a nice statusbar
     Plug 'vim-airline/vim-airline'                     " airline statusbar
     Plug 'vim-airline/vim-airline-themes'              " themes for airline statusbar
+
     " nerdtree file management
     Plug 'preservim/nerdtree'                          " nerdtree
     Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
     Plug 'Xuyuanp/nerdtree-git-plugin'                 " git support for nerdtree
+
     " productivity
     Plug 'airblade/vim-gitgutter'                      " show git diff per line
     Plug 'alvan/vim-closetag'                          " auto close (x)html tags
+    Plug 'chrisbra/csv.vim'                            " work with csv files
     Plug 'dense-analysis/ale'                          " some syntax checking
     Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
     Plug 'majutsushi/tagbar'                           " use ctags in vim
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
     Plug 'stylelint/stylelint'                         " css linter
     Plug 'tpope/vim-commentary'                        " bulk (un)command lines
+
     " colours and syntax highlighting
     Plug 'ap/vim-css-color'                            " show hex colours
     Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
     Plug 'kshenoy/vim-signature'                       " show marks before the line number
     Plug 'sheerun/vim-polyglot'                        " support for many languages
     Plug 'Yggdroot/indentLine'                         " visualize indentions
+
     " colour themes
     Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
     Plug 'morhetz/gruvbox'                             " gruvbox colour theme
     Plug 'joshdick/onedark.vim'                        " onedark colour theme
+
     " integrate some external tools
     Plug 'vifm/vifm.vim'                               " vi file manager
     Plug 'vimwiki/vimwiki'                             " taking notes from within vim
+
 call plug#end()
 
 " install all the plugins when needed
@@ -202,7 +212,7 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set smartindent
-set nowrap
+set wrap
 
 " indent/unindent with tab/shift-tab
 nmap <Tab> >>
@@ -248,7 +258,7 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
 " start nerdtree and put the cursor back in the other window
-autocmd vimenter * NERDTree | wincmd p
+"autocmd vimenter * NERDTree | wincmd p
 
 " exit vim if nerdtree is the only window remaining in the only tab
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -358,12 +368,6 @@ colorscheme dracula
 "colorscheme slate
 "colorscheme torte
 "colorscheme zellner
-
-" ---------------------------------------------------------------------------
-"  make background transparent (set this *after* colorscheme)
-" ---------------------------------------------------------------------------
-
-"highlight Normal guibg=NONE ctermbg=NONE
 
 " ---------------------------------------------------------------------------
 "  configure indentline
