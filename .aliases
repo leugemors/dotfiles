@@ -37,10 +37,20 @@ fi
 #  changing ls to exa (suckless tools)
 # ---------------------------------------------------------------------------
 
-alias ls='exa -gF --color=always --group-directories-first --icons'
-alias la='exa -aF --color=always --group-directories-first --icons'
-alias ll='exa -algFh --color=always --group-directories-first --icons'
-alias lt='exa -aT --color=always --group-directories-first --icons'
+# -g show group
+# -F show classification of file types
+# -l show long listing
+# -h show file sizes in human readable format
+# -T show directory tree
+# -r sort in revese order
+
+alias exa='exa --color=always --group-directories-first --icons'
+
+alias ls='exa -gF'
+alias la='exa -aF'
+alias ll='exa -algFh'
+alias lt='exa -aT'
+alias ltr='exa -algFhr -sold'
 
 # ---------------------------------------------------------------------------
 #  use batcat instead of cat (suckless tools)
@@ -66,10 +76,8 @@ alias work='cd ~/Working'
 
 alias ans='cd ~/Working/ansible'
 alias cursus='cd ~/Working/cursus'
-alias dt='cd ~/Working/dt'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
-alias misc='cd ~/Working/misc'
 
 alias prive='cd ~/Prive'
 alias rwf='cd ~/Prive/rwf'
@@ -81,8 +89,8 @@ alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
 # project i am working on right now
-alias conf='cd ~/Working/eduarte/etap-configs'
-alias infra='cd ~/Working/eduarte/etap-infra'
+alias conf='cd ~/Working/eduarte/school-configs'
+alias infra='cd ~/Working/eduarte/tf-school-infra'
 alias power='cd ~/Working/powershell/scripts'
 
 # ---------------------------------------------------------------------------
@@ -124,8 +132,11 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
-alias speed='python3 /usr/local/bin/speedtest.py'
+alias tm='terramate'
 alias tf='terraform'
+
+alias acn="ssh ops-weu-ansible-vm"
+alias zabbix='ssh shd-weu-zabbix-vm'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
@@ -135,13 +146,11 @@ alias epoch='date +%s'
 alias kaart='telnet mapscii.me'
 alias klok='watch -t -n1 "date +%T | figlet"'
 alias maan='curl wttr.in/Moon'
-alias pdp='cd ~/Working/simh/pdp11; ./pdp11'
 alias please='sudo'
+alias say='espeak -a 200 -g 4 -p 40 -v "nl"'
 alias starwars='telnet towel.blinkenlights.nl'
-alias tt='/usr/local/bin/teletekst.py'
 alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
-alias coin='~/Working/misc/python/crypto.py'
 
 # ---------------------------------------------------------------------------
 #  one letter aliases
@@ -151,7 +160,7 @@ alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias c='cmatrix -b -s -C magenta'
 alias d='ncdu -x -e --color dark'
-alias e='vi ~/.ssh/config.d/eduarte.conf'
+alias e='vi ~/.ssh/config.d/eduarte-new.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
@@ -164,16 +173,16 @@ alias n='newsboat -r'
 alias o='vim ~/.local/share/vimwiki/index.md'
 alias p='echo -e ${PATH//:/\\n} | batcat'
 alias q='vi ~/vimwiki/index.md'
+alias r='radio --volume 20'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update; flatpak update'
+alias u='sudo /usr/local/bin/update'
 alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | batcat'
-alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | batcat'
+alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | batcat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-#alias r='This letter is not available."
-#alias w='This letter is not available."
+#alias w='This letter is not available.'
 
 # ---------------------------------------------------------------------------
 #  set font for text terminals
@@ -187,8 +196,8 @@ alias fontterm='setfont Lat2-Terminus32x16'
 # ---------------------------------------------------------------------------
 
 # azure
-alias vpn-i='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-iddink.conf &; sleep 5; ip route'
-alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; ip route'
+alias vpn-i='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-iddink.conf &; sleep 5; disown; ip route'
+alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
 
 # topicus
 alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf; sleep 5; ip route'
