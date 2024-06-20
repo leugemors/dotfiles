@@ -1,11 +1,11 @@
 "############################################################################
-"##        _    _
-"##   _ __| | _| |
-"##  | '__| |/ / |   Richard Klein Leugemors
-"##  | |  |   <| |   https://www.github.com/leugemors/
-"##  |_|  |_|\_\_|
+"##         _    _
+"##    _ __| | _| |
+"##   | '__| |/ / |   Richard Klein Leugemors
+"##   | |  |   <| |   https://www.github.com/leugemors/
+"##   |_|  |_|\_\_|
 "##
-"##  Type  :so ~/.vimrc  to refresh after making changes.
+"##   Type  :so ~/.vimrc  to refresh after making changes.
 "##
 "############################################################################
 
@@ -32,8 +32,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     let need_to_install_plugins = 1
 endif
 
-"kiteco/vim-plugin
-"
 " list of all the plugins I like to use
 call plug#begin('~/.vim/plugged')
 
@@ -126,7 +124,7 @@ map <F5> :set wrap!<cr>
 "   Ps = 6  -> steady bar (xterm).
 
 let &t_EI = "\e[2 q"   " normal mode
-let &t_SI = "\e[5 q"   " insert mode
+let &t_SI = "\e[1 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  enable filetype plugins
@@ -276,7 +274,7 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 map <C-t> :TagbarToggle<cr>
 
 " show the tagbar
-"autocmd vimenter * TagbarToggle 
+"autocmd vimenter * TagbarToggle
 
 " unfold all tags to one level
 "autocmd vimenter * TagbarSetFoldlevel! 1
@@ -341,13 +339,13 @@ let g:dracula_undercurl = 1                   " include undercurl attributes in 
 let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
 let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
 let g:dracula_inverse = 1                     " include inverse attributes in highlighting
-let g:dracula_colorterm = 1                   " include background fill colors (0 for transp bg)
+let g:dracula_colorterm = 0                   " include background fill colors (0 for transp bg)
 colorscheme dracula
 
 " grubbox colour theme
-" let g:airline_theme='gruvbox'
-" let g:gruvbox_termcolors=256
-" colorscheme gruvbox
+"let g:airline_theme='gruvbox'
+"let g:gruvbox_termcolors=256
+"colorscheme gruvbox
 
 " some default colour schemes
 "colorscheme blue
@@ -490,28 +488,28 @@ set guioptions-=L  "remove left-hand scroll bar
 "  playing around with abriviations
 " ---------------------------------------------------------------------------
 
-ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
+"ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
 
-ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
+"ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
 
 " some handy abbriviations for c
 "iab com /*<cr><cr>*/<up>
-iab #i #include
-iab #d #define
+"iab #i #include
+"iab #d #define
 
-ab forl for (int i = 0; i < ; i++) {<esc>8hi
-ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
-ab const public static final int
+"ab forl for (int i = 0; i < ; i++) {<esc>8hi
+"ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
+"ab const public static final int
 
-ab ctm system.currenttimemillis()
-ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
+"ab ctm system.currenttimemillis()
+"ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
 
-autocmd FileType c iab start #include <stdio.h><cr>
-    \#include <stdlib.h><cr>
-    \#include <stdbool.h><cr><cr>
-    \int main() {<cr>
-    \printf("Hello World!\n");<cr><cr>
-    \return 0;
-    \}<up><up><cr>
+"autocmd FileType c iab start #include <stdio.h><cr>
+    "\#include <stdlib.h><cr>
+    "\#include <stdbool.h><cr><cr>
+    "\int main() {<cr>
+    "\printf("Hello World!\n");<cr><cr>
+    "\return 0;
+    "\}<up><up><cr>
 
 "### eof ####################################################################

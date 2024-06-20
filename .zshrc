@@ -92,7 +92,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
 
-HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+HISTORY_IGNORE="(ls|cd|cd -|cd ..|pwd|exit|history)"
 HISTTIMEFORMAT="[%F %T] - "
 
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -164,23 +164,28 @@ export ANSIBLE_NOCOWS=1
 export EDITOR=vim
 
 # ---------------------------------------------------------------------------
+#  set-up keybinding for fzf fuzzy completion
+# ---------------------------------------------------------------------------
+
+eval "$(fzf --zsh)"
+
+# ---------------------------------------------------------------------------
 #  load the starship prompt
 # ---------------------------------------------------------------------------
 
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
-#  exa color scheme
-# ---------------------------------------------------------------------------
-
-export EXA_COLORS="uu=36:gu=37:sn=32:sb=32:da=34:ur=34:\
-uw=35:ux=36:ue=36:gr=34:gw=35:gx=36:tr=34:tw=35:tx=36:"
-
-# ---------------------------------------------------------------------------
-#  try the powerlevel zsh shell prompt (replace starship)
+#  try the powerlevel zsh shell prompt (replaces starship)
 # ---------------------------------------------------------------------------
 
 #. /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+
+# ---------------------------------------------------------------------------
+#  switch off the anoying caps lock key
+# ---------------------------------------------------------------------------
+
+setxkbmap -option ctrl:nocaps
 
 # ---------------------------------------------------------------------------
 #  for wildfly and domain.xml configuration
@@ -192,11 +197,12 @@ export JBOSS_HOME="/opt/wildfly/latest"
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
+#clear
+#colorscript -r 
+
 clear
 bible_verse | cowsay | lolcat
-
-echo; bukycal
-echo; ~/.local/bin/new_dierenriem
+echo; new_dierenriem
 echo
 
 ### eof #####################################################################

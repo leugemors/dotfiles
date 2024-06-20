@@ -56,7 +56,7 @@ alias ltr='exa -algFhr -sold'
 #  use batcat instead of cat (suckless tools)
 # ---------------------------------------------------------------------------
 
-alias cat='batcat'
+alias bat='batcat'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -68,7 +68,7 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
-alias nd='dir(){mkdir $1; cd $1; unset -f dir}; dir'
+alias nd='dir(){mkdir $1;cd $1;unset -f dir};dir'
 
 alias doc='cd ~/Documents'
 alias dl='cd ~/Downloads'
@@ -78,20 +78,27 @@ alias ans='cd ~/Working/ansible'
 alias cursus='cd ~/Working/cursus'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
+alias misc='cd ~/Working/misc'
 
+alias fairy='cd /mnt/nassi/thijs/fairytale'
+alias fd24='cd /mnt/nassi/thijs/fd24'
 alias prive='cd ~/Prive'
 alias rwf='cd ~/Prive/rwf'
 alias thijs='cd ~/Prive/thijs'
 
-alias iso='cd /files/iso'
+alias iso='cd /data/iso'
 
 alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
-# project i am working on right now
+# project i'm working on right now
 alias conf='cd ~/Working/eduarte/school-configs'
 alias infra='cd ~/Working/eduarte/tf-school-infra'
+alias ops='cd ~/Working/eduarte/ops-ansible'
 alias power='cd ~/Working/powershell/scripts'
+alias uzori='cd ~/Working/ansible/uzori'
+
+alias migratie='/home/richard/Working/eduarte/tf-school-infra/terraform/schools/eta/shd/090/sql'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -102,10 +109,9 @@ alias addall='git add .'
 alias blame='git blame'
 alias branch='git branch'
 alias checkout='git checkout'
-alias clone='git clone'
 alias commit='git commit -m'
 alias fetch='git fetch'
-alias master='(git checkout master || git checkout main) && git branch'
+alias main='(git checkout main || git checkout master) && git branch'
 alias newtag='git tag -a'
 alias prune='git pull --prune'
 alias pull='git pull origin --prune'
@@ -113,6 +119,7 @@ alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git 
 alias push='git push origin'
 alias status='git status'
 alias tag='git tag'
+alias mpp='main; pull; purge'
 
 # ---------------------------------------------------------------------------
 #  some handy aliasses
@@ -125,7 +132,7 @@ alias flush='sudo systemd-resolve --flush-caches'
 alias he='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
 alias ncdu='ncdu -x -e --color dark'
-alias vnet='virsh net-create /usr/share/libvirt/networks/default.xml'
+alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
@@ -134,9 +141,6 @@ alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tm='terramate'
 alias tf='terraform'
-
-alias acn="ssh ops-weu-ansible-vm"
-alias zabbix='ssh shd-weu-zabbix-vm'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
@@ -160,26 +164,26 @@ alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias c='cmatrix -b -s -C magenta'
 alias d='ncdu -x -e --color dark'
-alias e='vi ~/.ssh/config.d/eduarte-new.conf'
+alias e='vi ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
-alias i='sudo nala install '
+alias i='sudo nala install'
 alias j='jobs -l'
 alias k='vim ~/.config/kitty/kitty.conf'
 alias l='exa -lgF --color=always --group-directories-first --icons'
 alias m='toot tui'
 alias n='newsboat -r'
 alias o='vim ~/.local/share/vimwiki/index.md'
-alias p='echo -e ${PATH//:/\\n} | batcat'
-alias q='vi ~/vimwiki/index.md'
-alias r='radio --volume 20'
+alias p='echo -e ${PATH//:/\\n} | bat'
+alias q='No alias defined for this letter.'
+alias r='~/.local/bin/radio --volume 20'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
 alias t='vim ~/.config/alacritty/alacritty.yml'
 alias u='sudo /usr/local/bin/update'
 alias v='vim ~/.vimrc'
-alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | batcat'
-alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | batcat'
+alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
+alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | bat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
 #alias w='This letter is not available.'
@@ -195,15 +199,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 #  connect to my work vpn
 # ---------------------------------------------------------------------------
 
-# azure
-alias vpn-i='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-iddink.conf &; sleep 5; disown; ip route'
-alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
-
-# topicus
-alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf; sleep 5; ip route'
-
-# sanoma/previder
-alias vpn-s='sudo openfortivpn -c ~/.ssh/vpn/iddinkgroup.conf'
-alias shares='smbclient -U "richard@iddinknl.local" -L 10.15.11.115'
+alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 4; disown; ip route'
+alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 4; disown; ip route'
 
 ### eof #####################################################################

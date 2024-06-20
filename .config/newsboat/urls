@@ -8,7 +8,8 @@
 #  nos news
 # ---------------------------------------------------------------------------
 
-https://feeds.nos.nl/nosnieuwsalgemeen
+# Al dit nieuws staat ook al in de andere feeds.
+# https://feeds.nos.nl/nosnieuwsalgemeen
 https://feeds.nos.nl/nosnieuwsbinnenland
 https://feeds.nos.nl/nosnieuwsbuitenland
 https://feeds.nos.nl/nosnieuwspolitiek
@@ -40,10 +41,10 @@ http://feeds.feedburner.com/tweakers/mixed "~IT Tweakers"
 # ---------------------------------------------------------------------------
 
 # not working, something is wrong with the ssl certificates
-#https://distrowatch.com/news/dw.xml
-#https://distrowatch.com/news/dwd.xml "~DW Latest Distros"
-#https://distrowatch.com/news/news-headlines.xml "~DW Latest Headlines"
-#https://distrowatch.com/news/dwp.xml "~DW Latest Packages"
+https://distrowatch.com/news/dw.xml "~DW Distrowatch News"
+https://distrowatch.com/news/dwd.xml "~DW Latest Distros"
+https://distrowatch.com/news/news-headlines.xml "~DW Latest Headlines"
+https://distrowatch.com/news/dwp.xml "~DW Latest Packages"
 
 # ---------------------------------------------------------------------------
 #  miscellaneous stuff
