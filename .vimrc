@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'alvan/vim-closetag'                          " auto close (x)html tags
     Plug 'chrisbra/csv.vim'                            " work with csv files
     Plug 'dense-analysis/ale'                          " some syntax checking
-    Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
+    "Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
     Plug 'majutsushi/tagbar'                           " use ctags in vim
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
     Plug 'stylelint/stylelint'                         " css linter
@@ -320,7 +320,7 @@ set background=dark
 let g:rehash256 = 1     " molokai mode to match dark gui version
 
 " note the space at the end of this line
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 " onedark colour theme
 " let g:airline_theme='onedark'

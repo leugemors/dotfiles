@@ -197,7 +197,6 @@ export JBOSS_HOME="/opt/wildfly/latest"
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
-#clear
 #colorscript -r 
 
 clear

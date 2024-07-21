@@ -79,6 +79,7 @@ alias cursus='cd ~/Working/cursus'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/misc'
+alias uzori='cd ~/Working/ansible/uzori'
 
 alias fairy='cd /mnt/nassi/thijs/fairytale'
 alias fd24='cd /mnt/nassi/thijs/fd24'
@@ -96,9 +97,6 @@ alias conf='cd ~/Working/eduarte/school-configs'
 alias infra='cd ~/Working/eduarte/tf-school-infra'
 alias ops='cd ~/Working/eduarte/ops-ansible'
 alias power='cd ~/Working/powershell/scripts'
-alias uzori='cd ~/Working/ansible/uzori'
-
-alias migratie='/home/richard/Working/eduarte/tf-school-infra/terraform/schools/eta/shd/090/sql'
 
 # ---------------------------------------------------------------------------
 #  g1t aliasses
@@ -125,6 +123,7 @@ alias mpp='main; pull; purge'
 #  some handy aliasses
 # ---------------------------------------------------------------------------
 
+alias activate="source venv/bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
 alias diff='colordiff -Nuar'
 alias dus='du -h --max-depth=1 | sort -h'
@@ -199,7 +198,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 #  connect to my work vpn
 # ---------------------------------------------------------------------------
 
-alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 4; disown; ip route'
-alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 4; disown; ip route'
+alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
+alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 5; disown; ip route'
 
 ### eof #####################################################################
