@@ -6,7 +6,7 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_|
 ##
-##   just a bunch of handy aliases for my personal use
+##   Just a bunch of handy aliases for my personal use.
 ##
 #############################################################################
 
@@ -117,7 +117,7 @@ alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git 
 alias push='git push origin'
 alias status='git status'
 alias tag='git tag'
-alias mpp='main; pull; purge'
+alias mpp='main; pull; purge' # because I am lazy :-)
 
 # ---------------------------------------------------------------------------
 #  some handy aliasses
