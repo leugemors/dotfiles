@@ -5,21 +5,29 @@
 ##  | |  |   <| |   https://www.github.com/leugemors/
 ##  |_|  |_|\_\_|
 ##
-##  my personal zsh configuration, using a nice starship prompt
+##  My personal zsh configuration, using a nice starship prompt.
+##
+##  I expect some suckless tools to be installed, like bat, eza, fzf,
+##  ripgrep, etc. And obviously starship.
 ##
 #############################################################################
 
 # ---------------------------------------------------------------------------
-#  support 256 colours
+#  setting environment variables
 # ---------------------------------------------------------------------------
 
-export TERM="xterm-256color"
+export ANSIBLE_NOCOWS=1                               # no cows for ansible
+export EDITOR=vim                                     # use vim keys to edit
+export JBOSS_HOME="/opt/wildfly/latest"               # wildfly configuration
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"  # set bat as manpager
+export PROMPT_EOL_MARK=""                             # hide EOL sign ('%')
+export TERM="xterm-256color"                          # support 256 colours
 
 # ---------------------------------------------------------------------------
-#  set batcat as manpager
+#  don't consider certain characters part of the word
 # ---------------------------------------------------------------------------
 
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export WORDCHARS=${WORDCHARS//\/}
 
 # ---------------------------------------------------------------------------
 #  set auto correct options
@@ -35,32 +43,20 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 
 # ---------------------------------------------------------------------------
-#  don't consider certain characters part of the word
-# ---------------------------------------------------------------------------
-
-export WORDCHARS=${WORDCHARS//\/}
-
-# ---------------------------------------------------------------------------
-#  hide EOL sign ('%')
-# ---------------------------------------------------------------------------
-
-export PROMPT_EOL_MARK=""
-
-# ---------------------------------------------------------------------------
 #  configure key keybindings
 # ---------------------------------------------------------------------------
 
-bindkey -v                                        # use vim key bindings
-bindkey ' ' magic-space                           # do history expansion on space
-bindkey '^[[3;5~' kill-word                       # ctrl + Supr
-bindkey '^[[3~' delete-char                       # delete
-bindkey '^[[1;5C' forward-word                    # ctrl + ->
-bindkey '^[[1;5D' backward-word                   # ctrl + <-
-bindkey '^[[5~' beginning-of-buffer-or-history    # page up
-bindkey '^[[6~' end-of-buffer-or-history          # page down
-bindkey '^[[H' beginning-of-line                  # home
-bindkey '^[[F' end-of-line                        # end
-bindkey '^[[Z' undo                               # shift + tab undo last action
+bindkey -v                                     # use vim key bindings
+bindkey ' ' magic-space                        # do history expansion on space
+bindkey '^[[3;5~' kill-word                    # ctrl + Supr
+bindkey '^[[3~' delete-char                    # delete
+bindkey '^[[1;5C' forward-word                 # ctrl + ->
+bindkey '^[[1;5D' backward-word                # ctrl + <-
+bindkey '^[[5~' beginning-of-buffer-or-history # page up
+bindkey '^[[6~' end-of-buffer-or-history       # page down
+bindkey '^[[H' beginning-of-line               # home
+bindkey '^[[F' end-of-line                     # end
+bindkey '^[[Z' undo                            # shift + tab undo last action
 
 # ---------------------------------------------------------------------------
 #  enable completion features
@@ -74,7 +70,6 @@ zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-# take advantage of $LS_COLORS for completion as well
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -118,7 +113,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ---------------------------------------------------------------------------
 
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # ---------------------------------------------------------------------------
@@ -126,7 +121,7 @@ fi
 # ---------------------------------------------------------------------------
 
 if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # ---------------------------------------------------------------------------
@@ -134,7 +129,7 @@ fi
 # ---------------------------------------------------------------------------
 
 if [ -f /etc/zsh_command_not_found ]; then
-    . /etc/zsh_command_not_found
+    source /etc/zsh_command_not_found
 fi
 
 # ---------------------------------------------------------------------------
@@ -148,20 +143,8 @@ source <(kubectl completion zsh)
 # ---------------------------------------------------------------------------
 
 if [ -f ~/.aliases ]; then
-    . ~/.aliases
+    source ~/.aliases
 fi
-
-# ---------------------------------------------------------------------------
-#  otherwise all ansible messages will also get parsed through cowsay
-# ---------------------------------------------------------------------------
-
-export ANSIBLE_NOCOWS=1
-
-# ---------------------------------------------------------------------------
-#  use vim keys to edit the command line
-# ---------------------------------------------------------------------------
-
-export EDITOR=vim
 
 # ---------------------------------------------------------------------------
 #  set-up keybinding for fzf fuzzy completion
@@ -170,34 +153,20 @@ export EDITOR=vim
 eval "$(fzf --zsh)"
 
 # ---------------------------------------------------------------------------
-#  load the starship prompt
-# ---------------------------------------------------------------------------
-
-eval "$(starship init zsh)"
-
-# ---------------------------------------------------------------------------
-#  try the powerlevel zsh shell prompt (replaces starship)
-# ---------------------------------------------------------------------------
-
-#. /usr/share/powerlevel9k/powerlevel9k.zsh-theme
-
-# ---------------------------------------------------------------------------
 #  switch off the anoying caps lock key
 # ---------------------------------------------------------------------------
 
 setxkbmap -option ctrl:nocaps
 
 # ---------------------------------------------------------------------------
-#  for wildfly and domain.xml configuration
+#  load the starship prompt
 # ---------------------------------------------------------------------------
 
-export JBOSS_HOME="/opt/wildfly/latest"
+eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
-
-#colorscript -r 
 
 clear
 bible_verse | cowsay | lolcat
