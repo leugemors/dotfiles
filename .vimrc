@@ -36,41 +36,41 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " a nice statusbar
-    Plug 'vim-airline/vim-airline'                     " airline statusbar
-    Plug 'vim-airline/vim-airline-themes'              " themes for airline statusbar
+    Plug 'vim-airline/vim-airline'                 " airline statusbar
+    Plug 'vim-airline/vim-airline-themes'          " themes for statusbar
 
     " nerdtree file management
-    Plug 'preservim/nerdtree'                          " nerdtree
-    Plug 'ryanoasis/vim-devicons'                      " icons for nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " highlighting nerdtree
-    Plug 'Xuyuanp/nerdtree-git-plugin'                 " git support for nerdtree
+    Plug 'preservim/nerdtree'                      " nerdtree
+    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
+    Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
 
     " productivity
-    Plug 'airblade/vim-gitgutter'                      " show git diff per line
-    Plug 'alvan/vim-closetag'                          " auto close (x)html tags
-    Plug 'chrisbra/csv.vim'                            " work with csv files
-    Plug 'dense-analysis/ale'                          " some syntax checking
-    "Plug 'jiangmiao/auto-pairs'                        " auto pair brackets
-    Plug 'majutsushi/tagbar'                           " use ctags in vim
+    Plug 'airblade/vim-gitgutter'                  " show git diff per line
+    Plug 'alvan/vim-closetag'                      " auto close (x)html tags
+    Plug 'chrisbra/csv.vim'                        " work with csv files
+    Plug 'dense-analysis/ale'                      " some syntax checking
+    "Plug 'jiangmiao/auto-pairs'                   " auto pair brackets
+    Plug 'majutsushi/tagbar'                       " use ctags in vim
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    Plug 'stylelint/stylelint'                         " css linter
-    Plug 'tpope/vim-commentary'                        " bulk (un)command lines
+    Plug 'stylelint/stylelint'                     " css linter
+    Plug 'tpope/vim-commentary'                    " bulk (un)command lines
 
     " colours and syntax highlighting
-    Plug 'ap/vim-css-color'                            " show hex colours
-    Plug 'frazrepo/vim-rainbow'                        " rainbow brackets for vim
-    Plug 'kshenoy/vim-signature'                       " show marks before the line number
-    Plug 'sheerun/vim-polyglot'                        " support for many languages
-    Plug 'Yggdroot/indentLine'                         " visualize indentions
+    Plug 'ap/vim-css-color'                        " show hex colours
+    Plug 'frazrepo/vim-rainbow'                    " rainbow brackets for vim
+    Plug 'kshenoy/vim-signature'                   " show marks before the line number
+    Plug 'sheerun/vim-polyglot'                    " support for many languages
+    Plug 'Yggdroot/indentLine'                     " visualize indentions
 
     " colour themes
-    Plug 'dracula/vim', { 'as': 'dracula' }            " dracula colour theme
-    Plug 'morhetz/gruvbox'                             " gruvbox colour theme
-    Plug 'joshdick/onedark.vim'                        " onedark colour theme
+    Plug 'dracula/vim', { 'as': 'dracula' }        " dracula colour theme
+    Plug 'morhetz/gruvbox'                         " gruvbox colour theme
+    Plug 'joshdick/onedark.vim'                    " onedark colour theme
 
     " integrate some external tools
-    Plug 'vifm/vifm.vim'                               " vi file manager
-    Plug 'vimwiki/vimwiki'                             " taking notes from within vim
+    Plug 'vifm/vifm.vim'                           " vi file manager
+    Plug 'vimwiki/vimwiki'                         " taking notes within vim
 
 call plug#end()
 
@@ -86,32 +86,33 @@ endif
 "  basic settings
 " ---------------------------------------------------------------------------
 
-"set colorcolumn=80            " show a line at column 80
-"set relativenumber            " display relative line numbers
-
 set autoread                   " auto read when a file has changed from outside
 set backspace=start,eol,indent " better use of backspace
 set clipboard=unnamedplus      " copy/paste between vim and other programs
+set colorcolumn=80             " show a line at column 80
 set cursorline                 " underline the current line
 set hidden                     " needed to keep multiple buffers open
 set history=2000               " how many lines of history should vim remember
 set lazyredraw                 " don't redraw while executing macros
 set magic                      " turn magic on for regular expressions
-set number                     " display line numbers
 set numberwidth=5              " set width for numbers to 5
 set scrolloff=3                " show 3 lines to the cursor
 syntax on                      " enable syntax highlighting
 
 " ---------------------------------------------------------------------------
-"  tougle line numbers and wrapping for easier copying
+"  toggle line numbers and wrapping for easier copying
 " ---------------------------------------------------------------------------
+
+set number                     " display line numbers
+"set relativenumber            " display relative line numbers
+set wrap
 
 map <F3> :set number!<cr>
 map <F4> :set relativenumber!<cr>
 map <F5> :set wrap!<cr>
 
 " ---------------------------------------------------------------------------
-"  use line cursor within insert mode and block cursor everywhere else
+"  use line cursor in insert mode and block cursor everywhere else
 " ---------------------------------------------------------------------------
 
 " Reference chart of values: (default: 6,2)
@@ -210,7 +211,6 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set smartindent
-set wrap
 
 " indent/unindent with tab/shift-tab
 nmap <Tab> >>
@@ -277,7 +277,7 @@ map <C-t> :TagbarToggle<cr>
 "autocmd vimenter * TagbarToggle
 
 " unfold all tags to one level
-"autocmd vimenter * TagbarSetFoldlevel! 1
+autocmd vimenter * TagbarSetFoldlevel! 1
 
 " ---------------------------------------------------------------------------
 "  move through split windows
@@ -320,15 +320,15 @@ set background=dark
 let g:rehash256 = 1     " molokai mode to match dark gui version
 
 " note the space at the end of this line
-set fillchars+=vert:\
+set fillchars+=vert:\ 
 
 " onedark colour theme
-" let g:airline_theme='onedark'
-" let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
-" let g:onedark_termcolors=256
-" let g:onedark_hide_endofbuffer=1
-" let g:onedark_terminal_italics=1
-" colorscheme onedark
+"let g:airline_theme='onedark'
+"let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
+"let g:onedark_termcolors=256
+"let g:onedark_hide_endofbuffer=1
+"let g:onedark_terminal_italics=1
+"colorscheme onedark
 
 " dracula colour theme
 let g:airline_theme='dracula'
@@ -347,7 +347,7 @@ colorscheme dracula
 "let g:gruvbox_termcolors=256
 "colorscheme gruvbox
 
-" some default colour schemes
+" default colour schemes
 "colorscheme blue
 "colorscheme darkblue
 "colorscheme default
