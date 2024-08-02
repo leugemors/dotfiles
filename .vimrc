@@ -277,7 +277,7 @@ map <C-t> :TagbarToggle<cr>
 "autocmd vimenter * TagbarToggle
 
 " unfold all tags to one level
-autocmd vimenter * TagbarSetFoldlevel! 1
+"autocmd vimenter * TagbarSetFoldlevel! 1
 
 " ---------------------------------------------------------------------------
 "  move through split windows
