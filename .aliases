@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#! /usr/bin/zsh
 #############################################################################
 ##         _    _
 ##    _ __| | _| |
@@ -10,8 +10,12 @@
 ##
 #############################################################################
 
-# sometimes mc can start very slowly when using a sub-shell
-#alias mc='mc --nosubshell'
+# ---------------------------------------------------------------------------
+#  trying nvim as my new default editor, not sure yet
+# ---------------------------------------------------------------------------
+
+#alias vim='nvim'
+alias vi='vim'
 
 # ---------------------------------------------------------------------------
 #  enable colour support and add some colourful aliases
@@ -26,15 +30,15 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  when using the old-fashioned ls command
+#  using the old-fashioned ls command, replaced with eza
 # ---------------------------------------------------------------------------
 
-#alias ls='ls --color=auto -CF'
-#alias la='ls -AF'
-#alias ll='ls --group-directories-first -AlF'
+# alias ls='ls --color=auto -CF'
+# alias la='ls -AF'
+# alias ll='ls --group-directories-first -AlF'
 
 # ---------------------------------------------------------------------------
-#  changing ls to exa (suckless tools)
+#  changing ls to eza (suckless tools)
 # ---------------------------------------------------------------------------
 
 # -g show group
@@ -44,19 +48,15 @@ fi
 # -T show directory tree
 # -r sort in revese order
 
-alias exa='exa --color=always --group-directories-first --icons'
+alias eza='eza --color=always --group-directories-first --icons=auto'
 
-alias ls='exa -gF'
-alias la='exa -aF'
-alias ll='exa -algFh'
-alias lt='exa -aT'
-alias ltr='exa -algFhr -sold'
-
-# ---------------------------------------------------------------------------
-#  use batcat instead of cat (suckless tools)
-# ---------------------------------------------------------------------------
-
-alias bat='batcat'
+# The option F brakes things
+alias l='eza -lg'
+alias ls='eza -g'
+alias la='eza -a'
+alias ll='eza -algh'
+alias lt='eza -aT'
+alias ltr='eza -alghr -sold'
 
 # ---------------------------------------------------------------------------
 #  easy cd
@@ -113,7 +113,7 @@ alias main='(git checkout main || git checkout master) && git branch'
 alias newtag='git tag -a'
 alias prune='git pull --prune'
 alias pull='git pull origin --prune'
-alias purge='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
+alias purge='git branch --merged | grep -Ev "(^\*|main|master|dev)" | xargs git branch -d'
 alias push='git push origin'
 alias status='git status'
 alias tag='git tag'
@@ -123,13 +123,14 @@ alias mpp='main; pull; purge' # because I am lazy :-)
 #  some handy aliasses
 # ---------------------------------------------------------------------------
 
-alias activate="source venv/bin/activate"
+alias activate="source bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
 alias diff='colordiff -Nuar'
 alias dus='du -h --max-depth=1 | sort -h'
 alias flush='sudo systemd-resolve --flush-caches'
 alias he='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
+alias list='pacman -Qe'
 alias ncdu='ncdu -x -e --color dark'
 alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias play='ansible-playbook main.yaml'
@@ -140,11 +141,19 @@ alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tm='terramate'
 alias tf='terraform'
+alias update='sudo pacman -Syu && yay -Syu'
+alias zoek='yay -Ss'
+
+alias keys='vim ~/.config/hypr/conf/keybindings/richard.conf'
+alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
+# alias phone='gio mount "mtp://OnePlus_OnePlus_9_Pro_9884b56e/"'
+alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/media/sda1'
 
 # ---------------------------------------------------------------------------
 #  fun stuff
 # ---------------------------------------------------------------------------
 
+alias cls='clear; echo; fastfetch --config examples/3; echo; dierenriem'
 alias epoch='date +%s'
 alias kaart='telnet mapscii.me'
 alias klok='watch -t -n1 "date +%T | figlet"'
@@ -163,29 +172,28 @@ alias a='vim ~/.aliases && source ~/.aliases'
 alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias c='cmatrix -b -s -C magenta'
 alias d='ncdu -x -e --color dark'
-alias e='vi ~/.ssh/config.d/eduarte.conf'
+alias e='vim ~/.ssh/config.d/eduarte.conf'
 alias f='df -hlT --total -x tmpfs 2> /dev/null'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
-alias i='sudo nala install'
+alias i='sudo pacman -S'
 alias j='jobs -l'
-alias k='vim ~/.config/kitty/kitty.conf'
-alias l='exa -lgF --color=always --group-directories-first --icons'
-alias m='toot tui'
+alias k='echo "No alias defined for this letter."'
+alias m='/usr/local/bin/monitors.sh arrange_workspaces'
 alias n='newsboat -r'
-alias o='vim ~/.local/share/vimwiki/index.md'
+alias o='cd ~/.local/share/vimwiki; vim index.md'
 alias p='echo -e ${PATH//:/\\n} | bat'
-alias q='No alias defined for this letter.'
-alias r='~/.local/bin/radio --volume 20'
+alias q='echo "No alias defined for this letter."'
+alias r='radio --volume 20'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
-alias t='vim ~/.config/alacritty/alacritty.yml'
-alias u='sudo /usr/local/bin/update'
+alias t='vim ~/.config/alacritty/alacritty.toml'
+alias u='echo "No alias defined for this letter."'
 alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
 alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | bat'
 alias z='vim ~/.zshrc && source ~/.zshrc'
 
-#alias w='This letter is not available.'
+#alias w='echo "This letter is not available."'
 
 # ---------------------------------------------------------------------------
 #  set font for text terminals

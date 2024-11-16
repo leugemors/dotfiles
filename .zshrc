@@ -7,6 +7,8 @@
 ##
 ##  My personal zsh configuration, using a nice starship prompt.
 ##
+##  -------------------------------------------------------------------------
+##
 ##  I expect some suckless tools to be installed, like bat, eza, fzf,
 ##  ripgrep, etc. And obviously starship.
 ##
@@ -16,12 +18,13 @@
 #  setting environment variables
 # ---------------------------------------------------------------------------
 
-export ANSIBLE_NOCOWS=1                               # no cows for ansible
-export EDITOR=vim                                     # use vim keys to edit
-export JBOSS_HOME="/opt/wildfly/latest"               # wildfly configuration
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"  # set bat as manpager
-export PROMPT_EOL_MARK=""                             # hide EOL sign ('%')
-export TERM="xterm-256color"                          # support 256 colours
+export ANSIBLE_NOCOWS=1                           # no cows for ansible
+export EDITOR=vim                                 # use vim keys to edit
+export JBOSS_HOME="/opt/wildfly/latest"           # wildfly configuration
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
+export MANROFFOPT="-c"
+export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
+export TERM="xterm-256color"                      # support 256 colours
 
 # ---------------------------------------------------------------------------
 #  don't consider certain characters part of the word
@@ -112,16 +115,16 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 #  enable auto-suggestions based on the history
 # ---------------------------------------------------------------------------
 
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # ---------------------------------------------------------------------------
 # enable syntax highlighting
 # ---------------------------------------------------------------------------
 
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # ---------------------------------------------------------------------------
@@ -147,7 +150,7 @@ if [ -f ~/.aliases ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  set-up keybinding for fzf fuzzy completion
+#  set-up keybinding for fzf fuzzy finder completion
 # ---------------------------------------------------------------------------
 
 eval "$(fzf --zsh)"
@@ -165,12 +168,20 @@ setxkbmap -option ctrl:nocaps
 eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
+#  set up configuration for atuin
+# ---------------------------------------------------------------------------
+
+# eval "$(atuin init zsh)"
+
+# ---------------------------------------------------------------------------
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
 clear
 bible_verse | cowsay | lolcat
-echo; new_dierenriem
+echo; dierenriem
 echo
+# colorscript -r
+# fastfetch --config examples/13
 
 ### eof #####################################################################

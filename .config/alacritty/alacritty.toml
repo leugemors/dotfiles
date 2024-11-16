@@ -1,0 +1,77 @@
+#############################################################################
+##         _    _
+##    _ __| | _| |
+##   | '__| |/ / |   Richard Klein Leugemors
+##   | |  |   <| |   https://www.github.com/leugemors/
+##   |_|  |_|\_\_|
+##
+##   Configuration for Alacritty, the GPU enhanced terminal emulator.
+##
+#############################################################################
+
+[general]
+import = [
+    # "~/.config/alacritty/themes/themes/dracula.toml",
+    "~/.config/alacritty/keybindings.toml",
+]
+
+[env]
+TERM = "xterm-256color"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[scrolling]
+history = 5000
+
+[font]
+size = 10.0
+
+[font.normal]
+style = "Regular"
+# family = "3270 Nerd Font"
+# family = "FiraCode Nerd Font"
+family = "Hack Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+# family = "Literation Mono Nerd Font"
+# family = "Noto Nerd Font"
+# family = "RobotoMono Nerd Font"
+# family = "Source Code Pro"
+# family = "Space Mono Nerd Font"
+# family = "Ubuntu Mono Nerd Font"
+
+# [font.bold]
+# style = "Bold"
+# family = "Source Code Pro"
+
+# [font.italic]
+# style = "Italic"
+# family = "Source Code Pro"
+
+# [font.bold_italic]
+# style = "Bold Italic"
+# family = "Source Code Pro"
+
+[font.offset]
+x = 0
+y = 1
+
+[window]
+dynamic_padding = true
+opacity = 0.8
+# Full, Transparent, Buttonless, None
+decorations = "None"
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 1
+y = 1
+
+[selection]
+save_to_clipboard = true
+
+### eof #####################################################################

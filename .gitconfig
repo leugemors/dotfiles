@@ -5,18 +5,17 @@
     email = richard@uzori.com
 [core]
     autocrlf = input
-    #editor = vim
-    editor = code --wait
-    pager = cat
+    editor = vim
+    pager = bat
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
 [diff]
-    tool = code
-[difftool "code"]
-    cmd = "code --wait --diff $LOCAL $REMOTE"
+    tool = vim
+[difftool "nvim"]
+    cmd = "vim --d $LOCAL $REMOTE"
 [merge]
     tool = kdiff3
 [mergetool "kdiff3"]
@@ -24,3 +23,5 @@
 [alias]
     lg = log -10 --pretty=format:'%Cgreen%an%Creset committed %Cred%h%Creset on %Cblue%cd%Creset'
     unstate = restore --staged .
+[init]
+	defaultBranch = main

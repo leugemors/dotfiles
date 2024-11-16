@@ -9,8 +9,6 @@
 "##
 "############################################################################
 
-" used nerd font icons:       ☰   ⚡✘ ⚠
-
 " ---------------------------------------------------------------------------
 "  some required settings for the plugins
 " ---------------------------------------------------------------------------
@@ -22,65 +20,71 @@ filetype off          " needs to be switched off while loading plugins
 "  manage plugins (use :PlugInstall :PlugClean :PlugUpdate, etc.)
 " ---------------------------------------------------------------------------
 
-" to check if we need to install the plugins first
+" check if we need to install the plugins first
 let need_to_install_plugins = 0
 
-" install our plugin manager when needed
+" install the plugin manager when needed
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let need_to_install_plugins = 1
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let need_to_install_plugins = 1
 endif
 
 " list of all the plugins I like to use
 call plug#begin('~/.vim/plugged')
 
-    " a nice statusbar
-    Plug 'vim-airline/vim-airline'                 " airline statusbar
-    Plug 'vim-airline/vim-airline-themes'          " themes for statusbar
+  " a nice statusbar
+  Plug 'vim-airline/vim-airline'                 " airline statusbar
+  Plug 'vim-airline/vim-airline-themes'          " themes for statusbar
 
-    " nerdtree file management
-    Plug 'preservim/nerdtree'                      " nerdtree
-    Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
-    Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
+  " nerdtree file management
+  Plug 'preservim/nerdtree'                      " nerdtree
+  Plug 'ryanoasis/vim-devicons'                  " icons for nerdtree
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " highlighting nerdtree
+  Plug 'Xuyuanp/nerdtree-git-plugin'             " git support for nerdtree
 
-    " productivity
-    Plug 'airblade/vim-gitgutter'                  " show git diff per line
-    Plug 'alvan/vim-closetag'                      " auto close (x)html tags
-    Plug 'chrisbra/csv.vim'                        " work with csv files
-    Plug 'dense-analysis/ale'                      " some syntax checking
-    "Plug 'jiangmiao/auto-pairs'                   " auto pair brackets
-    Plug 'majutsushi/tagbar'                       " use ctags in vim
-    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " markdown preview
-    Plug 'stylelint/stylelint'                     " css linter
-    Plug 'tpope/vim-commentary'                    " bulk (un)command lines
+  " productivity
+  Plug 'airblade/vim-gitgutter'                  " show git diff per line
+  Plug 'alvan/vim-closetag'                      " auto close (x)html tags
+  Plug 'chrisbra/csv.vim'                        " work with csv files
+  Plug 'dense-analysis/ale'                      " some syntax checking
+  " Plug 'jiangmiao/auto-pairs'                    " auto pair brackets
+  Plug 'majutsushi/tagbar'                       " use ctags in vim
+  Plug 'suan/vim-instant-markdown'               " markdown support
+  Plug 'stylelint/stylelint'                     " css linter
+  Plug 'tpope/vim-commentary'                    " bulk (un)command lines
 
-    " colours and syntax highlighting
-    Plug 'ap/vim-css-color'                        " show hex colours
-    Plug 'frazrepo/vim-rainbow'                    " rainbow brackets for vim
-    Plug 'kshenoy/vim-signature'                   " show marks before the line number
-    Plug 'sheerun/vim-polyglot'                    " support for many languages
-    Plug 'Yggdroot/indentLine'                     " visualize indentions
+  " colours and syntax highlighting
+  Plug 'ap/vim-css-color'                        " show hex colours
+  Plug 'frazrepo/vim-rainbow'                    " rainbow brackets for vim
+  Plug 'kshenoy/vim-signature'                   " show marks before the line number
+  Plug 'sheerun/vim-polyglot'                    " support for many languages
+  Plug 'Yggdroot/indentLine'                     " visualize indentions
 
-    " colour themes
-    Plug 'dracula/vim', { 'as': 'dracula' }        " dracula colour theme
-    Plug 'morhetz/gruvbox'                         " gruvbox colour theme
-    Plug 'joshdick/onedark.vim'                    " onedark colour theme
+  " colour themes
+  Plug 'dracula/vim', { 'as': 'dracula' }        " dracula colour theme
+  Plug 'morhetz/gruvbox'                         " gruvbox colour theme
+  Plug 'joshdick/onedark.vim'                    " onedark colour theme
 
-    " integrate some external tools
-    Plug 'vifm/vifm.vim'                           " vi file manager
-    Plug 'vimwiki/vimwiki'                         " taking notes within vim
+  " integrate some external tools
+  Plug 'vifm/vifm.vim'                           " vi file manager
+  Plug 'vimwiki/vimwiki'                         " taking notes within vim
 
 call plug#end()
 
 " install all the plugins when needed
 if need_to_install_plugins == 1
-    echo "Installing plugins..."
-    silent! PlugInstall
-    echo "Done!"
-    q
+  echo "Installing plugins..."
+  silent! PlugInstall
+  echo "Done!"
+  q
 endif
+
+" ---------------------------------------------------------------------------
+"  enable filetype plugins
+" ---------------------------------------------------------------------------
+
+filetype plugin indent on
 
 " ---------------------------------------------------------------------------
 "  basic settings
@@ -98,40 +102,6 @@ set magic                      " turn magic on for regular expressions
 set numberwidth=5              " set width for numbers to 5
 set scrolloff=3                " show 3 lines to the cursor
 syntax on                      " enable syntax highlighting
-
-" ---------------------------------------------------------------------------
-"  toggle line numbers and wrapping for easier copying
-" ---------------------------------------------------------------------------
-
-set number                     " display line numbers
-"set relativenumber            " display relative line numbers
-set wrap
-
-map <F3> :set number!<cr>
-map <F4> :set relativenumber!<cr>
-map <F5> :set wrap!<cr>
-
-" ---------------------------------------------------------------------------
-"  use line cursor in insert mode and block cursor everywhere else
-" ---------------------------------------------------------------------------
-
-" Reference chart of values: (default: 6,2)
-"   Ps = 0  -> blinking block.
-"   Ps = 1  -> blinking block (default).
-"   Ps = 2  -> steady block.
-"   Ps = 3  -> blinking underline.
-"   Ps = 4  -> steady underline.
-"   Ps = 5  -> blinking bar (xterm).
-"   Ps = 6  -> steady bar (xterm).
-
-let &t_EI = "\e[2 q"   " normal mode
-let &t_SI = "\e[1 q"   " insert mode
-
-" ---------------------------------------------------------------------------
-"  enable filetype plugins
-" ---------------------------------------------------------------------------
-
-filetype plugin indent on
 
 " ---------------------------------------------------------------------------
 "  no annoying sounds or errors
@@ -170,6 +140,62 @@ set path+=**                  " searches current directory recursively
 set smartcase                 " try to be smart about cases
 set wildmenu                  " display all matches when tab complete
 set wildignore=*.o,*~,*.pyc   " ignore these file extensions
+
+" ---------------------------------------------------------------------------
+"  move through split windows
+" ---------------------------------------------------------------------------
+
+nmap <leader><Up> :wincmd k<cr>
+nmap <leader><Down> :wincmd j<cr>
+nmap <leader><Left> :wincmd h<cr>
+nmap <leader><Right> :wincmd l<cr>
+
+" ---------------------------------------------------------------------------
+"  move through buffers
+" ---------------------------------------------------------------------------
+
+nmap <leader>[ :bp!<cr>
+nmap <leader>] :bn!<cr>
+nmap <leader>x :bp<bar>bd#<cr>
+
+" ---------------------------------------------------------------------------
+"  toggle line numbers and wrapping for easier copying
+" ---------------------------------------------------------------------------
+
+"set relativenumber
+set number
+set nowrap
+
+map <F3> :set number!<cr>
+map <F4> :set relativenumber!<cr>
+map <F5> :set wrap!<cr>
+
+" ---------------------------------------------------------------------------
+"  remove trailing white spaces
+" ---------------------------------------------------------------------------
+
+map <F12> :call TrimWhiteSpaces()<cr>
+
+func! TrimWhiteSpaces()
+  %s/\s*$//
+  ''
+:endfunction
+
+" ---------------------------------------------------------------------------
+"  use line cursor in insert mode and block cursor everywhere else
+" ---------------------------------------------------------------------------
+
+" Reference chart of values: (default: 6,2)
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+
+let &t_EI = "\e[2 q"   " normal mode
+let &t_SI = "\e[1 q"   " insert mode
 
 " ---------------------------------------------------------------------------
 "  setup code folding
@@ -236,7 +262,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " ---------------------------------------------------------------------------
 
 " mouse support breaks the copy/past functionality
-"set mouse=a
+" set mouse=a
 
 " ---------------------------------------------------------------------------
 "  configure nerdtree
@@ -256,7 +282,7 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
 " start nerdtree and put the cursor back in the other window
-"autocmd vimenter * NERDTree | wincmd p
+" autocmd vimenter * NERDTree | wincmd p
 
 " exit vim if nerdtree is the only window remaining in the only tab
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -274,38 +300,27 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 map <C-t> :TagbarToggle<cr>
 
 " show the tagbar
-"autocmd vimenter * TagbarToggle
+" autocmd vimenter * TagbarToggle
 
 " unfold all tags to one level
-"autocmd vimenter * TagbarSetFoldlevel! 1
+" autocmd vimenter * TagbarSetFoldlevel! 1
 
 " ---------------------------------------------------------------------------
-"  move through split windows
+"  settings for markdown support
 " ---------------------------------------------------------------------------
 
-nmap <leader><Up> :wincmd k<cr>
-nmap <leader><Down> :wincmd j<cr>
-nmap <leader><Left> :wincmd h<cr>
-nmap <leader><Right> :wincmd l<cr>
-
-" ---------------------------------------------------------------------------
-"  move through buffers
-" ---------------------------------------------------------------------------
-
-nmap <leader>[ :bp!<cr>
-nmap <leader>] :bn!<cr>
-nmap <leader>x :bp<bar>bd#<cr>
-
-" ---------------------------------------------------------------------------
-"  remove trailing white spaces
-" ---------------------------------------------------------------------------
-
-map <F12> :call TrimWhiteSpaces()<cr>
-
-func! TrimWhiteSpaces()
-    %s/\s*$//
-    ''
-:endfunction
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_open_to_the_world = 1
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 0
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_mermaid = 1
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_autoscroll = 0
+let g:instant_markdown_port = 8888
+let g:instant_markdown_python = 1
+let g:instant_markdown_theme = 'dark'
 
 " ---------------------------------------------------------------------------
 "  colours and theming
@@ -319,16 +334,15 @@ set background=dark
 
 let g:rehash256 = 1     " molokai mode to match dark gui version
 
-" note the space at the end of this line
-set fillchars+=vert:\ 
+set fillchars+=vert:│   " <Ctrl><K> <v><v>
 
 " onedark colour theme
-"let g:airline_theme='onedark'
-"let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
-"let g:onedark_termcolors=256
-"let g:onedark_hide_endofbuffer=1
-"let g:onedark_terminal_italics=1
-"colorscheme onedark
+" let g:airline_theme='onedark'
+" let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
+" let g:onedark_termcolors=256
+" let g:onedark_hide_endofbuffer=1
+" let g:onedark_terminal_italics=1
+" colorscheme onedark
 
 " dracula colour theme
 let g:airline_theme='dracula'
@@ -343,29 +357,29 @@ let g:dracula_colorterm = 0                   " include background fill colors (
 colorscheme dracula
 
 " grubbox colour theme
-"let g:airline_theme='gruvbox'
-"let g:gruvbox_termcolors=256
-"colorscheme gruvbox
+" let g:airline_theme='gruvbox'
+" let g:gruvbox_termcolors=256
+" colorscheme gruvbox
 
 " default colour schemes
-"colorscheme blue
-"colorscheme darkblue
-"colorscheme default
-"colorscheme delek
-"colorscheme desert
-"colorscheme elflord
-"colorscheme evening
-"colorscheme industry
-"colorscheme koehler
-"colorscheme morning
-"colorscheme murphy
-"colorscheme pablo
-"colorscheme peachpuff
-"colorscheme ron
-"colorscheme shine
-"colorscheme slate
-"colorscheme torte
-"colorscheme zellner
+" colorscheme blue
+" colorscheme darkblue
+" colorscheme default
+" colorscheme delek
+" colorscheme desert
+" colorscheme elflord
+" colorscheme evening
+" colorscheme industry
+" colorscheme koehler
+" colorscheme morning
+" colorscheme murphy
+" colorscheme pablo
+" colorscheme peachpuff
+" colorscheme ron
+" colorscheme shine
+" colorscheme slate
+" colorscheme torte
+" colorscheme zellner
 
 " ---------------------------------------------------------------------------
 "  configure indentline
@@ -385,10 +399,10 @@ let g:indentLine_color_dark=1 " (default: 2)
 "  autopair brackets
 " ---------------------------------------------------------------------------
 
-au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
+" au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
 
-set showmatch      " show matching brackets
-set mat=2          " blink 0.2 seconds when matching brackets
+" set showmatch      " show matching brackets
+" set mat=2          " blink 0.2 seconds when matching brackets
 
 " ---------------------------------------------------------------------------
 "  settings for vifm
@@ -405,16 +419,6 @@ map <Leader>tv :TabVifm<cr>
 " ---------------------------------------------------------------------------
 
 let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
-" ---------------------------------------------------------------------------
-"  instant markdown
-" ---------------------------------------------------------------------------
-
-let g:instant_markdown_autostart=0           " Turns off auto preview
-let g:instant_markdown_browser="surf"        " Uses surf for preview
-
-map <Leader>md :InstantMarkdownPreview<cr>   " Previews .md file
-map <Leader>ms :InstantMarkdownStop<cr>      " Kills the preview
 
 " ---------------------------------------------------------------------------
 "  open a terminal inside vim
@@ -471,45 +475,36 @@ nmap gr :ALEFindReferences<cr>
 
 nmap K :ALEHover<cr>
 
-"nmap gd :ALEGoToDefinitionInSplit<cr>
-"nmap gd :ALEGoToDefinitionInVSplit<cr>
-"nmap gd :ALEGoToDefinitionInTab<cr>
-
-" ---------------------------------------------------------------------------
-"  some gui stuff
-" ---------------------------------------------------------------------------
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+" nmap gd :ALEGoToDefinitionInSplit<cr>
+" nmap gd :ALEGoToDefinitionInVSplit<cr>
+" nmap gd :ALEGoToDefinitionInTab<cr>
 
 " ---------------------------------------------------------------------------
 "  playing around with abriviations
 " ---------------------------------------------------------------------------
 
-"ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
+ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
 
-"ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
+" ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
 
 " some handy abbriviations for c
-"iab com /*<cr><cr>*/<up>
-"iab #i #include
-"iab #d #define
+" iab com /*<cr><cr>*/<up>
+" iab #i #include
+" iab #d #define
 
-"ab forl for (int i = 0; i < ; i++) {<esc>8hi
-"ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
-"ab const public static final int
+" ab forl for (int i = 0; i < ; i++) {<esc>8hi
+" ab tryb try {<cr>} catch (exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3ko
+" ab const public static final int
 
-"ab ctm system.currenttimemillis()
-"ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
+" ab ctm system.currenttimemillis()
+" ab slept try {<cr> thread.sleep();<cr>}<esc>hxa catch(exception ex) {<cr> ex.printstacktrace();<cr>}<esc>hx3k$hi
 
-"autocmd FileType c iab start #include <stdio.h><cr>
-    "\#include <stdlib.h><cr>
-    "\#include <stdbool.h><cr><cr>
-    "\int main() {<cr>
-    "\printf("Hello World!\n");<cr><cr>
-    "\return 0;
-    "\}<up><up><cr>
+" autocmd FileType c iab start #include <stdio.h><cr>
+    " \#include <stdlib.h><cr>
+    " \#include <stdbool.h><cr><cr>
+    " \int main() {<cr>
+    " \printf("Hello World!\n");<cr><cr>
+    " \return 0;
+    " \}<up><up><cr>
 
 "### eof ####################################################################
