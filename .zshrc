@@ -178,10 +178,12 @@ eval "$(starship init zsh)"
 # ---------------------------------------------------------------------------
 
 clear
-bible_verse | cowsay | lolcat
-echo; dierenriem
 echo
+# bible_verse | cowsay | lolcat
+# echo; dierenriem
 # colorscript -r
+fastfetch --config examples/8
 # fastfetch --config examples/13
+echo
 
 ### eof #####################################################################

@@ -37,7 +37,7 @@ ignore-mode "display"
 
 show-read-feeds yes
 show-read-articles yes
-#feed-sort-order unreadarticlecount-asc
+# feed-sort-order unreadarticlecount-asc
 
 # Dark theme based on Dracula color scheme for newsboat.
 color background default default
@@ -67,9 +67,9 @@ text-width 96
 #  formatting
 # ---------------------------------------------------------------------------
 
-#feedlist-format "%4i %15T %30t %n %11u"
-#articlelist-format "%4i %f %D   %?T?|%-17T|  ?%t"
-#notify-format "%d new articles (%n unread articles, %f unread feeds)"
+# feedlist-format "%4i %15T %30t %n %11u"
+# articlelist-format "%4i %f %D   %?T?|%-17T|  ?%t"
+# notify-format "%d new articles (%n unread articles, %f unread feeds)"
 
 # ---------------------------------------------------------------------------
 #  navigation
@@ -77,8 +77,9 @@ text-width 96
 
 goto-next-feed no
 
-#browser "open -g -a 'Firefox' %u"
-browser "firefox --new-tab %u"
+# browser "open -g -a 'Firefox' %u"
+# browser "firefox --new-tab %u"
+browser "zen-browser --new-tab %u"
 
 bind-key j down article
 bind-key k up article

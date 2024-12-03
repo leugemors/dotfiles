@@ -1,4 +1,4 @@
-#! /usr/bin/zsh
+#!/usr/bin/env zsh
 #############################################################################
 ##         _    _
 ##    _ __| | _| |
@@ -6,19 +6,12 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_|
 ##
-##   Just a bunch of handy aliases for my personal use.
+##   Just a bunch of handy aliases for my personal use
 ##
 #############################################################################
 
 # ---------------------------------------------------------------------------
-#  trying nvim as my new default editor, not sure yet
-# ---------------------------------------------------------------------------
-
-#alias vim='nvim'
-alias vi='vim'
-
-# ---------------------------------------------------------------------------
-#  enable colour support and add some colourful aliases
+#  Enable colour support and add some colourful aliases
 # ---------------------------------------------------------------------------
 
 if [ -x /usr/bin/dircolors ]; then
@@ -30,15 +23,16 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  using the old-fashioned ls command, replaced with eza
+#  Using the old-fashioned ls command, now replaced with eza
 # ---------------------------------------------------------------------------
 
 # alias ls='ls --color=auto -CF'
+# alias l='ls -lF
 # alias la='ls -AF'
 # alias ll='ls --group-directories-first -AlF'
 
 # ---------------------------------------------------------------------------
-#  changing ls to eza (suckless tools)
+#  Changing ls to eza (suckless tools)
 # ---------------------------------------------------------------------------
 
 # -g show group
@@ -59,7 +53,7 @@ alias lt='eza -aT'
 alias ltr='eza -alghr -sold'
 
 # ---------------------------------------------------------------------------
-#  easy cd
+#  Easy cd
 # ---------------------------------------------------------------------------
 
 alias up='cd ..'
@@ -74,7 +68,6 @@ alias doc='cd ~/Documents'
 alias dl='cd ~/Downloads'
 alias work='cd ~/Working'
 
-alias ans='cd ~/Working/ansible'
 alias cursus='cd ~/Working/cursus'
 alias edu='cd ~/Working/eduarte'
 alias leug='cd ~/Working/leugemors'
@@ -83,6 +76,8 @@ alias uzori='cd ~/Working/ansible/uzori'
 
 alias fairy='cd /mnt/nassi/thijs/fairytale'
 alias fd24='cd /mnt/nassi/thijs/fd24'
+
+alias notes='cd ~/.local/share/vimwiki'
 alias prive='cd ~/Prive'
 alias rwf='cd ~/Prive/rwf'
 alias thijs='cd ~/Prive/thijs'
@@ -92,14 +87,13 @@ alias iso='cd /data/iso'
 alias nassi='cd /mnt/nassi'
 alias stack='cd /mnt/stack'
 
-# project i'm working on right now
+# Projects i'm working on right now
 alias conf='cd ~/Working/eduarte/school-configs'
 alias infra='cd ~/Working/eduarte/tf-school-infra'
-alias ops='cd ~/Working/eduarte/ops-ansible'
 alias power='cd ~/Working/powershell/scripts'
 
 # ---------------------------------------------------------------------------
-#  g1t aliasses
+#  G1t aliasses
 # ---------------------------------------------------------------------------
 
 alias addup='git add -u'
@@ -117,43 +111,43 @@ alias purge='git branch --merged | grep -Ev "(^\*|main|master|dev)" | xargs git 
 alias push='git push origin'
 alias status='git status'
 alias tag='git tag'
-alias mpp='main; pull; purge' # because I am lazy :-)
+alias mpp='main; pull; purge' # Because I am lazy :-)
 
 # ---------------------------------------------------------------------------
-#  some handy aliasses
+#  Some handy aliasses
 # ---------------------------------------------------------------------------
 
 alias activate="source bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
 alias diff='colordiff -Nuar'
 alias dus='du -h --max-depth=1 | sort -h'
-alias flush='sudo systemd-resolve --flush-caches'
-alias he='hexedit --color'
+alias hex='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
+alias keyb='vim ~/.config/hypr/conf/keybindings/richard.conf'
 alias list='pacman -Qe'
+alias moni='vim ~/.config/hypr/conf/monitors/richard.conf'
 alias ncdu='ncdu -x -e --color dark'
-alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
-alias tm='terramate'
 alias tf='terraform'
+alias tm='terramate'
 alias update='sudo pacman -Syu && yay -Syu'
+alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias zoek='yay -Ss'
-
-alias keys='vim ~/.config/hypr/conf/keybindings/richard.conf'
 alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
-# alias phone='gio mount "mtp://OnePlus_OnePlus_9_Pro_9884b56e/"'
 alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/media/sda1'
+alias vi='vim'
 
 # ---------------------------------------------------------------------------
-#  fun stuff
+#  Fun stuff
 # ---------------------------------------------------------------------------
 
-alias cls='clear; echo; fastfetch --config examples/3; echo; dierenriem'
+# 3 / 8 / 13 / 20 / 24
+alias cls='clear; echo; fastfetch --config examples/8; echo'
 alias epoch='date +%s'
 alias kaart='telnet mapscii.me'
 alias klok='watch -t -n1 "date +%T | figlet"'
@@ -165,7 +159,7 @@ alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
 
 # ---------------------------------------------------------------------------
-#  one letter aliases
+#  One letter aliases
 # ---------------------------------------------------------------------------
 
 alias a='vim ~/.aliases && source ~/.aliases'
@@ -196,14 +190,14 @@ alias z='vim ~/.zshrc && source ~/.zshrc'
 #alias w='echo "This letter is not available."'
 
 # ---------------------------------------------------------------------------
-#  set font for text terminals
+#  Set font for text terminals
 # ---------------------------------------------------------------------------
 
 alias fontvga='setfont Lat2-VGA32x16'
 alias fontterm='setfont Lat2-Terminus32x16'
 
 # ---------------------------------------------------------------------------
-#  connect to my work vpn
+#  Connect to my work vpn
 # ---------------------------------------------------------------------------
 
 alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
