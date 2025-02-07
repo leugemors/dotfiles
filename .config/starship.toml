@@ -42,7 +42,7 @@ disabled = false
 #  disable the package module, hiding it from the prompt completely
 # ---------------------------------------------------------------------------
 
-[package]
-disabled = false
+# [package]
+# disabled = false
 
 ### eof #####################################################################
