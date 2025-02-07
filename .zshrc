@@ -10,7 +10,7 @@
 ##  -------------------------------------------------------------------------
 ##
 ##  I expect some suckless tools to be installed, like bat, eza, fzf,
-##  ripgrep, etc. And obviously starship.
+##  ripgrep, zoxide, etc. And obviously starship.
 ##
 #############################################################################
 
@@ -97,7 +97,7 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
-setopt share_history          # share command history data
+setopt share_history          # share history data between zsh sessions
 
 # ---------------------------------------------------------------------------
 #  configure `time` format
@@ -150,40 +150,28 @@ if [ -f ~/.aliases ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  set-up keybinding for fzf fuzzy finder completion
-# ---------------------------------------------------------------------------
-
-eval "$(fzf --zsh)"
-
-# ---------------------------------------------------------------------------
-#  switch off the anoying caps lock key
-# ---------------------------------------------------------------------------
-
-setxkbmap -option ctrl:nocaps
-
-# ---------------------------------------------------------------------------
-#  load the starship prompt
-# ---------------------------------------------------------------------------
-
-eval "$(starship init zsh)"
-
-# ---------------------------------------------------------------------------
-#  set up configuration for atuin
+#  set-up keybinding for a bunch of very handy tools
 # ---------------------------------------------------------------------------
 
 # eval "$(atuin init zsh)"
+eval "$(fzf --zsh)"           # load keybindings for fzf
+eval "$(starship init zsh)"   # initialise the starship prompt
+eval "$(thefuck --alias)"
+eval "$(zoxide init zsh)"     # fancy change directory
 
 # ---------------------------------------------------------------------------
 #  by request of thijs :-)
 # ---------------------------------------------------------------------------
 
 clear
-echo
 # bible_verse | cowsay | lolcat
-# echo; dierenriem
-# colorscript -r
-fastfetch --config examples/8
+# echo; ucal; echo
+# echo; dierenriem; echo
+
+# fastfetch --config examples/3
+# fastfetch --config examples/8
 # fastfetch --config examples/13
-echo
+# fastfetch --config examples/20
+# fastfetch --config examples/24
 
 ### eof #####################################################################
