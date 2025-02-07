@@ -53,12 +53,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'                  " Show git diff per line
   Plug 'alvan/vim-closetag'                      " Auto close (x)html tags
   Plug 'chrisbra/csv.vim'                        " Work with csv files
-  Plug 'dense-analysis/ale'                      " Some syntax checking
+  " Plug 'dense-analysis/ale'                      " Some syntax checking
   Plug 'jiangmiao/auto-pairs'                    " Auto pair brackets
   Plug 'majutsushi/tagbar'                       " Use ctags in vim
   Plug 'suan/vim-instant-markdown'               " Markdown support
   Plug 'stylelint/stylelint'                     " CSS linter
   Plug 'tpope/vim-commentary'                    " Bulk (un)command lines
+
+  " Language servers
+  Plug 'prabirshrestha/vim-lsp'
 
   " Colours and syntax highlighting
   Plug 'ap/vim-css-color'                        " Show hex colours
@@ -169,8 +172,8 @@ nmap <leader>x :bp<bar>bd#<cr>
 "  Toggle line numbers and wrapping for easier copying
 " ---------------------------------------------------------------------------
 
-"set relativenumber
 set number
+set relativenumber
 set nowrap
 
 map <F3> :set number!<cr>
@@ -286,7 +289,7 @@ let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeDirArrowCollapsible='▼'
 let g:NERDTreeWinPos="left"
-let g:NERDTreeWinSize=28
+let g:NERDTreeWinSize=32
 
 " Start nerdtree and put the cursor back in the other window
 " autocmd vimenter * NERDTree | wincmd p
@@ -502,7 +505,7 @@ nmap K :ALEHover<cr>
 
 ab mvg Met vriendelijke groet,<cr>Richard Klein Leugemors<esc><x>
 
-" ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
+ab html <html><cr><head><cr><tab><title>Title of your page</title><cr><s-tab></head><cr><body><cr></body><cr></html><up><up><cr><tab>
 
 " Some handy abbriviations for c
 " iab com /*<cr><cr>*/<up>
