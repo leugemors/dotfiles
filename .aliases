@@ -23,7 +23,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  Using the old-fashioned ls command, now replaced with eza
+#  The old-fashioned ls command, replaced with eza
 # ---------------------------------------------------------------------------
 
 # alias ls='ls --color=auto -CF'
@@ -32,19 +32,12 @@ fi
 # alias ll='ls --group-directories-first -AlF'
 
 # ---------------------------------------------------------------------------
-#  Changing ls to eza (suckless tools)
+#  Changed ls to eza (suckless tools)
 # ---------------------------------------------------------------------------
-
-# -g show group
-# -F show classification of file types
-# -l show long listing
-# -h show file sizes in human readable format
-# -T show directory tree
-# -r sort in revese order
 
 alias eza='eza --color=always --group-directories-first --icons=auto'
 
-# The option F brakes things
+# The option F breaks the auto complete feature for eza :-(
 alias l='eza -lg'
 alias ls='eza -g'
 alias la='eza -a'
@@ -53,7 +46,7 @@ alias lt='eza -aT'
 alias ltr='eza -alghr -sold'
 
 # ---------------------------------------------------------------------------
-#  Easy cd
+#  Easy cd (thinking about switching to zoxide)
 # ---------------------------------------------------------------------------
 
 alias up='cd ..'
@@ -62,6 +55,7 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+# Function to create a new directory and enter it right away
 alias nd='dir(){mkdir $1;cd $1;unset -f dir};dir'
 
 alias doc='cd ~/Documents'
@@ -74,18 +68,16 @@ alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/misc'
 alias uzori='cd ~/Working/ansible/uzori'
 
+alias nassi='cd /mnt/nassi'
 alias fairy='cd /mnt/nassi/thijs/fairytale'
-alias fd24='cd /mnt/nassi/thijs/fd24'
+alias fd25='cd /mnt/nassi/thijs/fd25'
 
 alias notes='cd ~/.local/share/vimwiki'
 alias prive='cd ~/Prive'
 alias rwf='cd ~/Prive/rwf'
-alias thijs='cd ~/Prive/thijs'
+alias thijs='cd /data/thijs'
 
 alias iso='cd /data/iso'
-
-alias nassi='cd /mnt/nassi'
-alias stack='cd /mnt/stack'
 
 # Projects i'm working on right now
 alias conf='cd ~/Working/eduarte/school-configs'
@@ -124,10 +116,10 @@ alias dus='du -h --max-depth=1 | sort -h'
 alias hex='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
 alias keyb='vim ~/.config/hypr/conf/keybindings/richard.conf'
-alias list='pacman -Qe'
+alias koers='/usr/local/bin/nostt 502'
+alias list='pacman -Q'
 alias moni='vim ~/.config/hypr/conf/monitors/richard.conf'
 alias ncdu='ncdu -x -e --color dark'
-alias play='ansible-playbook main.yaml'
 alias ports='netstat -tulpan'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
@@ -135,59 +127,76 @@ alias showip='curl ipv4.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tf='terraform'
 alias tm='terramate'
+alias tt='toot tui'
 alias update='sudo pacman -Syu && yay -Syu'
 alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias zoek='yay -Ss'
 alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
-alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/media/sda1'
+alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/usb/sda1'
+
 alias vi='vim'
+# alias vim='nvim'
 
 # ---------------------------------------------------------------------------
 #  Fun stuff
 # ---------------------------------------------------------------------------
 
-# 3 / 8 / 13 / 20 / 24
-alias cls='clear; echo; fastfetch --config examples/8; echo'
 alias epoch='date +%s'
-alias kaart='telnet mapscii.me'
 alias klok='watch -t -n1 "date +%T | figlet"'
 alias maan='curl wttr.in/Moon'
-alias please='sudo'
+alias please='sudo' # als je 't maar vriendelijk vraagt
 alias say='espeak -a 200 -g 4 -p 40 -v "nl"'
 alias starwars='telnet towel.blinkenlights.nl'
 alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
 
 # ---------------------------------------------------------------------------
+#  Some fastfetch aliasses
+# ---------------------------------------------------------------------------
+
+alias ff='clear; fastfetch' # just the default
+alias f3='clear; echo; fastfetch --config examples/3; echo'
+alias f8='clear; echo; fastfetch --config examples/8; echo'
+alias f1='clear; echo; fastfetch --config examples/13; echo'
+
+alias cls='f8' # for old time sake :-)
+
+alias nf='clear; neofetch' # nostalgie
+
+# ---------------------------------------------------------------------------
 #  One letter aliases
 # ---------------------------------------------------------------------------
 
 alias a='vim ~/.aliases && source ~/.aliases'
-alias b='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias c='cmatrix -b -s -C magenta'
+alias c='cmatrix -bsu3 -C magenta'
 alias d='ncdu -x -e --color dark'
 alias e='vim ~/.ssh/config.d/eduarte.conf'
-alias f='df -hlT --total -x tmpfs 2> /dev/null'
+alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
-alias i='sudo pacman -S'
-alias j='jobs -l'
-alias k='echo "No alias defined for this letter."'
-alias m='/usr/local/bin/monitors.sh arrange_workspaces'
+alias i='yay -S'
+alias j='vim ~/.zshrc && source ~/.zshrc'
+alias m='/usr/local/bin/monitors arrange_workspaces'
 alias n='newsboat -r'
-alias o='cd ~/.local/share/vimwiki; vim index.md'
+alias o='cd ~/.local/share/vimwiki; vim index.md; cd -'
 alias p='echo -e ${PATH//:/\\n} | bat'
-alias q='echo "No alias defined for this letter."'
-alias r='radio --volume 20'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
-alias t='vim ~/.config/alacritty/alacritty.toml'
-alias u='echo "No alias defined for this letter."'
 alias v='vim ~/.vimrc'
-alias x='cat ~/.aliases | grep "^alias .=" | grep -v "not in use" | cut -c 7- | bat'
+alias x='cat ~/.aliases | grep "^alias .=" | grep -v "No alias defined" | cut -c 7- | sort | bat'
 alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | bat'
-alias z='vim ~/.zshrc && source ~/.zshrc'
 
-#alias w='echo "This letter is not available."'
+# because I somtimes switch terminals
+alias t='vim ~/.config/alacritty/alacritty.toml'
+# alias t='vim ~/.config/kitty/kitty.conf'
+
+# alias w='echo "This letter is not available."'
+# alias z='echo "This letter is not available."'
+
+alias b='echo "No alias defined for this letter."'
+alias k='echo "No alias defined for this letter."'
+alias q='echo "No alias defined for this letter."'
+alias r='echo "No alias defined for this letter."'
+alias u='echo "No alias defined for this letter."'
 
 # ---------------------------------------------------------------------------
 #  Set font for text terminals
@@ -202,5 +211,13 @@ alias fontterm='setfont Lat2-Terminus32x16'
 
 alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
 alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 5; disown; ip route'
+
+# ---------------------------------------------------------------------------
+#  Trying out some new aliases
+# ---------------------------------------------------------------------------
+
+alias rkld='docker ps -a | fzf --preview "docker inspect {1}"'
+alias rklv='vim $(fzf -m --preview "bat --color=always {}")'
+alias rklz='fzf --preview "bat --color=always {}"'
 
 ### eof #####################################################################
