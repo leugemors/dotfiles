@@ -16,6 +16,24 @@ https://feeds.nos.nl/nosnieuwskoningshuis
 https://feeds.nos.nl/nosnieuwscultuurenmedia
 https://feeds.nos.nl/nosnieuwstech
 
+# "----- NOS SPORT -----"
+# https://feeds.nos.nl/nossportalgemeen
+# https://feeds.nos.nl/nosvoetbal
+# https://feeds.nos.nl/nossportwielrennen
+# https://feeds.nos.nl/nossportschaatsen
+# https://feeds.nos.nl/nossporttennis
+# https://feeds.nos.nl/nossportformule1
+
+# "----- NOS DIVERSEN -----"
+# https://feeds.nos.nl/nieuwsuuralgemeen
+# https://feeds.nos.nl/nosop3
+# https://feeds.nos.nl/jeugdjournaal
+
+"----- OMROEP GELDERLAND -----"
+https://www.gld.nl/rss/index.xml "~Algemeen nieuws"
+https://www.gld.nl/rss/sport.xml "~Sport"
+https://www.gld.nl/rss/arnhem.xml "~Arnhem en omstreken"
+
 "----- LINUX NEWS -----"
 https://www.reddit.com/r/linux.rss
 https://www.reddit.com/r/archlinux.rss
@@ -44,11 +62,15 @@ https://tilvids.com/feeds/videos.xml?sort=-hot
 https://feeds.fireside.fm/thelinuxcast/rss
 
 "----- YOUTUBE -----"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCcyD6Jfw6DkCVZIB_G_NIqQ  # angry nerds
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg  # distrotube
-https://www.youtube.com/feeds/videos.xml?channel_id=UCxQKHvKbmSzGMvUrVtJYnUA  # learn linux tv
-https://www.youtube.com/feeds/videos.xml?channel_id=UCR1ajTWGiUtiAv8X-hpBY7w  # moshix
-https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ  # networkchuck
-https://www.youtube.com/feeds/videos.xml?channel_id=UCKQdc0-Targ4nDIAUrlfKiA  # python simplified
+https://www.youtube.com/feeds/videos.xml?channel_id=UCcyD6Jfw6DkCVZIB_G_NIqQ # angry nerds
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw # bread on penguins
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg # distrotube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbiGcwDWZjz05njNPrJU7jA # explaining computers
+https://www.youtube.com/feeds/videos.xml?channel_id=UCxQKHvKbmSzGMvUrVtJYnUA # learn linux tv
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw # linux experiment
+https://www.youtube.com/feeds/videos.xml?channel_id=UCR1ajTWGiUtiAv8X-hpBY7w # moshix
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ # networkchuck
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKQdc0-Targ4nDIAUrlfKiA # python simplified
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdngmbVKX1Tgre699-XLlUA # techworld with nana
 
 ### eof #####################################################################

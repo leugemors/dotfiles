@@ -14,29 +14,25 @@
 "  Some required settings for the plugins
 " ---------------------------------------------------------------------------
 
-set nocompatible      " No need to be compatible with the original vi
+set nocompatible      " No need to be compatible with original vi
 filetype off          " Needs to be switched off while loading plugins
 
 " ---------------------------------------------------------------------------
 "  Manage Plugins
-"
-"  This system is meant to check if our plugin manager is installed.
-"  If not, install it, and also install all configured plugins.
-" 
-"  Use :PlugInstall :PlugClean :PlugUpdate, etc. to maintain.
+"  Use :PlugInstall :PlugClean :PlugUpdate, etc. to maintain
 " ---------------------------------------------------------------------------
 
-" Check if we need to install the plugins first
+" Check if we need to install plugins first
 let need_to_install_plugins = 0
 
-" Install the plugin manager when needed
+" Install plugin manager when needed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let need_to_install_plugins = 1
 endif
 
-" List of all the plugins I like to use
+" List of all plugins I like to use
 call plug#begin('~/.vim/plugged')
 
   " A nice statusbar
@@ -53,7 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'                  " Show git diff per line
   Plug 'alvan/vim-closetag'                      " Auto close (x)html tags
   Plug 'chrisbra/csv.vim'                        " Work with csv files
-  " Plug 'dense-analysis/ale'                      " Some syntax checking
+  Plug 'dense-analysis/ale'                      " Some syntax checking
   Plug 'jiangmiao/auto-pairs'                    " Auto pair brackets
   Plug 'majutsushi/tagbar'                       " Use ctags in vim
   Plug 'suan/vim-instant-markdown'               " Markdown support
@@ -66,7 +62,7 @@ call plug#begin('~/.vim/plugged')
   " Colours and syntax highlighting
   Plug 'ap/vim-css-color'                        " Show hex colours
   Plug 'frazrepo/vim-rainbow'                    " Rainbow brackets for vim
-  Plug 'kshenoy/vim-signature'                   " Show marks before the line number
+  Plug 'kshenoy/vim-signature'                   " Show marks before line number
   Plug 'sheerun/vim-polyglot'                    " Support for many languages
   Plug 'Yggdroot/indentLine'                     " Visualize indentions
 
@@ -82,7 +78,7 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-" Install all the plugins when needed
+" Install all plugins when needed
 if need_to_install_plugins == 1
   echo "Installing plugins..."
   silent! PlugInstall
@@ -100,17 +96,17 @@ filetype plugin indent on
 "  Basic settings
 " ---------------------------------------------------------------------------
 
-set autoread                   " Auto read when a file has changed from outside
+set autoread                   " Auto read when file has changed from outside
 set backspace=start,eol,indent " Better use of backspace
 set clipboard=unnamedplus      " Copy/paste between vim and other programs
-" set colorcolumn=80             " Show a line at column 80
-set cursorline                 " Underline the current line
+set colorcolumn=80             " Show line at column 80
+set cursorline                 " Underline current line
 set hidden                     " Needed to keep multiple buffers open
 set history=2000               " How many lines of history should vim remember
 set lazyredraw                 " Don't redraw while executing macros
 set magic                      " Turn magic on for regular expressions
 set numberwidth=5              " Set width for numbers to 5
-set scrolloff=3                " Show 3 lines to the cursor
+set scrolloff=3                " Show 3 lines to cursor
 syntax on                      " Enable syntax highlighting
 
 " ---------------------------------------------------------------------------
@@ -164,9 +160,9 @@ nmap <leader><Right> :wincmd l<cr>
 "  Move through buffers
 " ---------------------------------------------------------------------------
 
-nmap <leader>[ :bp!<cr>
-nmap <leader>] :bn!<cr>
-nmap <leader>x :bp<bar>bd#<cr>
+nmap <leader>[ :bp!<cr>          " Previous buffer
+nmap <leader>] :bn!<cr>          " Next buffer"
+nmap <leader>x :bp<bar>bd#<cr>   " Close current buffer
 
 " ---------------------------------------------------------------------------
 "  Toggle line numbers and wrapping for easier copying
@@ -184,28 +180,28 @@ map <F5> :set wrap!<cr>
 "  Remove trailing white spaces
 " ---------------------------------------------------------------------------
 
-map <F12> :call TrimWhiteSpaces()<cr>
-
 func! TrimWhiteSpaces()
   %s/\s*$//
   ''
 :endfunction
+
+map <F12> :call TrimWhiteSpaces()<cr>
 
 " ---------------------------------------------------------------------------
 "  Use line cursor in insert mode and block cursor everywhere else
 " ---------------------------------------------------------------------------
 
 " Reference chart of values: (default: 6,2)
-"   Ps = 0  -> blinking block.
-"   Ps = 1  -> blinking block (default).
-"   Ps = 2  -> steady block.
-"   Ps = 3  -> blinking underline.
-"   Ps = 4  -> steady underline.
-"   Ps = 5  -> blinking bar (xterm).
-"   Ps = 6  -> steady bar (xterm).
+"   Ps = 0  -> blinking block
+"   Ps = 1  -> blinking block (default)
+"   Ps = 2  -> steady block
+"   Ps = 3  -> blinking underline
+"   Ps = 4  -> steady underline
+"   Ps = 5  -> blinking bar (xterm)
+"   Ps = 6  -> steady bar (xterm)
 
-let &t_EI = "\e[2 q"   " Normal mode
-let &t_SI = "\e[1 q"   " Insert mode
+let &t_EI = "\e[2 q"         " Normal mode
+let &t_SI = "\e[1 q"         " Insert mode
 
 " ---------------------------------------------------------------------------
 "  Setup code folding
@@ -226,20 +222,20 @@ let g:airline#extensions#coc#enabled = 1
 let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 1
 
-set laststatus=2              " Always show the status line
-set noshowmode                " Don't show non-normal modes in powerline
+set laststatus=2             " Always show the status line
+set noshowmode               " Don't show non-normal modes in powerline
 
 " ---------------------------------------------------------------------------
 "  Set tabs and indents
 " ---------------------------------------------------------------------------
 
-set expandtab                 " Use spaces instead of tabs
-set smarttab                  " Be smart using tabs
-set shiftwidth=4              " Set tab to four spaces
+set expandtab                " Use spaces instead of tabs
+set smarttab                 " Be smart using tabs
+set shiftwidth=4             " Set tab to four spaces
 set softtabstop=4
 set tabstop=4
 
-" Set tab stops to only 2 spaces for specific file types
+" Set stops to only 2 spaces for specific file types
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
@@ -260,9 +256,9 @@ let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
 function! XTermPasteBegin()
-    set pastetoggle=<Esc>[201~
-    set paste
-    return ""
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
@@ -271,7 +267,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 "  Mouse support
 " ---------------------------------------------------------------------------
 
-" Mouse support breaks the copy/past functionality
+" Mouse support breaks copy/past functionality :-(
 " set mouse=a
 
 " ---------------------------------------------------------------------------
@@ -289,19 +285,19 @@ let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeDirArrowCollapsible='▼'
 let g:NERDTreeWinPos="left"
-let g:NERDTreeWinSize=32
+let g:NERDTreeWinSize=42
 
 " Start nerdtree and put the cursor back in the other window
-" autocmd vimenter * NERDTree | wincmd p
+" autocmd vimenter * NERDTree|wincmd p
 
 " Exit vim if nerdtree is the only window remaining in the only tab
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()|quit|endif
 
 " Close tab if nerdtree is the only window remaining on it
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()|quit|endif
 
 " Open existing nerdtree on each new tab
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+autocmd BufWinEnter * if getcmdwintype() == ''|silent NERDTreeMirror|endif
 
 " ---------------------------------------------------------------------------
 "  Settings for tags
@@ -309,11 +305,8 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 map <C-t> :TagbarToggle<cr>
 
-" Show the tagbar
+" Show tagbar at startup
 " autocmd vimenter * TagbarToggle
-
-" Unfold all tags to one level
-" autocmd vimenter * TagbarSetFoldlevel! 1
 
 " ---------------------------------------------------------------------------
 "  Settings for markdown support
@@ -337,7 +330,7 @@ let g:instant_markdown_theme = 'dark'
 " ---------------------------------------------------------------------------
 
 set t_Co=256            " Set if term supports 256 colours
-set t_ut=               " Clearing uses the current backgroupd colour
+set t_ut=               " Clearing uses current backgroupd colour
 
 set termguicolors
 set background=dark
@@ -406,7 +399,8 @@ colorscheme catppuccin_mocha
 " ---------------------------------------------------------------------------
 
 let g:indentLine_setColors=1
-let g:indentLine_char='|'
+" let g:indentLine_char='|'
+let g:indentLine_char='│'
 
 let g:indentLine_color_term=239
 let g:indentLine_color_gui='#333333'
@@ -441,7 +435,7 @@ map <Leader>tv :TabVifm<cr>
 let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " ---------------------------------------------------------------------------
-"  Open a terminal inside vim
+"  Open terminal inside vim
 " ---------------------------------------------------------------------------
 
 set termwinsize=16*0

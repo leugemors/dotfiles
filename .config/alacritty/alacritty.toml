@@ -11,13 +11,18 @@
 
 [general]
 import = [
-    # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
-    # "~/.config/alacritty/themes/themes/dracula.toml",
-    # "~/.config/alacritty/themes/themes/dracula_plus.toml",
-    # "~/.config/alacritty/themes/themes/gruvbox_harddark.toml",
-    # "~/.config/alacritty/themes/themes/monokai_charcoal.toml",
-    # "~/.config/alacritty/themes/themes/one_dark.toml",
-    # "~/.config/alacritty/themes/themes/rose_pine.toml",
+    # "~/.config/alacritty/themes/catppuccin_latte.toml",
+    # "~/.config/alacritty/themes/catppuccin_frappe.toml",
+    # "~/.config/alacritty/themes/catppuccin_macchiato.toml",
+    # "~/.config/alacritty/themes/catppuccin_mocha.toml",
+    # "~/.config/alacritty/themes/doom_one.toml",
+    # "~/.config/alacritty/themes/dracula.toml",
+    # "~/.config/alacritty/themes/dracula_plus.toml",
+    # "~/.config/alacritty/themes/gruvbox_harddark.toml",
+    # "~/.config/alacritty/themes/monokai_charcoal.toml",
+    # "~/.config/alacritty/themes/nord.toml",
+    # "~/.config/alacritty/themes/one_dark.toml",
+    "~/.config/alacritty/themes/rose_pine.toml",
     "~/.config/alacritty/keybindings.toml",
 ]
 
@@ -31,25 +36,28 @@ draw_bold_text_with_bright_colors = true
 history = 5000
 
 [window]
-dynamic_padding = true
 decorations = "None"    # Full, Transparent, Buttonless, None
+dynamic_padding = true
+opacity = 1.00          # Opacity can also be set via picom
 title = "Alacritty"
-opacity = 0.9
 
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 2
-y = 2
+x = 3
+y = 3
 
+# For some odd reason I need to set half te value of the font size I want
+# hier
 [font]
-size = 11.0
+size = 8.0
+# size = 6.5
 
 [font.offset]
 x = 0
-y = 1
+y = 2
 
 [font.normal]
 style = "Regular"
@@ -59,7 +67,6 @@ style = "Regular"
 family = "JetBrains Mono Nerd Font"
 # family = "Literation Mono Nerd Font"
 # family = "RobotoMono Nerd Font"
-# family = "Source Code Pro"
 # family = "Space Mono Nerd Font"
 # family = "Ubuntu Mono Nerd Font"
 

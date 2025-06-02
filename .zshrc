@@ -153,6 +153,8 @@ fi
 #  set-up keybinding for a bunch of very handy tools
 # ---------------------------------------------------------------------------
 
+export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margin=3% --color=dark"
+
 # eval "$(atuin init zsh)"
 eval "$(fzf --zsh)"           # load keybindings for fzf
 eval "$(starship init zsh)"   # initialise the starship prompt

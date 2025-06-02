@@ -50,6 +50,7 @@ alias ltr='eza -alghr -sold'
 # ---------------------------------------------------------------------------
 
 alias up='cd ..'
+alias .l='cd ..;ll'
 alias .1='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
@@ -68,9 +69,9 @@ alias leug='cd ~/Working/leugemors'
 alias misc='cd ~/Working/misc'
 alias uzori='cd ~/Working/ansible/uzori'
 
-alias nassi='cd /mnt/nassi'
-alias fairy='cd /mnt/nassi/thijs/fairytale'
-alias fd25='cd /mnt/nassi/thijs/fd25'
+alias nassi='cd /mnt'
+alias fairy='cd /mnt/thijs/fairytale'
+alias fd25='cd /mnt/thijs/fd25'
 
 alias notes='cd ~/.local/share/vimwiki'
 alias prive='cd ~/Prive'
@@ -117,7 +118,6 @@ alias hex='hexedit --color'
 alias jctl='journalctl -p 3 -xb'
 alias keyb='vim ~/.config/hypr/conf/keybindings/richard.conf'
 alias koers='/usr/local/bin/nostt 502'
-alias list='pacman -Q'
 alias moni='vim ~/.config/hypr/conf/monitors/richard.conf'
 alias ncdu='ncdu -x -e --color dark'
 alias ports='netstat -tulpan'
@@ -128,7 +128,7 @@ alias ssha='eval $(ssh-agent) && ssh-add'
 alias tf='terraform'
 alias tm='terramate'
 alias tt='toot tui'
-alias update='sudo pacman -Syu && yay -Syu'
+alias update='yay -Syu'
 alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias zoek='yay -Ss'
 alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
@@ -178,9 +178,11 @@ alias i='yay -S'
 alias j='vim ~/.zshrc && source ~/.zshrc'
 alias m='/usr/local/bin/monitors arrange_workspaces'
 alias n='newsboat -r'
-alias o='cd ~/.local/share/vimwiki; vim index.md; cd -'
+alias o='cd ~/Notes; vim index.md; cd -'
 alias p='echo -e ${PATH//:/\\n} | bat'
+alias q='vim ~/.config/qtile/config.py && qtile cmd-obj -o cmd -f restart'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
+alias u='cd ~/Notes;vim eduarte/uren-schrijven.md;cd -'
 alias v='vim ~/.vimrc'
 alias x='cat ~/.aliases | grep "^alias .=" | grep -v "No alias defined" | cut -c 7- | sort | bat'
 alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | bat'
@@ -194,9 +196,7 @@ alias t='vim ~/.config/alacritty/alacritty.toml'
 
 alias b='echo "No alias defined for this letter."'
 alias k='echo "No alias defined for this letter."'
-alias q='echo "No alias defined for this letter."'
 alias r='echo "No alias defined for this letter."'
-alias u='echo "No alias defined for this letter."'
 
 # ---------------------------------------------------------------------------
 #  Set font for text terminals
@@ -209,8 +209,12 @@ alias fontterm='setfont Lat2-Terminus32x16'
 #  Connect to my work vpn
 # ---------------------------------------------------------------------------
 
-alias vpn-e='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
-alias vpn-t='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 5; disown; ip route'
+alias vpne='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
+alias dnse='sudo resolvectl dns tun0 10.160.2.4 10.160.2.5; sudo resolvectl domain tun0 eduarteaad.nl; resolvectl status'
+
+alias vpn='vpne; dnse'
+
+alias vpnt='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 5; disown; ip route'
 
 # ---------------------------------------------------------------------------
 #  Trying out some new aliases
