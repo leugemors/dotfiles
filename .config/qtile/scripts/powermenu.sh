@@ -10,8 +10,9 @@
 ##
 #############################################################################
 
-# lockapp="i3lock -b -f -i ${HOME}/.config/federation.png -t"
-lockapp="${HOME}/Temp/trapdoor.sh"
+lockapp="/usr/local/bin/lockscreen.sh"
+# theme="material"
+theme="rounded-nord-dark"
 
 # ---------------------------------------------------------------------------
 #  Build the menu
@@ -28,7 +29,7 @@ options="${option1}\n${option2}\n${option3}\n${option4}"
 #  Show the menu and ask the user to make a choise
 # ---------------------------------------------------------------------------
 
-choice=$(echo -e "$options" | rofi -dmenu -replace -theme material -i -l 4 -p "Powermenu") 
+choice=$(echo -e "$options" | rofi -dmenu -replace -theme ${theme} -i -l 4 -p "Powermenu") 
 
 case ${choice} in
 	"${option1}")

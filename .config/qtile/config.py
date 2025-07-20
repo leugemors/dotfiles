@@ -33,7 +33,9 @@ myCalculator = "qalculate-gtk"
 myCalendar = "gnome-calendar"
 myEditor = "zeditor"
 myFilemanager = "nemo"
-myMenu = "rofi -theme material -show drun"
+# myMenu = "rofi -theme material -show drun -show-icons"
+# myMenu = "rofi -theme spotlight-dark -show drun -show-icons"
+myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
 myMusic = "spotify-launcher %U"
 myPowermenu = home + "/.config/qtile/scripts/powermenu.sh"
 myPrtScr = "flameshot gui"
@@ -51,8 +53,8 @@ myBarHeight = 30
 myBorderWith = 4
 myFont = "JetBrainsMono Nerd Font"
 myFontSize = 18
-myLayout = "monadtall"
-myMargin = 20
+myLayout = "MonadTall"
+myMargin = 15
 
 # ---------------------------------------------------------------------------
 #  Colours
@@ -64,23 +66,12 @@ green = "#50fa7b"
 yellow = "#ffcb6b"
 blue = "#6088cc"
 magenta = "#c792ea"
-cyan = "#88e9fd"
+# cyan = "#88e9fd"
+cyan = "#88c0f2"
 white = "#f8f9f2"
 
-grey1 = "#111111"
-grey2 = "#222222"
-grey3 = "#333333"
-grey4 = "#444444"
-grey5 = "#555555"
-grey6 = "#666666"
-grey7 = "#777777"
-grey8 = "#888888"
-grey9 = "#999999"
-greyA = "#AAAAAA"
-greyB = "#BBBBBB"
-greyC = "#CCCCCC"
-greyD = "#DDDDDD"
-greyE = "#EEEEEE"
+grey = ["111111", "222222", "333333", "444444", "555555", "666666",
+        "777777", "888888", "999999", "AAAAAA", "BBBBBB", "CCCCCC"]
 
 # ---------------------------------------------------------------------------
 #  Keybindings
@@ -207,7 +198,7 @@ layout_theme = {
     "border_width": myBorderWith,
     "margin": myMargin,
     "border_focus": blue,
-    "border_normal": grey4,
+    "border_normal": grey[6],
 }
 
 layouts = [
@@ -330,8 +321,8 @@ def init_widgets_list():
 
         # widget.TextBox(
         #     **decor_left,
-        #     foreground = white,
-        #     background = greyA,
+        #     foreground = black,
+        #     background = grey[10],
         #     fontsize = myFontSize - 2,
         #     text = "  ",
         #     mouse_callbacks = {"Button1": open_wallpaper},
@@ -339,8 +330,8 @@ def init_widgets_list():
 
         # widget.TextBox(
         #     **decor_left,
-        #     foreground = white,
-        #     background = grey9,
+        #     foreground = black,
+        #     background = grey[9],
         #     fontsize = myFontSize - 2,
         #     text = "  ",
         #     mouse_callbacks = {"Button1": open_browser},
@@ -348,8 +339,8 @@ def init_widgets_list():
 
         # widget.TextBox(
         #     **decor_left,
-        #     foreground = white,
-        #     background = grey8,
+        #     foreground = black,
+        #     background = grey[8],
         #     fontsize = myFontSize - 2,
         #     text = "  ",
         #     mouse_callbacks = {"Button1": open_filemanager},
@@ -357,8 +348,8 @@ def init_widgets_list():
 
        widget.GenPollCommand(
             **decor_left,
-            foreground = white,
-            background = grey7,
+            foreground = black,
+            background = grey[7],
             fmt = "  {}",
             cmd = "waybar_dominidi",
             shell = True,
@@ -367,11 +358,11 @@ def init_widgets_list():
 
        widget.GenPollCommand(
             **decor_left,
-            foreground = white,
-            background = grey6,
+            foreground = black,
+            background = grey[6],
             fmt = "  {}",
-            # cmd = "waybar_maya",
-            cmd = "bulldock_prompt",
+            cmd = "waybar_maya",
+            # cmd = "bulldock_prompt",
             # cmd = "soostars_prompt",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -380,7 +371,7 @@ def init_widgets_list():
         widget.OpenWeather(
             **decor_left,
             foreground = white,
-            background = grey5,
+            background = grey[5],
             app_key = "4cf3731a25d1d1f4e4a00207afd451a2",
             cityid = "2759661",
             metric = True,
@@ -390,22 +381,22 @@ def init_widgets_list():
 
         widget.CurrentLayoutIcon(
             **decor_left,
-            background = grey4,
+            background = grey[4],
         ),
 
         widget.CurrentLayout(
             **decor_left,
-            background = grey4,
+            background = grey[4],
         ),
 
         widget.Prompt(
             foreground = white,
-            background = grey3,
+            background = grey[3],
         ),
 
         widget.WindowName(
             **decor_left,
-            background = grey3,
+            background = grey[3],
             # max_chars = 50,
             # format = " {name} ",
             format = "{}",
@@ -415,35 +406,36 @@ def init_widgets_list():
 
         widget.TextBox(
             **decor_right,
-            background = grey3,
+            background = grey[3],
         ),
 
         widget.ThermalSensor(
             **decor_right,
             foreground = white,
-            background = grey4,
+            background = grey[4],
             update_interval = 2,
             format = "󰔐 {temp:.0f}{unit} ",
             mouse_callbacks = {'Button1': open_stacer},
         ),
 
-        widget.CPU(
-            **decor_right,
-            foreground = white,
-            background = grey5,
-            format = " {load_percent:.1f}%/{freq_current}GHz ",
-            mouse_callbacks = {'Button1': open_stacer},
-        ),
+        # widget.CPU(
+        #     **decor_right,
+        #     foreground = white,
+        #     background = grey[5],
+        #     format = " {load_percent:.1f}%/{freq_current}GHz ",
+        #     mouse_callbacks = {'Button1': open_stacer},
+        # ),
 
-        widget.Memory(
-            **decor_right,
-            foreground = white,
-            background = grey6,
-            measure_mem = "G",
-            format = "󰈀 {MemUsed:.0f}{mm}/{MemTotal:.0f}{mm} ",
-            mouse_callbacks = {'Button1': open_stacer},
-        ),
+        # widget.Memory(
+        #     **decor_right,
+        #     foreground = white,
+        #     background = grey[6],
+        #     measure_mem = "G",
+        #     format = "󰈀 {MemUsed:.0f}{mm}/{MemTotal:.0f}{mm} ",
+        #     mouse_callbacks = {'Button1': open_stacer},
+        # ),
 
+        # This one is not very useful
         # widget.DF(
         #     **decor_right,
         #     background = "#555555",
@@ -457,7 +449,7 @@ def init_widgets_list():
         widget.CheckUpdates(
             **decor_right,
             foreground = white,
-            background = grey7,
+            background = grey[5],
             distro = "Arch_checkupdates",
             update_interval = 60,
             colour_have_updates = red,
@@ -469,7 +461,7 @@ def init_widgets_list():
         widget.Battery(
             **decor_right,
             foreground = white,
-            background = grey8,
+            background = grey[6],
             battery = 0,
             charge_char = "▲",
             discharge_char = "▼",
@@ -483,16 +475,17 @@ def init_widgets_list():
         widget.Volume(
             **decor_right,
             foreground = black,
-            background = grey9,
+            background = grey[7],
             emoji_list = ["🔇", "🔈", "🔉", "🔊"],
             emoji = False,
             fmt = "󰕾 {} ",
         ),
 
+        # This one is now showing up in the system tray
         # widget.Bluetooth(
         #     **decor_right,
         #     foreground = black,
-        #     background = greyA,
+        #     background = grey[10],
         #     fmt = "󰂯 {} ",
         #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("blueman-manager")},
         # ),
@@ -500,8 +493,9 @@ def init_widgets_list():
         widget.Clock(
             **decor_right,
             foreground = black,
-            background = greyA,
-            format = " %d-%m-%Y %H:%M.%S ",
+            background = grey[8],
+            # format = " %d-%m-%Y %H:%M.%S ",
+            format = " %d/%m %H:%M.%S ",
             mouse_callbacks = {'Button1': open_calendar},
         ),
 
@@ -546,6 +540,7 @@ def init_widgets_screen3():
 def init_screens():
     # Bar margin=(top,right,bottom,left)
     return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight)),
+    # return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = [0,0,0,0], size = myBarHeight)),
             Screen(top = bar.Bar(widgets = init_widgets_screen2(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight)),
             Screen(top = bar.Bar(widgets = init_widgets_screen3(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight))]
 
@@ -591,7 +586,9 @@ floating_layout = layout.Floating(
 # ---------------------------------------------------------------------------
 
 dgroup_key_binder = None
-dgroups_app_rules = []
+#dgroups_app_rules = [
+#    Rule(Match(wm_class=['qutebrowser']), group="2"),
+#]
 auto_fullscreen = True
 auto_minimize = True
 bring_front_click = False

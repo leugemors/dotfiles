@@ -29,11 +29,6 @@ https://feeds.nos.nl/nosnieuwstech
 # https://feeds.nos.nl/nosop3
 # https://feeds.nos.nl/jeugdjournaal
 
-"----- OMROEP GELDERLAND -----"
-https://www.gld.nl/rss/index.xml "~Algemeen nieuws"
-https://www.gld.nl/rss/sport.xml "~Sport"
-https://www.gld.nl/rss/arnhem.xml "~Arnhem en omstreken"
-
 "----- LINUX NEWS -----"
 https://www.reddit.com/r/linux.rss
 https://www.reddit.com/r/archlinux.rss
@@ -47,7 +42,6 @@ https://9to5linux.com/feed/atom "~IT 9 to 5 Linux"
 https://www.bitsoffreedom.nl/rss "~IT Bits of Freedom"
 https://freedom.nl/storingen/rss/feed.xml "~IT Freedom Internet"
 https://www.omgubuntu.co.uk/feed/ "~IT OMG! Ubuntu"
-http://feeds.feedburner.com/tweakers/mixed "~IT Tweakers"
 https://nluug.social/@nluug.rss
 
 "----- DISTROWATCH -----"
@@ -59,7 +53,7 @@ https://distrowatch.com/news/dwp.xml "~DW Latest Packages"
 "----- MISCELLANEOUS -----"
 https://malburger.nl/feed/ "~NEWS Malburger"
 https://tilvids.com/feeds/videos.xml?sort=-hot
-https://feeds.fireside.fm/thelinuxcast/rss
+https://www.ruralwf.org/feed/rss/
 
 "----- YOUTUBE -----"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCcyD6Jfw6DkCVZIB_G_NIqQ # angry nerds

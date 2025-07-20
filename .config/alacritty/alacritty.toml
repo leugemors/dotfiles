@@ -11,19 +11,10 @@
 
 [general]
 import = [
-    # "~/.config/alacritty/themes/catppuccin_latte.toml",
-    # "~/.config/alacritty/themes/catppuccin_frappe.toml",
-    # "~/.config/alacritty/themes/catppuccin_macchiato.toml",
-    # "~/.config/alacritty/themes/catppuccin_mocha.toml",
-    # "~/.config/alacritty/themes/doom_one.toml",
-    # "~/.config/alacritty/themes/dracula.toml",
-    # "~/.config/alacritty/themes/dracula_plus.toml",
-    # "~/.config/alacritty/themes/gruvbox_harddark.toml",
-    # "~/.config/alacritty/themes/monokai_charcoal.toml",
-    # "~/.config/alacritty/themes/nord.toml",
-    # "~/.config/alacritty/themes/one_dark.toml",
-    "~/.config/alacritty/themes/rose_pine.toml",
     "~/.config/alacritty/keybindings.toml",
+    "~/.config/alacritty/themes/catppuccin_mocha.toml",
+    # "~/.config/alacritty/themes/dracula_plus.toml",
+    # "~/.config/alacritty/themes/rose_pine.toml",
 ]
 
 [env]
@@ -31,56 +22,49 @@ TERM = "xterm-256color"
 
 [colors]
 draw_bold_text_with_bright_colors = true
+transparent_background_colors = true
+
+[colors.primary]
+background = "#000000"
 
 [scrolling]
 history = 5000
 
 [window]
+blur = false            # Picom can handle this
 decorations = "None"    # Full, Transparent, Buttonless, None
 dynamic_padding = true
 opacity = 1.00          # Opacity can also be set via picom
-title = "Alacritty"
-
-[window.class]
-general = "Alacritty"
-instance = "Alacritty"
 
 [window.padding]
-x = 3
-y = 3
+x = 0
+y = 0
 
 # For some odd reason I need to set half te value of the font size I want
-# hier
 [font]
 size = 8.0
-# size = 6.5
+# size = 11.0
 
 [font.offset]
 x = 0
-y = 2
+y = 0
 
 [font.normal]
 style = "Regular"
 # family = "3270 Nerd Font"
+# family = "BlexMono Nerd Font"
+# family = "ComicShanns Nerd Font"
 # family = "FiraCode Nerd Font"
 # family = "Hack Nerd Font"
-family = "JetBrains Mono Nerd Font"
+family = "Iosevka Nerd Font Mono"
+# family = "JetBrains Mono Nerd Font"
 # family = "Literation Mono Nerd Font"
 # family = "RobotoMono Nerd Font"
 # family = "Space Mono Nerd Font"
 # family = "Ubuntu Mono Nerd Font"
 
-# [font.bold]
-# style = "Bold"
-# family = "Source Code Pro"
-
-# [font.italic]
-# style = "Italic"
-# family = "Source Code Pro"
-
-# [font.bold_italic]
-# style = "Bold Italic"
-# family = "Source Code Pro"
+[mouse]
+hide_when_typing = true
 
 [selection]
 save_to_clipboard = true
