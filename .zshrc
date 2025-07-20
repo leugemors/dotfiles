@@ -5,7 +5,7 @@
 ##  | |  |   <| |   https://www.github.com/leugemors/
 ##  |_|  |_|\_\_|
 ##
-##  My personal zsh configuration, using a nice starship prompt.
+##  My personal zsh configuration, using a nice starship prompt
 ##
 ##  -------------------------------------------------------------------------
 ##
@@ -15,25 +15,24 @@
 #############################################################################
 
 # ---------------------------------------------------------------------------
-#  setting environment variables
+#  Setting environment variables
 # ---------------------------------------------------------------------------
 
 export ANSIBLE_NOCOWS=1                           # no cows for ansible
 export EDITOR=vim                                 # use vim keys to edit
-export JBOSS_HOME="/opt/wildfly/latest"           # wildfly configuration
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
 export MANROFFOPT="-c"
 export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
 export TERM="xterm-256color"                      # support 256 colours
 
 # ---------------------------------------------------------------------------
-#  don't consider certain characters part of the word
+#  Don't consider certain characters part of the word
 # ---------------------------------------------------------------------------
 
 export WORDCHARS=${WORDCHARS//\/}
 
 # ---------------------------------------------------------------------------
-#  set auto correct options
+#  Set auto correct options
 # ---------------------------------------------------------------------------
 
 setopt autocd              # change directory just by typing its name
@@ -46,7 +45,7 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 
 # ---------------------------------------------------------------------------
-#  configure key keybindings
+#  Configure key keybindings
 # ---------------------------------------------------------------------------
 
 bindkey -v                                     # use vim key bindings
@@ -62,7 +61,7 @@ bindkey '^[[F' end-of-line                     # end
 bindkey '^[[Z' undo                            # shift + tab undo last action
 
 # ---------------------------------------------------------------------------
-#  enable completion features
+#  Enable completion features
 # ---------------------------------------------------------------------------
 
 autoload -Uz compinit
@@ -83,7 +82,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # ---------------------------------------------------------------------------
-#  history configurations
+#  History configurations
 # ---------------------------------------------------------------------------
 
 HISTFILE=~/.zsh_history
@@ -100,19 +99,19 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share history data between zsh sessions
 
 # ---------------------------------------------------------------------------
-#  configure `time` format
+#  Configure `time` format
 # ---------------------------------------------------------------------------
 
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
 # ---------------------------------------------------------------------------
-#  make less more friendly for non-text input files, see lesspipe(1)
+#  Make less more friendly for non-text input files, see lesspipe(1)
 # ---------------------------------------------------------------------------
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ---------------------------------------------------------------------------
-#  enable auto-suggestions based on the history
+#  Enable auto-suggestions based on the history
 # ---------------------------------------------------------------------------
 
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -120,7 +119,7 @@ if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; th
 fi
 
 # ---------------------------------------------------------------------------
-# enable syntax highlighting
+#  Enable syntax highlighting
 # ---------------------------------------------------------------------------
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -128,7 +127,7 @@ if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 fi
 
 # ---------------------------------------------------------------------------
-#  enable command-not-found if installed
+#  Enable command-not-found if installed
 # ---------------------------------------------------------------------------
 
 if [ -f /etc/zsh_command_not_found ]; then
@@ -136,13 +135,13 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  load my k8s configuration
+#  Load my k8s configuration
 # ---------------------------------------------------------------------------
 
 source <(kubectl completion zsh)
 
 # ---------------------------------------------------------------------------
-#  load my custom aliasses
+#  Load my custom aliasses
 # ---------------------------------------------------------------------------
 
 if [ -f ~/.aliases ]; then
@@ -150,7 +149,7 @@ if [ -f ~/.aliases ]; then
 fi
 
 # ---------------------------------------------------------------------------
-#  set-up keybinding for a bunch of very handy tools
+#  Set-up keybinding for a bunch of very handy tools
 # ---------------------------------------------------------------------------
 
 export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margin=3% --color=dark"
@@ -158,11 +157,10 @@ export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margi
 # eval "$(atuin init zsh)"
 eval "$(fzf --zsh)"           # load keybindings for fzf
 eval "$(starship init zsh)"   # initialise the starship prompt
-eval "$(thefuck --alias)"
 eval "$(zoxide init zsh)"     # fancy change directory
 
 # ---------------------------------------------------------------------------
-#  by request of thijs :-)
+#  By request of thijs :-)
 # ---------------------------------------------------------------------------
 
 clear
@@ -170,10 +168,8 @@ clear
 # echo; ucal; echo
 # echo; dierenriem; echo
 
-# fastfetch --config examples/3
-# fastfetch --config examples/8
-# fastfetch --config examples/13
-# fastfetch --config examples/20
-# fastfetch --config examples/24
+# fastfetch --logo arch --config examples/3
+fastfetch --logo arch --config examples/8
+# fastfetch --logo arch --config examples/13
 
 ### eof #####################################################################
