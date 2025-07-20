@@ -55,6 +55,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'suan/vim-instant-markdown'               " Markdown support
   Plug 'stylelint/stylelint'                     " CSS linter
   Plug 'tpope/vim-commentary'                    " Bulk (un)command lines
+  Plug 'junegunn/fzf.vim'                        " Fuzzy finder
 
   " Language servers
   Plug 'prabirshrestha/vim-lsp'
@@ -73,7 +74,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'                    " Onedark colour theme
 
   " Integrate some external tools
-  Plug 'vifm/vifm.vim'                           " File manager for vim
+  Plug 'mattn/calendar.vim'                      " Calendar for vim
   Plug 'vimwiki/vimwiki'                         " Taking notes within vim
 
 call plug#end()
@@ -99,7 +100,7 @@ filetype plugin indent on
 set autoread                   " Auto read when file has changed from outside
 set backspace=start,eol,indent " Better use of backspace
 set clipboard=unnamedplus      " Copy/paste between vim and other programs
-set colorcolumn=80             " Show line at column 80
+" set colorcolumn=80             " Show line at column 80
 set cursorline                 " Underline current line
 set hidden                     " Needed to keep multiple buffers open
 set history=2000               " How many lines of history should vim remember
@@ -148,6 +149,12 @@ set wildmenu                  " Display all matches when tab complete
 set wildignore=*.o,*~,*.pyc   " Ignore these file extensions
 
 " ---------------------------------------------------------------------------
+"  Set my leader key
+" ---------------------------------------------------------------------------
+
+let mapleader = '\'           " Set leader key to backslash
+
+" ---------------------------------------------------------------------------
 "  Move through split windows
 " ---------------------------------------------------------------------------
 
@@ -175,6 +182,12 @@ set nowrap
 map <F3> :set number!<cr>
 map <F4> :set relativenumber!<cr>
 map <F5> :set wrap!<cr>
+
+" ---------------------------------------------------------------------------
+"  Some miscellaneous mappings
+" ---------------------------------------------------------------------------
+
+nnoremap <C-p> :Files<cr>
 
 " ---------------------------------------------------------------------------
 "  Remove trailing white spaces
@@ -288,7 +301,7 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=42
 
 " Start nerdtree and put the cursor back in the other window
-" autocmd vimenter * NERDTree|wincmd p
+autocmd vimenter * NERDTree|wincmd p
 
 " Exit vim if nerdtree is the only window remaining in the only tab
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()|quit|endif
@@ -340,27 +353,28 @@ let g:rehash256 = 1     " Molokai mode to match dark gui version
 set fillchars+=vert:│   " <Ctrl><K> <v><v>
 
 " Onedark colour theme
-" let g:airline_theme='onedark'
-" let g:onedark_color_overrides={"background":{"gui":"#222222","cterm":"235","cterm16":"0"}}
-" let g:onedark_termcolors=256
-" let g:onedark_hide_endofbuffer=1
-" let g:onedark_terminal_italics=1
-" colorscheme onedark
+let g:airline_theme='onedark'
+let g:onedark_color_overrides={"background":{"gui":"#000000","cterm":"235","cterm16":"0"}}
+let g:onedark_termcolors=256
+let g:onedark_hide_endofbuffer=1
+let g:onedark_terminal_italics=1
+colorscheme onedark
 
 " Catppuccin colour theme
 " let g:airline_theme = 'catppuccin_frappe'
 " let g:airline_theme = 'catppuccin_latte'
 " let g:airline_theme = 'catppuccin_macchiato'
-let g:airline_theme = 'catppuccin_mocha'
+" let g:airline_theme = 'catppuccin_mocha'
 " colorscheme catppuccin_frappe
 " colorscheme catppuccin_latte
 " colorscheme catppuccin_macchiato
-colorscheme catppuccin_mocha
+" colorscheme catppuccin_mocha
 
 " Dracula colour theme
 " let g:airline_theme='dracula'
 " let g:dracula_bold = 1                        " include bold attributes in highlighting
 " let g:dracula_italic = 1                      " include italic attributes in highlighting
+" let g:dracula_strikethrough = 1               " include strikethrough attributes in highlighting
 " let g:dracula_underline = 1                   " include underline attributes in highlighting
 " let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
 " let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
@@ -399,7 +413,6 @@ colorscheme catppuccin_mocha
 " ---------------------------------------------------------------------------
 
 let g:indentLine_setColors=1
-" let g:indentLine_char='|'
 let g:indentLine_char='│'
 
 let g:indentLine_color_term=239
@@ -419,20 +432,12 @@ set showmatch      " Show matching brackets
 set mat=2          " Blink 0.2 seconds when matching brackets
 
 " ---------------------------------------------------------------------------
-"  Settings for vifm
-" ---------------------------------------------------------------------------
-
-map <Leader>vv :Vifm<cr>
-map <Leader>vs :VsplitVifm<cr>
-map <Leader>sp :SplitVifm<cr>
-map <Leader>dv :DiffVifm<cr>
-map <Leader>tv :TabVifm<cr>
-
-" ---------------------------------------------------------------------------
 "  Settings for vimwiki (use \ww)
 " ---------------------------------------------------------------------------
 
-let g:vimwiki_list = [{'path': '~/.local/share/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+let g:vimwiki_markdown_link_ext = 1
 
 " ---------------------------------------------------------------------------
 "  Open terminal inside vim
