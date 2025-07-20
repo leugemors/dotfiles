@@ -6,7 +6,7 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_|
 ##
-##   Just a bunch of handy aliases for my personal use
+##   Just a bunch of handy aliases for my personal use.
 ##
 #############################################################################
 
@@ -32,7 +32,7 @@ fi
 # alias ll='ls --group-directories-first -AlF'
 
 # ---------------------------------------------------------------------------
-#  Changed ls to eza (suckless tools)
+#  Switched to eza (suckless tools)
 # ---------------------------------------------------------------------------
 
 alias eza='eza --color=always --group-directories-first --icons=auto'
@@ -46,8 +46,11 @@ alias lt='eza -aT'
 alias ltr='eza -alghr -sold'
 
 # ---------------------------------------------------------------------------
-#  Easy cd (thinking about switching to zoxide)
+#  Easy cd (switched to zoxide)
 # ---------------------------------------------------------------------------
+
+# Use zoxide for easy directory navigation
+alias cd='z'
 
 alias up='cd ..'
 alias .l='cd ..;ll'
@@ -114,28 +117,40 @@ alias activate="source bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
 alias diff='colordiff -Nuar'
 alias dus='du -h --max-depth=1 | sort -h'
+alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias hex='hexedit --color'
+alias hw='hwinfo --short'
 alias jctl='journalctl -p 3 -xb'
 alias keyb='vim ~/.config/hypr/conf/keybindings/richard.conf'
 alias koers='/usr/local/bin/nostt 502'
 alias moni='vim ~/.config/hypr/conf/monitors/richard.conf'
 alias ncdu='ncdu -x -e --color dark'
-alias ports='netstat -tulpan'
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-alias showip='curl ipv4.icanhazip.com'
+alias ports='netstat -tlpn'
+alias pscpu='ps auxf | sort -nr -k 3 | head -10'
+alias psmem='ps auxf | sort -nr -k 4 | head -10'
+alias showip='curl ipv4.icanhazip.com; curl ipv6.icanhazip.com'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias tf='terraform'
 alias tm='terramate'
 alias tt='toot tui'
-alias update='yay -Syu'
 alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
-alias zoek='yay -Ss'
 alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
 alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/usb/sda1'
+alias wget='wget -c'
 
 alias vi='vim'
 # alias vim='nvim'
+
+# ---------------------------------------------------------------------------
+# Maintainance and updates
+# ---------------------------------------------------------------------------
+
+alias apt='man pacman' # :-)
+alias cleanup='sudo pacman -Rns $(pacman -Qdtq) && sudo pacman -Sc && sudo pacman -Scc'
+alias fixpacman='sudo rm -rf /var/lib/pacman/db.lck && sudo pacman -Syyu'
+alias mirror='sudo cachyos-rate-mirrors'
+alias update='yes | yay -Syyu'
+alias zoek='yay -Ss'
 
 # ---------------------------------------------------------------------------
 #  Fun stuff
@@ -154,14 +169,11 @@ alias weer='curl wttr.in/malburgen'
 #  Some fastfetch aliasses
 # ---------------------------------------------------------------------------
 
-alias ff='clear; fastfetch' # just the default
-alias f3='clear; echo; fastfetch --config examples/3; echo'
-alias f8='clear; echo; fastfetch --config examples/8; echo'
-alias f1='clear; echo; fastfetch --config examples/13; echo'
+alias ff='clear; fastfetch --logo arch' # just the default
+alias f1='clear; fastfetch --logo arch --config examples/13'
+alias f8='clear; fastfetch --logo arch --config examples/8'
 
 alias cls='f8' # for old time sake :-)
-
-alias nf='clear; neofetch' # nostalgie
 
 # ---------------------------------------------------------------------------
 #  One letter aliases
@@ -176,27 +188,27 @@ alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
 alias i='yay -S'
 alias j='vim ~/.zshrc && source ~/.zshrc'
-alias m='/usr/local/bin/monitors arrange_workspaces'
+alias k='kubectl'
 alias n='newsboat -r'
 alias o='cd ~/Notes; vim index.md; cd -'
-alias p='echo -e ${PATH//:/\\n} | bat'
+alias p='vim ~/.config/picom/picom.conf && pkill picom && picom --daemon --config ~/.config/picom/picom.conf'
 alias q='vim ~/.config/qtile/config.py && qtile cmd-obj -o cmd -f restart'
 alias s='vim ~/.config/starship.toml && eval "$(starship init zsh)"'
-alias u='cd ~/Notes;vim eduarte/uren-schrijven.md;cd -'
-alias v='vim ~/.vimrc'
-alias x='cat ~/.aliases | grep "^alias .=" | grep -v "No alias defined" | cut -c 7- | sort | bat'
-alias y='cat ~/.aliases | grep -v "cat" | grep "git" | grep -v "github" | cut -c 7- | bat'
-
-# because I somtimes switch terminals
 alias t='vim ~/.config/alacritty/alacritty.toml'
 # alias t='vim ~/.config/kitty/kitty.conf'
+alias u='cd ~/Notes;vim eduarte/uren-schrijven.md;cd -'
+alias v='vim ~/.vimrc'
 
 # alias w='echo "This letter is not available."'
 # alias z='echo "This letter is not available."'
 
 alias b='echo "No alias defined for this letter."'
-alias k='echo "No alias defined for this letter."'
+alias m='echo "No alias defined for this letter."'
 alias r='echo "No alias defined for this letter."'
+alias x='echo "No alias defined for this letter."'
+alias y='echo "No alias defined for this letter."'
+
+# alias p='echo -e ${PATH//:/\\n} | bat'
 
 # ---------------------------------------------------------------------------
 #  Set font for text terminals
@@ -211,10 +223,7 @@ alias fontterm='setfont Lat2-Terminus32x16'
 
 alias vpne='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/azure-eduarte.conf &; sleep 5; disown; ip route'
 alias dnse='sudo resolvectl dns tun0 10.160.2.4 10.160.2.5; sudo resolvectl domain tun0 eduarteaad.nl; resolvectl status'
-
 alias vpn='vpne; dnse'
-
-alias vpnt='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.conf &; sleep 5; disown; ip route'
 
 # ---------------------------------------------------------------------------
 #  Trying out some new aliases
@@ -222,6 +231,5 @@ alias vpnt='sudo killall openvpn; sudo openvpn --config ~/.ssh/vpn/topicus_vpn.c
 
 alias rkld='docker ps -a | fzf --preview "docker inspect {1}"'
 alias rklv='vim $(fzf -m --preview "bat --color=always {}")'
-alias rklz='fzf --preview "bat --color=always {}"'
 
 ### eof #####################################################################
