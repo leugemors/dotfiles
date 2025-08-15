@@ -1,0 +1,56 @@
+#############################################################################
+##         _    _
+##    _ __| | _| |
+##   | '__| |/ / |   Richard Klein Leugemors
+##   | |  |   <| |   https://www.github.com/leugemors/
+##   |_|  |_|\_\_|
+##
+##   As you might have guessed, my personal git configuration file.
+##
+#############################################################################
+
+[init]
+	defaultBranch = main
+
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    lg = log --oneline --graph --decorate --all
+    unstate = restore --staged .
+
+[pull]
+    rebase = true
+
+[user]
+    name = Richard Klein Leugemors
+    email = richard@uzori.com
+
+[credential]
+    helper = store
+
+[core]
+    autocrlf = input
+    editor = vim
+    pager = bat
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[diff]
+    tool = vim
+
+[difftool "vim"]
+    cmd = "vim -d $LOCAL $REMOTE"
+
+[merge]
+    tool = kdiff3
+
+[mergetool "kdiff3"]
+    path = /usr/bin/kdiff3
+
+### eof #####################################################################
