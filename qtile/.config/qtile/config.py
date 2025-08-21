@@ -47,7 +47,9 @@ grey = ["111111", "222222", "333333", "444444", "555555", "666666",
 myBarHeight = 35
 myBorderColour = magenta
 myBorderWith = 3
-myFont = "JetBrainsMono Nerd Font"
+# myFont = "FiraCode Nerd Font Mono"
+# myFont = "JetBrainsMono Nerd Font"
+myFont = "Iosevka Nerd Font"
 myFontSize = 20
 myLayout = "Columns"
 myMargin = 20
@@ -294,9 +296,8 @@ def init_widgets_list():
             **decor_left,
             foreground = white,
             background = magenta,
-            fontsize = myFontSize + 8,
+            fontsize = myFontSize + 14,
             margin = 10,
-            # text = " Apps",
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
         ),
@@ -348,7 +349,7 @@ def init_widgets_list():
             **decor_left,
             foreground = black,
             background = grey[7],
-            fmt = " {}",
+            fmt = "  {} ",
             cmd = "waybar_dominidi",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -358,7 +359,7 @@ def init_widgets_list():
             **decor_left,
             foreground = black,
             background = grey[6],
-            fmt = " {}",
+            fmt = "  {} ",
             cmd = "waybar_maya",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -371,7 +372,7 @@ def init_widgets_list():
             app_key = "4cf3731a25d1d1f4e4a00207afd451a2",
             cityid = "2759661",
             metric = True,
-            format = "{icon} {main_temp:.1f}°",
+            format = " {icon} {main_temp:.1f}° ",
             mouse_callbacks = {'Button1': open_weather},
         ),
 
@@ -408,7 +409,7 @@ def init_widgets_list():
             foreground = white,
             background = grey[4],
             update_interval = 2,
-            format = "󰔐 {temp:.0f}{unit} ",
+            format = "  {temp:.0f}{unit} ",
             mouse_callbacks = {'Button1': open_stacer},
         ),
 
@@ -420,8 +421,8 @@ def init_widgets_list():
             update_interval = 60,
             colour_have_updates = red,
             colour_no_updates = green,
-            display_format = "Upd: {updates} ",
-            no_update_string = "Upd: 0 ",
+            display_format = " Upd: {updates} ",
+            no_update_string = " Upd: 0 ",
         ),
 
         widget.Battery(
@@ -444,15 +445,14 @@ def init_widgets_list():
             background = grey[7],
             emoji_list = ["🔇", "🔈", "🔉", "🔊"],
             emoji = False,
-            fmt = "󰕾 {} ",
+            fmt = " 󰕾 {} ",
         ),
 
         widget.Clock(
             **decor_right,
             foreground = black,
             background = grey[8],
-            # format = " %d-%m-%Y %H:%M.%S ",
-            format = " [%d/%m] %H:%M.%S ",
+            format = " %H:%M.%S [%d/%m] ",
             mouse_callbacks = {'Button1': open_calendar},
         ),
 

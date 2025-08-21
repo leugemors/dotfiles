@@ -13,11 +13,12 @@
 	defaultBranch = main
 
 [alias]
-    co = checkout
     br = branch
     ci = commit
-    st = status
+    cl = clone
+    co = checkout
     lg = log --oneline --graph --decorate --all
+    st = status
     unstate = restore --staged .
 
 [pull]
@@ -31,9 +32,23 @@
     helper = store
 
 [core]
+    compression = 9
+    whitespace = error
+    preloadIndex = true
     autocrlf = input
     editor = vim
     pager = bat
+
+[advice]
+    addEmptyPathspec = false
+    pushNonFastForward = false
+    statusHints = false
+    commitBeforeMerge = true
+
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -42,15 +57,43 @@
     required = true
 
 [diff]
+    context = 3
+    renames = copies
+    interHunkContext = 10
     tool = vim
 
 [difftool "vim"]
     cmd = "vim -d $LOCAL $REMOTE"
+
+[pager]
+    diff = "diff-so-fancy | less --tabs=4 -RFX"
+
+[diff-so-fancy]
+    markEmptyLines = false
+    pager = true
+    line-numbers = true
+    color = always
+    git-status = true
+    git-log = true
+
+[color "diff"]
+    old = red
+    new = green
+    frag = yellow
+    meta = cyan
+    whitespace = red reverse
 
 [merge]
     tool = kdiff3
 
 [mergetool "kdiff3"]
     path = /usr/bin/kdiff3
+
+[url "https://github.com/leugemors/"]
+    insteadOf = "lm:"
+[url "https://github.com/topicusonderwijs/"]
+    insteadOf = "to:"
+[url "https://github.com/"]
+    insteadOf = "gh:"
 
 ### eof #####################################################################

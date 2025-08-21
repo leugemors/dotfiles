@@ -173,3 +173,5 @@ fastfetch --logo arch --config examples/8
 # fastfetch --logo arch --config examples/13
 
 ### eof #####################################################################
+
+export QSYS_ROOTDIR="/home/richard/altera_pro/25.1.1/qsys/bin"
