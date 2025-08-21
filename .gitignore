@@ -6,3 +6,5 @@ home/.vim/autoload/
 home/.vim/pack/
 home/.vim/plugged/
 
+newsboat/.config/newsboat/error.log
+waypaper/.config/waypaper/config.ini
