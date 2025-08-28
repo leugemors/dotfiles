@@ -6,11 +6,11 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_|
 ##
-##   Simple script to stow all my dotfiles at once.
+##   Simple script to stow all my dotfiles at once
 ##
 #############################################################################
 
-set -eu
+set -euo pipefail
 
 # ---------------------------------------------------------------------------
 #  Main program

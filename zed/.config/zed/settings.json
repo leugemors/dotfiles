@@ -7,20 +7,21 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Catppuccin Mocha",
   "agent": {
     "model_parameters": [],
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking"
     }
   },
   "base_keymap": "VSCode",
   "vim_mode": true,
-  "ui_font_size": 12,
+  "ui_font_size": 14,
   "buffer_font_size": null,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark Pro"
+    "dark": "Catppuccin Mocha"
   }
 }

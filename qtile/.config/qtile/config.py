@@ -198,7 +198,8 @@ layout_theme = {
     "border_width": myBorderWith,
     "margin": myMargin,
     "border_focus": myBorderColour,
-    "border_normal": grey[6],
+    # "border_normal": grey[6],
+    "border_normal": "#000000",
 }
 
 layouts = [
@@ -313,7 +314,7 @@ def init_widgets_list():
             highlight_method = "block",
             active = white,
             block_border = blue,
-            block_highlight_text_color = black,
+            block_highlight_text_color = blue,
             highlight = blue,
             highlight_color = [white, white],
             this_current_screen_border = white,
@@ -486,7 +487,7 @@ def init_widgets_screen1():
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     # Remove the systray widget from the list, it craches when shown on multiple monitors
-    del widgets_screen2[18:21]
+    del widgets_screen2[19:22]
     return widgets_screen2
 
 def init_widgets_screen3():
@@ -497,9 +498,8 @@ def init_widgets_screen3():
 
 def init_screens():
     # Bar margin=(top,right,bottom,left)
-    # return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight)),
     return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = [0,0,0,0], size = myBarHeight)),
-            Screen(top = bar.Bar(widgets = init_widgets_screen2(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight)),
+            Screen(top = bar.Bar(widgets = init_widgets_screen2(), margin = [0,0,0,0], size = myBarHeight)),
             Screen(top = bar.Bar(widgets = init_widgets_screen3(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight))]
 
 if __name__ in ["config", "__main__"]:
@@ -540,7 +540,7 @@ floating_layout = layout.Floating(
 )
 
 # ---------------------------------------------------------------------------
-#  General setup
+#  General settings
 # ---------------------------------------------------------------------------
 
 dgroup_key_binder = None

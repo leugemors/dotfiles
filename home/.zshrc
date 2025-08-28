@@ -111,28 +111,31 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ---------------------------------------------------------------------------
-#  Enable auto-suggestions based on the history
-# ---------------------------------------------------------------------------
-
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# ---------------------------------------------------------------------------
-#  Enable syntax highlighting
-# ---------------------------------------------------------------------------
-
-if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-# ---------------------------------------------------------------------------
 #  Enable command-not-found if installed
 # ---------------------------------------------------------------------------
 
 if [ -f /etc/zsh_command_not_found ]; then
     source /etc/zsh_command_not_found
 fi
+
+# ---------------------------------------------------------------------------
+#  Load my plugins
+# ---------------------------------------------------------------------------
+
+# "zsh-autocomplete"
+   
+plugins=(
+    "zsh-autosuggestions"
+    "zsh-history-substring-search"
+    "zsh-syntax-highlighting"
+)
+
+for p in "${plugins[@]}"; do
+    if [ -f /usr/share/zsh/plugins/${p}/${p}.zsh ]; then
+        echo "Loading plugin: ${p}..."
+        source /usr/share/zsh/plugins/${p}/${p}.zsh
+    fi
+done
 
 # ---------------------------------------------------------------------------
 #  Load my k8s configuration
@@ -145,6 +148,7 @@ source <(kubectl completion zsh)
 # ---------------------------------------------------------------------------
 
 if [ -f ~/.aliases ]; then
+    echo "Loading custom aliasses..."
     source ~/.aliases
 fi
 
@@ -168,10 +172,6 @@ clear
 # echo; ucal; echo
 # echo; dierenriem; echo
 
-# fastfetch --logo arch --config examples/3
 fastfetch --logo arch --config examples/8
-# fastfetch --logo arch --config examples/13
 
 ### eof #####################################################################
-
-export QSYS_ROOTDIR="/home/richard/altera_pro/25.1.1/qsys/bin"

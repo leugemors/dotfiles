@@ -354,12 +354,12 @@ let g:rehash256 = 1     " Molokai mode to match dark gui version
 set fillchars+=vert:│   " <Ctrl><K> <v><v>
 
 " Onedark colour theme
-let g:airline_theme='onedark'
-let g:onedark_color_overrides={"background":{"gui":"#000000","cterm":"235","cterm16":"0"}}
-let g:onedark_termcolors=256
-let g:onedark_hide_endofbuffer=1
-let g:onedark_terminal_italics=1
-colorscheme onedark
+" let g:airline_theme='onedark'
+" let g:onedark_color_overrides={"background":{"gui":"#000000","cterm":"235","cterm16":"0"}}
+" let g:onedark_termcolors=256
+" let g:onedark_hide_endofbuffer=1
+" let g:onedark_terminal_italics=1
+" colorscheme onedark
 
 " Catppuccin colour theme
 " let g:airline_theme = 'catppuccin_frappe'
@@ -372,17 +372,17 @@ colorscheme onedark
 " colorscheme catppuccin_mocha
 
 " Dracula colour theme
-" let g:airline_theme='dracula'
-" let g:dracula_bold = 1                        " include bold attributes in highlighting
-" let g:dracula_italic = 1                      " include italic attributes in highlighting
-" let g:dracula_strikethrough = 1               " include strikethrough attributes in highlighting
-" let g:dracula_underline = 1                   " include underline attributes in highlighting
-" let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
-" let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
-" let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
-" let g:dracula_inverse = 1                     " include inverse attributes in highlighting
-" let g:dracula_colorterm = 1                   " include background fill colors (0 for transp bg)
-" colorscheme dracula
+let g:airline_theme='dracula'
+let g:dracula_bold = 1                        " include bold attributes in highlighting
+let g:dracula_italic = 1                      " include italic attributes in highlighting
+let g:dracula_strikethrough = 1               " include strikethrough attributes in highlighting
+let g:dracula_underline = 1                   " include underline attributes in highlighting
+let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
+let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
+let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
+let g:dracula_inverse = 1                     " include inverse attributes in highlighting
+let g:dracula_colorterm = 0                   " include background fill colors (0 for transp bg)
+colorscheme dracula
 
 " Grubbox colour theme
 " let g:airline_theme='gruvbox'
