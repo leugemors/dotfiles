@@ -61,6 +61,7 @@ here for testing purposes (I like to play around :-) ).
 - rofi
 - starship
 - terminator
+- yazi
 - zed
 
 ## License
