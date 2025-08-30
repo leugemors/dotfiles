@@ -19,7 +19,7 @@
 # ---------------------------------------------------------------------------
 
 export ANSIBLE_NOCOWS=1                           # no cows for ansible
-export EDITOR=vim                                 # use vim keys to edit
+export EDITOR=nvim                                # use vim keys to edit
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
 export MANROFFOPT="-c"
 export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
@@ -162,6 +162,18 @@ export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margi
 eval "$(fzf --zsh)"           # load keybindings for fzf
 eval "$(starship init zsh)"   # initialise the starship prompt
 eval "$(zoxide init zsh)"     # fancy change directory
+
+# ---------------------------------------------------------------------------
+#  
+# ---------------------------------------------------------------------------
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 # ---------------------------------------------------------------------------
 #  By request of thijs :-)

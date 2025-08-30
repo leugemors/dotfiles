@@ -116,6 +116,9 @@ alias mpp='main; pull; purge' # Because I am lazy :-)
 #  Some handy aliasses
 # ---------------------------------------------------------------------------
 
+alias vi='vim'
+alias vim='nvim'
+
 alias activate="source bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
 alias diff='colordiff -Nuar'
@@ -139,9 +142,6 @@ alias vnet='sudo virsh net-create /usr/share/libvirt/networks/default.xml'
 alias phone='gio mount "mtp://Fairphone_Fairphone_5_5G_84ed7587/"'
 alias usb='sudo mount -o uid=richard,gid=richard /dev/sda1 /mnt/usb/sda1'
 alias wget='wget -c'
-
-alias vi='vim'
-# alias vim='nvim'
 
 # ---------------------------------------------------------------------------
 # Maintainance and updates
@@ -202,13 +202,13 @@ alias u='cd ~/Notes;vim eduarte/admin/uren-schrijven.md;cd -'
 alias v='vim ~/.vim/vimrc'
 
 # alias w='echo "This letter is not available."'
+# alias y='echo "This letter is not available."'
 # alias z='echo "This letter is not available."'
 
 alias b='echo "No alias defined for this letter."'
 alias m='echo "No alias defined for this letter."'
 alias r='echo "No alias defined for this letter."'
 alias x='echo "No alias defined for this letter."'
-alias y='echo "No alias defined for this letter."'
 
 # alias p='echo -e ${PATH//:/\\n} | bat'
 
