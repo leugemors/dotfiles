@@ -6,5 +6,7 @@ home/.vim/autoload/
 home/.vim/pack/
 home/.vim/plugged/
 
+nvim/.config/nvim/lazy-lock.json
+
 newsboat/.config/newsboat/error.log
 waypaper/.config/waypaper/config.ini
