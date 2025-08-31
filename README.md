@@ -2,7 +2,8 @@
 <h1>My Personal Dotfiles</h1>
 </div>
 
-<div align="center">
+<div align="center"><br/>
+
 ![](https://img.shields.io/badge/issues-none-green?style=for-the-badge&color=CCE8E9&logoColor=D9E0EE&labelColor=292324)
 ![](https://img.shields.io/badge/coffee-yes_please-blue?style=for-the-badge&color=CCE8E9&logoColor=D9E0EE&labelColor=292324)
 </div>
