@@ -44,13 +44,11 @@ grey = ["111111", "222222", "333333", "444444", "555555", "666666",
 #  Default configuration
 # ---------------------------------------------------------------------------
 
-myBarHeight = 35
+myBarHeight = 30
 myBorderColour = magenta
 myBorderWith = 3
-# myFont = "FiraCode Nerd Font Mono"
-# myFont = "JetBrainsMono Nerd Font"
-myFont = "Iosevka Nerd Font"
-myFontSize = 20
+myFont = "JetBrainsMono Nerd Font"
+myFontSize = 18
 myLayout = "Columns"
 myMargin = 20
 
@@ -62,7 +60,7 @@ myBrowser = "librewolf"
 myCalculator = "qalculate-gtk"
 myCalendar = "gnome-calendar"
 myEditor = "zeditor"
-myFilemanager = "nemo"
+myFilemanager = "nautilus"
 myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
 myMusic = "spotify-launcher %U"
 myPowermenu = home + "/.config/qtile/scripts/powermenu.sh"
@@ -227,18 +225,18 @@ layouts = [
 
 decor_left = {
     "decorations": [PowerLineDecoration(
-        # path = "arrow_left"
+        path = "arrow_left"
         # path = "rounded_left"
-        path = "forward_slash"
+        # path = "forward_slash"
         # path = "back_slash"
     )],
 }
 
 decor_right = {
     "decorations": [PowerLineDecoration(
-        # path = "arrow_right"
+        path = "arrow_right"
         # path = "rounded_right"
-        path = "forward_slash"
+        # path = "forward_slash"
         # path = "back_slash"
     )],
 }
@@ -297,7 +295,7 @@ def init_widgets_list():
             **decor_left,
             foreground = white,
             background = magenta,
-            fontsize = myFontSize + 14,
+            fontsize = myFontSize + 12,
             margin = 10,
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
@@ -322,29 +320,29 @@ def init_widgets_list():
             rounded = True,
         ),
 
-        widget.TextBox(
-            **decor_left,
-            foreground = black,
-            background = grey[10],
-            text = " ",
-            mouse_callbacks = {"Button1": open_wallpaper},
-        ),
+        # widget.TextBox(
+        #     **decor_left,
+        #     foreground = black,
+        #     background = grey[10],
+        #     text = " ",
+        #     mouse_callbacks = {"Button1": open_wallpaper},
+        # ),
 
-        widget.TextBox(
-            **decor_left,
-            foreground = black,
-            background = grey[9],
-            text = " ",
-            mouse_callbacks = {"Button1": open_browser},
-        ),
+        # widget.TextBox(
+        #     **decor_left,
+        #     foreground = black,
+        #     background = grey[9],
+        #     text = " ",
+        #     mouse_callbacks = {"Button1": open_browser},
+        # ),
 
-        widget.TextBox(
-            **decor_left,
-            foreground = black,
-            background = grey[8],
-            text = " ",
-            mouse_callbacks = {"Button1": open_filemanager},
-        ),
+        # widget.TextBox(
+        #     **decor_left,
+        #     foreground = black,
+        #     background = grey[8],
+        #     text = " ",
+        #     mouse_callbacks = {"Button1": open_filemanager},
+        # ),
 
        widget.GenPollCommand(
             **decor_left,
@@ -453,7 +451,7 @@ def init_widgets_list():
             **decor_right,
             foreground = black,
             background = grey[8],
-            format = " %H:%M.%S [%d/%m] ",
+            format = "%d/%m  %H:%M.%S ",
             mouse_callbacks = {'Button1': open_calendar},
         ),
 
@@ -469,7 +467,7 @@ def init_widgets_list():
         widget.TextBox(
             foreground = white,
             background = magenta,
-            fontsize = myFontSize + 5,
+            fontsize = myFontSize + 4,
             text = " ⏻  ",
             mouse_callbacks = {"Button1": open_powermenu},
         ),

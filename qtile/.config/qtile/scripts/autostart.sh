@@ -28,11 +28,11 @@ blueman-applet &
 # Notification daemon
 dunst &
 
-# Configure my monitors (defaults to home)
-mona
+# Configure my monitors (defaults to laptop)
+laptop
 
 # Turn on redshift
-# redshift &
+redshift &
 
 # Restore the wallpaper
 waypaper --restore &

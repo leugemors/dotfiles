@@ -13,11 +13,11 @@
 import = [
     "~/.config/alacritty/keybindings.toml",
     "~/.config/alacritty/fonts.toml",
-    # "~/.config/alacritty/themes/catppuccin_mocha.toml",
-    # "~/.config/alacritty/themes/dracula_plus.toml",
-    # "~/.config/alacritty/themes/rose_pine.toml",
-    # ~/.config/alacritty/themes/themes/tokyo_night.toml",
-    "~/.config/alacritty/themes/themes/cool_night.toml",
+    # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
+    # "~/.config/alacritty/themes/themes/cool_night.toml",
+    # "~/.config/alacritty/themes/themes/dracula_plus.toml",
+    # "~/.config/alacritty/themes/themes/rose_pine.toml",
+    "~/.config/alacritty/themes/themes/tokyo_night.toml",
 ]
 
 [env]
@@ -27,8 +27,8 @@ TERM = "xterm-256color"
 draw_bold_text_with_bright_colors = true
 transparent_background_colors = true
 
-[colors.primary]
-background = "#000000"
+# [colors.primary]
+# background = "#000000"
 
 [scrolling]
 history = 5000
@@ -40,7 +40,7 @@ dynamic_padding = true
 opacity = 1.00          # Opacity can also be set via picom
 
 [window.padding]
-x = 8
+x = 5
 y = 5
 
 [mouse]

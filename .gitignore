@@ -8,5 +8,7 @@ home/.vim/plugged/
 
 nvim/.config/nvim/lazy-lock.json
 
+qtile/.config/qtile/.mypy_cache/3.13/
+
 newsboat/.config/newsboat/error.log
 waypaper/.config/waypaper/config.ini

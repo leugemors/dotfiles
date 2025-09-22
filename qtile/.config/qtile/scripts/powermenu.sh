@@ -18,10 +18,10 @@ theme="rounded-nord-dark"
 #  Build the menu
 # ---------------------------------------------------------------------------
 
-option1="  Lock"
-option2="  Logout"
-option3="  Reboot"
-option4="  Power Off"
+option1="  - Lock"
+option2="  - Logout"
+option3="  - Reboot"
+option4="  - Power Off"
 
 options="${option1}\n${option2}\n${option3}\n${option4}"
 

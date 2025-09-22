@@ -79,7 +79,7 @@ goto-next-feed no
 
 # browser "open -g -a 'Firefox' %u"
 # browser "firefox --new-tab %u"
-browser "zen-browser --new-tab %u"
+browser "librewolf --new-tab %u"
 
 bind-key j down article
 bind-key k up article

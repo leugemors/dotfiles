@@ -19,7 +19,7 @@
 # ---------------------------------------------------------------------------
 
 export ANSIBLE_NOCOWS=1                           # no cows for ansible
-export EDITOR=nvim                                # use vim keys to edit
+export EDITOR=vim                                 # use vim keys to edit
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
 export MANROFFOPT="-c"
 export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
@@ -43,6 +43,9 @@ setopt nonomatch           # hide error message if there is no match for the pat
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
+
+setopt dot_glob            # include dotfiles
+setopt extended_glob       # match ~ # ^
 
 # ---------------------------------------------------------------------------
 #  Configure key keybindings
@@ -168,11 +171,11 @@ eval "$(zoxide init zsh)"     # fancy change directory
 # ---------------------------------------------------------------------------
 
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+  	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  	yazi "$@" --cwd-file="$tmp"
+  	IFS= read -r -d '' cwd < "$tmp"
+  	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  	rm -f -- "$tmp"
 }
 
 # ---------------------------------------------------------------------------
