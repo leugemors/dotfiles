@@ -1,7 +1,8 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
-local opt = vim.opt
+local opt = vim.opt -- for conciseness
 
+-- show line numbers
 opt.relativenumber = true
 opt.number = true
 
