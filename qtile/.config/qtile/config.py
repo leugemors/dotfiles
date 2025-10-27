@@ -47,10 +47,12 @@ grey = ["111111", "222222", "333333", "444444", "555555", "666666",
 myBarHeight = 30
 myBorderColour = magenta
 myBorderWith = 3
-myFont = "JetBrainsMono Nerd Font"
+# myFont = "JetBrainsMono Nerd Font"
+myFont = "Iosevka Nerd Font"
 myFontSize = 18
 myLayout = "Columns"
-myMargin = 20
+myMargin = [15, 15, 15, 15]  # [top, right, bottom, left]
+myBarMargin = [15, 15, 0, 15]  # [top, right, bottom, left]
 
 # ---------------------------------------------------------------------------
 #  Default applications
@@ -59,6 +61,7 @@ myMargin = 20
 myBrowser = "librewolf"
 myCalculator = "qalculate-gtk"
 myCalendar = "gnome-calendar"
+myChat = "signal-desktop"
 myEditor = "zeditor"
 myFilemanager = "nautilus"
 myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
@@ -67,7 +70,8 @@ myPowermenu = home + "/.config/qtile/scripts/powermenu.sh"
 myPrtScr = "flameshot gui"
 myPrtScrFull = "flameshot full -c -p " + home + "/Pictures/"
 mySysMonitor = "stacer"
-myTerminal = "alacritty"
+myTerminal = "ghostty"
+myTerminal2 = "alacritty"
 myWallpaper = "waypaper"
 myWeather = "gnome-weather"
 
@@ -80,21 +84,21 @@ mod = "mod4" # Super key
 keys = [
    # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc = "Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc = "Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc = "Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc = "Move focus up"),
+    Key([mod], "l", lazy.layout.right(), desc = "Move focus to right"),
 
     # Move windows
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc = "Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc = "Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc = "Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc = "Move window up"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc = "Move window to the right"),
 
     # Grow windows
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc = "Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc = "Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc = "Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc = "Grow window up"),
+    Key([mod, "control"], "l", lazy.layout.grow_right(), desc = "Grow window to the right"),
 
     # Some special functions
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc = "Toggle focused window to fullscreen"),
@@ -129,9 +133,11 @@ keys = [
     Key([mod, "control"], "Return", lazy.spawn(myMenu), desc = "Show rofi menu"),
     Key([mod], "Return", lazy.spawn(myTerminal), desc = "Launch terminal"),
     Key([mod], "space", lazy.spawn(myMenu), desc = "Show rofi menu"),
+
     Key([mod], "b", lazy.spawn(myBrowser), desc = "Open internet browser"),
     Key([mod], "c", lazy.spawn(myCalculator), desc = "Open a simple calculator"),
     Key([mod], "e", lazy.spawn(myFilemanager), desc = "Open file manager"),
+    Key([mod], "s", lazy.spawn(myChat), desc = "Open chat program"),
     Key([mod], "z", lazy.spawn(myEditor), desc = "Open a code editor"),
 
     # Special function keys for sound an brightness
@@ -154,7 +160,6 @@ group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = [" ", " ", "󰨞 ", " ", " ", "󰊻 ", " ", "󰭹 ", "󰏆 ", "󰓇 "]
 
-
 for i in range(len(group_names)):
     groups.append(Group(
         name = group_names[i],
@@ -175,15 +180,19 @@ for i in groups:
 # ---------------------------------------------------------------------------
 
 groups.append(ScratchPad("scratchpad", [
-    DropDown("terminal1", myTerminal, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
-    DropDown("terminal2", myTerminal, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
+    DropDown("terminal1", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
+    DropDown("terminal2", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
+    DropDown("terminal3", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
+    DropDown("terminal4", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
     DropDown("volume", "pavucontrol", opacity = 0.9, height = 0.6, width = 0.5, x = 0.25, y = 0.01, on_focus_lost_hide = False),
     DropDown("music", myMusic, opacity = 0.9, height = 0.95, width = 0.95, x = 0.025, y = 0.01, on_focus_lost_hide = True),
 ]))
 
 keys.extend([
-    Key([mod], "F9", lazy.group["scratchpad"].dropdown_toggle("terminal1")),
-    Key([mod], "F10", lazy.group["scratchpad"].dropdown_toggle("terminal2")),
+    Key([mod], "F7", lazy.group["scratchpad"].dropdown_toggle("terminal1")),
+    Key([mod], "F8", lazy.group["scratchpad"].dropdown_toggle("terminal2")),
+    Key([mod], "F9", lazy.group["scratchpad"].dropdown_toggle("terminal3")),
+    Key([mod], "F10", lazy.group["scratchpad"].dropdown_toggle("terminal4")),
     Key([mod], "F11", lazy.group["scratchpad"].dropdown_toggle("volume")),
     Key([mod], "F12", lazy.group["scratchpad"].dropdown_toggle("music")),
 ])
@@ -196,8 +205,7 @@ layout_theme = {
     "border_width": myBorderWith,
     "margin": myMargin,
     "border_focus": myBorderColour,
-    # "border_normal": grey[6],
-    "border_normal": "#000000",
+    "border_normal": grey[4],
 }
 
 layouts = [
@@ -294,8 +302,9 @@ def init_widgets_list():
         widget.TextBox(
             **decor_left,
             foreground = white,
-            background = magenta,
-            fontsize = myFontSize + 12,
+            # background = magenta,
+            background = black,
+            fontsize = myFontSize + 8,
             margin = 10,
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
@@ -378,6 +387,8 @@ def init_widgets_list():
         widget.CurrentLayoutIcon(
             **decor_left,
             background = grey[4],
+            padding = 0,
+            scale = 0.7,
         ),
 
         widget.CurrentLayout(
@@ -386,6 +397,7 @@ def init_widgets_list():
         ),
 
         widget.Prompt(
+            **decor_left,
             foreground = white,
             background = grey[3],
         ),
@@ -393,9 +405,9 @@ def init_widgets_list():
         widget.WindowName(
             **decor_left,
             background = grey[3],
-            # format = "{}",
-            format = " {name} ",
-            empty_group_string = " Desktop ",
+            format = "{}",
+            # format = " {name} ",
+            # empty_group_string = " Desktop ",
         ),
 
         widget.TextBox(
@@ -423,6 +435,13 @@ def init_widgets_list():
             display_format = " Upd: {updates} ",
             no_update_string = " Upd: 0 ",
         ),
+
+        # widget.Brightness(
+        #     **decor_right,
+        #     foreground = white,
+        #     background = grey[6],
+        #     fmt = " ☀️ {}% ",
+        # ),
 
         widget.Battery(
             **decor_right,
@@ -466,8 +485,9 @@ def init_widgets_list():
 
         widget.TextBox(
             foreground = white,
-            background = magenta,
-            fontsize = myFontSize + 4,
+            # background = magenta,
+            background = black,
+            fontsize = myFontSize + 2,
             text = " ⏻  ",
             mouse_callbacks = {"Button1": open_powermenu},
         ),
@@ -496,9 +516,9 @@ def init_widgets_screen3():
 
 def init_screens():
     # Bar margin=(top,right,bottom,left)
-    return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = [0,0,0,0], size = myBarHeight)),
-            Screen(top = bar.Bar(widgets = init_widgets_screen2(), margin = [0,0,0,0], size = myBarHeight)),
-            Screen(top = bar.Bar(widgets = init_widgets_screen3(), margin = [myMargin,myMargin,0,myMargin], size = myBarHeight))]
+    return [Screen(top = bar.Bar(widgets = init_widgets_screen1(), margin = myBarMargin, size = myBarHeight)),
+            Screen(top = bar.Bar(widgets = init_widgets_screen2(), margin = myBarMargin, size = myBarHeight)),
+            Screen(top = bar.Bar(widgets = init_widgets_screen3(), margin = myBarMargin, size = myBarHeight))]
 
 if __name__ in ["config", "__main__"]:
     screens = init_screens()

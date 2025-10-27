@@ -1,6 +1,6 @@
 #############################################################################
 ##
-##  all the feeds I am following
+##  All the feeds I am following
 ##
 #############################################################################
 
@@ -38,10 +38,12 @@ https://www.reddit.com/r/vim.rss
 https://www.reddit.com/r/linuxquestions.rss
 
 "----- GENERAL IT NEWS -----"
+https://rssfeed.azure.status.microsoft/en-us/status/feed/
 https://9to5linux.com/feed/atom "~IT 9 to 5 Linux"
 https://www.bitsoffreedom.nl/rss "~IT Bits of Freedom"
 https://freedom.nl/storingen/rss/feed.xml "~IT Freedom Internet"
 https://nluug.social/@nluug.rss
+https://www.security.nl/rss/headlines.xml "~Security NL"
 
 "----- DISTROWATCH -----"
 https://distrowatch.com/news/dw.xml "~DW Distrowatch News"

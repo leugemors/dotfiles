@@ -11,7 +11,7 @@
 
 # For some odd reason I need to set half te value of the font size I want
 [font]
-size = 11.0
+size = 12.0
 
 [font.offset]
 x = 0
@@ -23,9 +23,11 @@ style = "Regular"
 # family = "BlexMono Nerd Font"
 # family = "ComicShanns Nerd Font"
 # family = "FiraCode Nerd Font"
+family = "Iosevka Nerd Font"
 # family = "Hack Nerd Font"
-family = "JetBrains Mono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
 # family = "Literation Mono Nerd Font"
+# family = "MesloLGL Nerd Font"
 # family = "RobotoMono Nerd Font"
 # family = "Space Mono Nerd Font"
 # family = "Ubuntu Mono Nerd Font"
