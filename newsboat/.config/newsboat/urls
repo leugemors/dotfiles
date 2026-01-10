@@ -29,6 +29,11 @@ https://feeds.nos.nl/nosnieuwstech
 # https://feeds.nos.nl/nosop3
 # https://feeds.nos.nl/jeugdjournaal
 
+"----- LEASEWEB -----"
+https://www.leasewebstatus.com/rss/maintenance
+https://www.leasewebstatus.com/rss/status
+https://www.leasewebstatus.com/rss/general
+
 "----- LINUX NEWS -----"
 https://www.reddit.com/r/linux.rss
 https://www.reddit.com/r/archlinux.rss

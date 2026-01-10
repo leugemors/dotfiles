@@ -11,13 +11,14 @@
 
 [general]
 import = [
-    "~/.config/alacritty/keybindings.toml",
-    "~/.config/alacritty/fonts.toml",
+    # "~/.config/alacritty/fonts.toml",
     # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
     # "~/.config/alacritty/themes/themes/cool_night.toml",
     # "~/.config/alacritty/themes/themes/dracula_plus.toml",
     # "~/.config/alacritty/themes/themes/rose_pine.toml",
-    "~/.config/alacritty/themes/themes/tokyo_night.toml",
+    # "~/.config/alacritty/themes/themes/tokyo_night.toml",
+    # "~/.config/alacritty/keybindings.toml",
+    "~/.config/omarchy/current/theme/alacritty.toml",
 ]
 
 [env]
@@ -30,18 +31,40 @@ transparent_background_colors = true
 # [colors.primary]
 # background = "#000000"
 
+[font]
+size = 8.0
+
+[font.offset]
+x = 0
+y = 0
+
+[font.normal]
+style = "Regular"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+
 [scrolling]
 history = 5000
 
 [window]
-blur = false            # Picom can handle this
-decorations = "None"    # Full, Transparent, Buttonless, None
+blur = true
+decorations = "None"    # (Full, Transparent, Buttonless, None)
 dynamic_padding = true
-opacity = 1.00          # Opacity can also be set via picom
+opacity = 1.00
 
 [window.padding]
-x = 5
-y = 5
+x = 10
+y = 10
 
 [mouse]
 hide_when_typing = true

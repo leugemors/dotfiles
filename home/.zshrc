@@ -19,9 +19,10 @@
 # ---------------------------------------------------------------------------
 
 export ANSIBLE_NOCOWS=1                           # no cows for ansible
-export EDITOR=vim                                 # use vim keys to edit
+export EDITOR=vim                                 # set default editor
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
 export MANROFFOPT="-c"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"    # add my local bin to PATH
 export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
 export TERM="xterm-256color"                      # support 256 colours
 
@@ -51,7 +52,7 @@ setopt extended_glob       # match ~ # ^
 #  Configure key keybindings
 # ---------------------------------------------------------------------------
 
-bindkey -v                                     # use vim key bindings
+# bindkey -v                                     # use vim key bindings
 bindkey ' ' magic-space                        # do history expansion on space
 bindkey '^[[3;5~' kill-word                    # ctrl + Supr
 bindkey '^[[3~' delete-char                    # delete
@@ -167,7 +168,7 @@ eval "$(starship init zsh)"   # initialise the starship prompt
 eval "$(zoxide init zsh)"     # fancy change directory
 
 # ---------------------------------------------------------------------------
-#  
+#  Stuff for yazi
 # ---------------------------------------------------------------------------
 
 function y() {
@@ -183,10 +184,10 @@ function y() {
 # ---------------------------------------------------------------------------
 
 clear
-# bible_verse | cowsay | lolcat
+bible_verse | cowsay | lolcat
 # echo; ucal; echo
 # echo; dierenriem; echo
 
-fastfetch --logo arch --config examples/8
+# fastfetch --logo arch --config examples/8
 
 ### eof #####################################################################

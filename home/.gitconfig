@@ -76,6 +76,11 @@
     git-status = true
     git-log = true
 
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
 [color "diff"]
     old = red
     new = green
@@ -88,12 +93,5 @@
 
 [mergetool "kdiff3"]
     path = /usr/bin/kdiff3
-
-[url "https://github.com/leugemors/"]
-    insteadOf = "lm:"
-[url "https://github.com/topicusonderwijs/"]
-    insteadOf = "to:"
-[url "https://github.com/"]
-    insteadOf = "gh:"
 
 ### eof #####################################################################

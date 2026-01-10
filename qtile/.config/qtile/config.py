@@ -11,48 +11,20 @@
 
 import os
 import subprocess
-from libqtile import bar, hook, layout, qtile, widget
+
+from libqtile import bar, hook, layout, qtile
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.lazy import lazy
+from libqtile.dgroups import simple_key_binder
+
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
-from libqtile.dgroups import simple_key_binder
 
 # ---------------------------------------------------------------------------
 #  Set the home dir for the current user
 # ---------------------------------------------------------------------------
 
 home = os.path.expanduser("~")
-
-# ---------------------------------------------------------------------------
-#  Colours
-# ---------------------------------------------------------------------------
-
-black = "#21222c"
-red = "#ff5555"
-green = "#50fa7b"
-yellow = "#ffcb6b"
-blue = "#6088cc"
-magenta = "#c792ea"
-cyan = "#88e9fd"
-white = "#f8f9f2"
-
-grey = ["111111", "222222", "333333", "444444", "555555", "666666",
-        "777777", "888888", "999999", "AAAAAA", "BBBBBB", "CCCCCC"]
-
-# ---------------------------------------------------------------------------
-#  Default configuration
-# ---------------------------------------------------------------------------
-
-myBarHeight = 30
-myBorderColour = magenta
-myBorderWith = 3
-# myFont = "JetBrainsMono Nerd Font"
-myFont = "Iosevka Nerd Font"
-myFontSize = 18
-myLayout = "Columns"
-myMargin = [15, 15, 15, 15]  # [top, right, bottom, left]
-myBarMargin = [15, 15, 0, 15]  # [top, right, bottom, left]
 
 # ---------------------------------------------------------------------------
 #  Default applications
@@ -69,11 +41,42 @@ myMusic = "spotify-launcher %U"
 myPowermenu = home + "/.config/qtile/scripts/powermenu.sh"
 myPrtScr = "flameshot gui"
 myPrtScrFull = "flameshot full -c -p " + home + "/Pictures/"
+mySlack = "slack"
 mySysMonitor = "stacer"
 myTerminal = "ghostty"
 myTerminal2 = "alacritty"
 myWallpaper = "waypaper"
 myWeather = "gnome-weather"
+
+# ---------------------------------------------------------------------------
+#  Colours
+# ---------------------------------------------------------------------------
+
+black = "#21222c"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#ffcb6b"
+blue = "#6088cc"
+magenta = "#c792ea"
+cyan = "#88e9fd"
+white = "#f8f9f2"
+
+grey = ["#111111", "#222222", "#333333", "#444444", "#555555", "#666666",
+        "#777777", "#888888", "#999999", "#AAAAAA", "#BBBBBB", "#CCCCCC"]
+
+# ---------------------------------------------------------------------------
+#  Default configuration
+# ---------------------------------------------------------------------------
+
+myBarHeight = 28
+myBorderColour = magenta
+myBorderWith = 3
+myFont = "JetBrainsMono Nerd Font"
+# myFont = "Iosevka Nerd Font"
+myFontSize = 16
+myLayout = "Columns"
+myMargin = [15, 15, 15, 15]  # [top, right, bottom, left]
+myBarMargin = [15, 15, 0, 15]  # [top, right, bottom, left]
 
 # ---------------------------------------------------------------------------
 #  Keybindings
@@ -82,7 +85,7 @@ myWeather = "gnome-weather"
 mod = "mod4" # Super key
 
 keys = [
-   # Switch between windows
+    # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc = "Move focus to left"),
     Key([mod], "j", lazy.layout.down(), desc = "Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc = "Move focus up"),
@@ -106,6 +109,7 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc = "Toggle focused window to floating"),
     Key([mod], "q", lazy.window.kill(), desc = "Quit focused window"),
     Key([mod], "r", lazy.spawncmd(), desc = "Run a command using a prompt widget"),
+    Key([mod], "w", lazy.window.kill(), desc = "Quit focused window"),
 
     # Swap windows for the column layout
     Key([mod], "u", lazy.layout.swap_column_right(), desc = "Swap columns right"),
@@ -133,12 +137,15 @@ keys = [
     Key([mod, "control"], "Return", lazy.spawn(myMenu), desc = "Show rofi menu"),
     Key([mod], "Return", lazy.spawn(myTerminal), desc = "Launch terminal"),
     Key([mod], "space", lazy.spawn(myMenu), desc = "Show rofi menu"),
+    Key([mod], "escape", lazy.spawn(myPowermenu), desc = "Show the power menu"),
 
-    Key([mod], "b", lazy.spawn(myBrowser), desc = "Open internet browser"),
-    Key([mod], "c", lazy.spawn(myCalculator), desc = "Open a simple calculator"),
-    Key([mod], "e", lazy.spawn(myFilemanager), desc = "Open file manager"),
-    Key([mod], "s", lazy.spawn(myChat), desc = "Open chat program"),
-    Key([mod], "z", lazy.spawn(myEditor), desc = "Open a code editor"),
+    # The letters H, J, K and L cannot be uses here
+    Key([mod, "shift"], "b", lazy.spawn(myBrowser), desc = "Open internet browser"),
+    Key([mod, "shift"], "c", lazy.spawn(myCalculator), desc = "Open a simple calculator"),
+    Key([mod, "shift"], "f", lazy.spawn(myFilemanager), desc = "Open file manager"),
+    Key([mod, "shift"], "g", lazy.spawn(myChat), desc = "Open chat program"),
+    Key([mod, "shift"], "s", lazy.spawn(mySlack), desc = "Open Slack"),
+    Key([mod, "shift"], "z", lazy.spawn(myEditor), desc = "Open a code editor"),
 
     # Special function keys for sound an brightness
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%"), desc = "Volume up"),
@@ -157,8 +164,8 @@ keys = [
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-# group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-group_labels = [" ", " ", "󰨞 ", " ", " ", "󰊻 ", " ", "󰭹 ", "󰏆 ", "󰓇 "]
+group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+# group_labels = [" ", " ", "󰨞 ", " ", " ", "󰊻 ", " ", "󰭹 ", "󰏆 ", "󰓇 "]
 
 for i in range(len(group_names)):
     groups.append(Group(
@@ -182,17 +189,13 @@ for i in groups:
 groups.append(ScratchPad("scratchpad", [
     DropDown("terminal1", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
     DropDown("terminal2", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
-    DropDown("terminal3", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
-    DropDown("terminal4", myTerminal2, opacity = 0.9, height = 0.8, width = 0.75, x = 0.125, y = 0.01, on_focus_lost_hide = True),
     DropDown("volume", "pavucontrol", opacity = 0.9, height = 0.6, width = 0.5, x = 0.25, y = 0.01, on_focus_lost_hide = False),
     DropDown("music", myMusic, opacity = 0.9, height = 0.95, width = 0.95, x = 0.025, y = 0.01, on_focus_lost_hide = True),
 ]))
 
 keys.extend([
-    Key([mod], "F7", lazy.group["scratchpad"].dropdown_toggle("terminal1")),
-    Key([mod], "F8", lazy.group["scratchpad"].dropdown_toggle("terminal2")),
-    Key([mod], "F9", lazy.group["scratchpad"].dropdown_toggle("terminal3")),
-    Key([mod], "F10", lazy.group["scratchpad"].dropdown_toggle("terminal4")),
+    Key([mod], "F9", lazy.group["scratchpad"].dropdown_toggle("terminal1")),
+    Key([mod], "F10", lazy.group["scratchpad"].dropdown_toggle("terminal2")),
     Key([mod], "F11", lazy.group["scratchpad"].dropdown_toggle("volume")),
     Key([mod], "F12", lazy.group["scratchpad"].dropdown_toggle("music")),
 ])
@@ -205,7 +208,7 @@ layout_theme = {
     "border_width": myBorderWith,
     "margin": myMargin,
     "border_focus": myBorderColour,
-    "border_normal": grey[4],
+    "border_normal": grey[5],
 }
 
 layouts = [
@@ -233,25 +236,25 @@ layouts = [
 
 decor_left = {
     "decorations": [PowerLineDecoration(
-        path = "arrow_left"
+        # path = "arrow_left"
         # path = "rounded_left"
-        # path = "forward_slash"
+        path = "forward_slash"
         # path = "back_slash"
     )],
 }
 
 decor_right = {
     "decorations": [PowerLineDecoration(
-        path = "arrow_right"
+        # path = "arrow_right"
         # path = "rounded_right"
-        # path = "forward_slash"
+        path = "forward_slash"
         # path = "back_slash"
     )],
 }
 
 # ---------------------------------------------------------------------------
 #  Run widget scripts
-# ---------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 def open_browser():
     qtile.cmd_spawn(myBrowser)
@@ -260,7 +263,7 @@ def open_calendar():
     qtile.cmd_spawn(myCalendar)
 
 def open_feestdagen():
-    qtile.cmd_spawn(myTerminal + " --hold -e feestdagen 2025")
+    qtile.cmd_spawn(myTerminal2 + " --hold -e feestdagen.sh")
 
 def open_filemanager():
     qtile.cmd_spawn(myFilemanager)
@@ -302,9 +305,9 @@ def init_widgets_list():
         widget.TextBox(
             **decor_left,
             foreground = white,
-            # background = magenta,
-            background = black,
-            fontsize = myFontSize + 8,
+            background = magenta,
+            # background = black,
+            fontsize = myFontSize + 2,
             margin = 10,
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
@@ -316,7 +319,7 @@ def init_widgets_list():
             **decor_left,
             foreground = white,
             background = blue,
-            fontsize = myFontSize + 3,
+            fontsize = myFontSize + 2,
             padding = 0,
             highlight_method = "block",
             active = white,
@@ -329,35 +332,11 @@ def init_widgets_list():
             rounded = True,
         ),
 
-        # widget.TextBox(
-        #     **decor_left,
-        #     foreground = black,
-        #     background = grey[10],
-        #     text = " ",
-        #     mouse_callbacks = {"Button1": open_wallpaper},
-        # ),
-
-        # widget.TextBox(
-        #     **decor_left,
-        #     foreground = black,
-        #     background = grey[9],
-        #     text = " ",
-        #     mouse_callbacks = {"Button1": open_browser},
-        # ),
-
-        # widget.TextBox(
-        #     **decor_left,
-        #     foreground = black,
-        #     background = grey[8],
-        #     text = " ",
-        #     mouse_callbacks = {"Button1": open_filemanager},
-        # ),
-
        widget.GenPollCommand(
             **decor_left,
             foreground = black,
             background = grey[7],
-            fmt = "  {} ",
+            fmt = " {}",
             cmd = "waybar_dominidi",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -367,20 +346,24 @@ def init_widgets_list():
             **decor_left,
             foreground = black,
             background = grey[6],
-            fmt = "  {} ",
+            fmt = " {}",
             cmd = "waybar_maya",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
         ),
 
-        widget.OpenWeather(
+      widget.Wttr(
             **decor_left,
             foreground = white,
             background = grey[5],
-            app_key = "4cf3731a25d1d1f4e4a00207afd451a2",
-            cityid = "2759661",
-            metric = True,
-            format = " {icon} {main_temp:.1f}° ",
+            location = {"Arnhem": "Arnhem"},   # city or lat,long
+            format = "%c %t",                  # condition + temperature
+            units = "m",                       # 'm' metric, 'u' US, 'M' old metric style
+            update_interval = 900,             # seconds (15 min)
+            timeout = 10,                      # seconds per request
+            wttr_inversion = False,
+            show_wind = True,
+            show_humidity = True,
             mouse_callbacks = {'Button1': open_weather},
         ),
 
@@ -418,43 +401,46 @@ def init_widgets_list():
         widget.ThermalSensor(
             **decor_right,
             foreground = white,
-            background = grey[4],
+            background = grey[3],
             update_interval = 2,
-            format = "  {temp:.0f}{unit} ",
+            format = " {temp:.0f}{unit}",
             mouse_callbacks = {'Button1': open_stacer},
         ),
 
         widget.CheckUpdates(
             **decor_right,
             foreground = white,
-            background = grey[5],
+            background = grey[4],
             distro = "Arch_checkupdates",
             update_interval = 60,
             colour_have_updates = red,
             colour_no_updates = green,
-            display_format = " Upd: {updates} ",
-            no_update_string = " Upd: 0 ",
+            display_format = "Upd: {updates}",
+            no_update_string = "Upd: 0",
         ),
 
-        # widget.Brightness(
-        #     **decor_right,
-        #     foreground = white,
-        #     background = grey[6],
-        #     fmt = " ☀️ {}% ",
-        # ),
+        widget.Backlight(
+            **decor_right,
+            foreground = white,
+            background = grey[5],
+            backlight_name="amdgpu_bl1",
+            step=5,
+            format="  {percent:.0%}",
+            update_interval=0.5,
+        ),
 
         widget.Battery(
             **decor_right,
             foreground = white,
             background = grey[6],
-            battery = 0,
+            battery = 'BAT1',
             charge_char = "▲",
             discharge_char = "▼",
             empty_char = "○",
             full_char = "●",
             not_charging_char = "",
             unknown_char = "?",
-            format = "🔋{char} {percent:2.0%} ",
+            format = "🔋{char} {percent:2.0%}",
         ),
 
         widget.Volume(
@@ -463,14 +449,14 @@ def init_widgets_list():
             background = grey[7],
             emoji_list = ["🔇", "🔈", "🔉", "🔊"],
             emoji = False,
-            fmt = " 󰕾 {} ",
+            fmt = "󰕾 {}",
         ),
 
         widget.Clock(
             **decor_right,
             foreground = black,
             background = grey[8],
-            format = "%d/%m  %H:%M.%S ",
+            format = "%a %d/%m - %H:%M.%S",
             mouse_callbacks = {'Button1': open_calendar},
         ),
 
@@ -478,18 +464,17 @@ def init_widgets_list():
 
         widget.Systray(
             **decor_right,
+            foreground = white,
             background = blue,
         ),
 
-        widget.Spacer(**decor_right, background = blue, length = 1,),
-
         widget.TextBox(
             foreground = white,
-            # background = magenta,
-            background = black,
-            fontsize = myFontSize + 2,
+            background = magenta,
+            # background = black,
+            fontsize = myFontSize - 2,
             text = " ⏻  ",
-            mouse_callbacks = {"Button1": open_powermenu},
+            mouse_callbacks = {'Button1': open_powermenu},
         ),
     ]
     return widgets_list
@@ -505,13 +490,13 @@ def init_widgets_screen1():
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     # Remove the systray widget from the list, it craches when shown on multiple monitors
-    del widgets_screen2[19:22]
+    del widgets_screen2[17:19]
     return widgets_screen2
 
 def init_widgets_screen3():
     widgets_screen3 = init_widgets_list()
     # Remove the systray widget from the list, it craches when shown on multiple monitors
-    del widgets_screen3[18:21]
+    del widgets_screen3[17:19]
     return widgets_screen3
 
 def init_screens():

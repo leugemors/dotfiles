@@ -178,7 +178,7 @@ nmap <leader>x :bp<bar>bd#<cr>   " Close current buffer
 
 set number
 set relativenumber
-set nowrap
+set wrap
 
 map <F3> :set number!<cr>
 map <F4> :set relativenumber!<cr>

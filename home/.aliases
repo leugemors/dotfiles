@@ -50,7 +50,7 @@ alias ltr='eza -alghr -sold'
 # ---------------------------------------------------------------------------
 
 # Use zoxide for easy directory navigation
-alias cd='z'
+# alias cd='z'
 
 alias up='cd ..'
 alias .l='cd ..;ls'
@@ -74,9 +74,10 @@ alias leug='cd ~/Work/leugemors'
 alias misc='cd ~/Work/misc'
 alias uzori='cd ~/Work/ansible/uzori'
 
-alias nassi='cd /mnt/nassi'
-alias fairy='cd /mnt/nassi/thijs/fairytale'
-alias fd25='cd /mnt/nassi/thijs/fd25'
+alias nasi='cd /mnt/nasi'
+alias fairy='cd /mnt/nasi/thijs/fairytale'
+alias fd25='echo Flapdrol, het is al 2026.'
+alias fd26='cd /mnt/nasi/thijs/fd26'
 
 alias notes='cd ~/Notes'
 alias prive='cd ~/Prive'
@@ -154,7 +155,6 @@ alias fixpacman='sudo rm -rf /var/lib/pacman/db.lck && sudo pacman -Syyu'
 alias list='yay -Q | grep --color=auto $1'
 alias mirror='sudo cachyos-rate-mirrors'
 alias update='yes | yay -Syyu'
-alias zoek='yay -Ss'
 
 # ---------------------------------------------------------------------------
 #  Fun stuff
@@ -189,36 +189,34 @@ alias cls='f8' # for old time sake :-)
 alias a='vim ~/.aliases && source ~/.aliases'
 alias c='cmatrix -bsu3 -C magenta'
 alias d='ncdu -x -e --color dark'
-alias e='vim ~/.ssh/config.d/eduarte.conf'
 alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
 alias i='yay -S'
 alias j='vim ~/.zshrc && source ~/.zshrc'
 alias k='kubectl'
+alias m='/usr/local/bin/monitor'
 alias n='newsboat -r'
 alias o='cd ~/Notes; vim index.md; cd -'
 alias p='vim ~/.config/picom/picom.conf && pkill picom && picom --daemon --config ~/.config/picom/picom.conf'
-alias q='cd ~/.config/qtile; vim ~/.config/qtile/config.py && qtile cmd-obj -o cmd -f restart; cd -'
-alias s='vim ~/.config/starship/starship.toml && eval "$(starship init zsh)"'
-# Trying out different terminal emulators
-# alias t='vim ~/.config/alacritty/fonts.toml'
-# alias t='vim ~/.config/kitty/kitty.conf'
+alias q='vim ~/.config/qtile/config.py'
+alias s='yay -Ss'
+# alias t='vim ~/.config/alacritty/alacritty.toml'
 alias t='vim ~/.config/ghostty/config'
 alias u='cd ~/Notes; vim eduarte/admin/uren-schrijven.md; cd -'
 alias v='vim ~/.vim/vimrc'
-# alias v='pushd ~/.config/nvim; nvim init.lua .; popd'
 
 # alias w='echo "This letter is not available."'
 # alias y='echo "This letter is not available."'
 # alias z='echo "This letter is not available."'
 
 alias b='echo "No alias defined for this letter."'
-alias m='echo "No alias defined for this letter."'
+alias e='echo "No alias defined for this letter."'
 alias r='echo "No alias defined for this letter."'
 alias x='echo "No alias defined for this letter."'
 
 # alias p='echo -e ${PATH//:/\\n} | bat'
+# alias q='cd ~/.config/qtile; vim ~/.config/qtile/config.py && qtile cmd-obj -o cmd -f restart; cd -'
 
 # ---------------------------------------------------------------------------
 #  Set font for text terminals
