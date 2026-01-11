@@ -20,8 +20,8 @@
 
 export ANSIBLE_NOCOWS=1                           # no cows for ansible
 export EDITOR=vim                                 # set default editor
-export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
-export MANROFFOPT="-c"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
+# export MANROFFOPT="-c"
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"    # add my local bin to PATH
 export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
 export TERM="xterm-256color"                      # support 256 colours

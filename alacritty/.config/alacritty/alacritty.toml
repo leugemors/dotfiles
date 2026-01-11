@@ -14,11 +14,10 @@ import = [
     # "~/.config/alacritty/fonts.toml",
     # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
     # "~/.config/alacritty/themes/themes/cool_night.toml",
-    # "~/.config/alacritty/themes/themes/dracula_plus.toml",
+    # ~/.config/alacritty/themes/themes/dracula_plus.toml",
     # "~/.config/alacritty/themes/themes/rose_pine.toml",
-    # "~/.config/alacritty/themes/themes/tokyo_night.toml",
+    "~/.config/alacritty/themes/themes/tokyo_night.toml",
     # "~/.config/alacritty/keybindings.toml",
-    "~/.config/omarchy/current/theme/alacritty.toml",
 ]
 
 [env]
@@ -40,18 +39,17 @@ y = 0
 
 [font.normal]
 style = "Regular"
+# family = "3270 Nerd Font Mono"
+# family = "BlexMono Nerd Font"
+# family = "FiraCode Nerd Font"
+# family = "Hack Nerd Font"
+# family = "Iosevka Nerd Font"
 # family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
-# family = "JetBrainsMono Nerd Font"
+# family = "LiterationMono Nerd Font"
+# family = "NotoMono Nerd Font"
+# family = "RobotoMono Nerd Font"
+family = "SauceCodePro Nerd Font"
+# family = "UbuntuMono Nerd Font"
 
 [scrolling]
 history = 5000

@@ -31,6 +31,12 @@ fi
 # alias la='ls -AF'
 # alias ll='ls --group-directories-first -AlF'
 
+alias man='batman'
+
+alias lsblkc='lsblk | bat -l conf -p'
+alias freec='free -h | bat -l conf -p'
+alias dfc='df -h --total -x tmpfs | bat -l conf -p'
+
 # ---------------------------------------------------------------------------
 #  Switched to eza (suckless tools)
 # ---------------------------------------------------------------------------
@@ -201,8 +207,8 @@ alias o='cd ~/Notes; vim index.md; cd -'
 alias p='vim ~/.config/picom/picom.conf && pkill picom && picom --daemon --config ~/.config/picom/picom.conf'
 alias q='vim ~/.config/qtile/config.py'
 alias s='yay -Ss'
-# alias t='vim ~/.config/alacritty/alacritty.toml'
-alias t='vim ~/.config/ghostty/config'
+alias t='vim ~/.config/alacritty/alacritty.toml'
+# alias t='vim ~/.config/ghostty/config'
 alias u='cd ~/Notes; vim eduarte/admin/uren-schrijven.md; cd -'
 alias v='vim ~/.vim/vimrc'
 

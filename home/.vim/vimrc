@@ -365,11 +365,11 @@ set fillchars+=vert:│   " <Ctrl><K> <v><v>
 " let g:airline_theme = 'catppuccin_frappe'
 " let g:airline_theme = 'catppuccin_latte'
 " let g:airline_theme = 'catppuccin_macchiato'
-" let g:airline_theme = 'catppuccin_mocha'
+let g:airline_theme = 'catppuccin_mocha'
 " colorscheme catppuccin_frappe
 " colorscheme catppuccin_latte
 " colorscheme catppuccin_macchiato
-" colorscheme catppuccin_mocha
+colorscheme catppuccin_mocha
 
 " Dracula colour theme
 " let g:airline_theme='dracula'
@@ -390,11 +390,11 @@ set fillchars+=vert:│   " <Ctrl><K> <v><v>
 " colorscheme gruvbox
 
 " Tokyo night colour theme
-let g:airline_theme = "tokyonight"
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 1
-colorscheme tokyonight
+" let g:airline_theme = "tokyonight"
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" let g:tokyonight_transparent_background = 1
+" colorscheme tokyonight
 
 " Default colour schemes
 " colorscheme blue

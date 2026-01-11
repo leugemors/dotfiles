@@ -43,7 +43,7 @@ myPrtScr = "flameshot gui"
 myPrtScrFull = "flameshot full -c -p " + home + "/Pictures/"
 mySlack = "slack"
 mySysMonitor = "stacer"
-myTerminal = "ghostty"
+myTerminal = "alacritty"
 myTerminal2 = "alacritty"
 myWallpaper = "waypaper"
 myWeather = "gnome-weather"
@@ -307,7 +307,7 @@ def init_widgets_list():
             foreground = white,
             background = magenta,
             # background = black,
-            fontsize = myFontSize + 2,
+            fontsize = myFontSize + 14,
             margin = 10,
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
@@ -472,7 +472,7 @@ def init_widgets_list():
             foreground = white,
             background = magenta,
             # background = black,
-            fontsize = myFontSize - 2,
+            fontsize = myFontSize + 8,
             text = " ⏻  ",
             mouse_callbacks = {'Button1': open_powermenu},
         ),

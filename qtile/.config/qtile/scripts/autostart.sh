@@ -16,8 +16,11 @@ setxkbmap us
 # Change the keyboard caps lock to escape
 setxkbmap -option "caps:escape"
 
+# Configure my monitors
+/usr/local/bin/monitor
+
 # Applet for the network manager
-nm-applet &
+iwgtk -i &
 
 #Applet for bluetooth
 blueman-applet &
@@ -32,9 +35,6 @@ dunst &
 # Turn on redshift
 redshift &
 
-# Configure my monitors (defaults to laptop)
-# laptop
-
 # Restore the wallpaper
 waypaper --restore &
 
@@ -48,9 +48,11 @@ flameshot &
 xss-lock -- i3lock-color -n -i /data/wallpaper/richard/dark-abstract.png &
 xset s 300 300   # 5 minutes
 
-# 1st value: time till standby
-# 2nd value: time till suspend
-# 3rd value: time till off
+# Standby, suspend, off
 xset dpms 900 1200 3600
+
+# Make sure to sue a dark theme for gnome applications
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
 
 ### eof #####################################################################
