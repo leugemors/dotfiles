@@ -11,8 +11,21 @@
 #############################################################################
 
 lockapp="/usr/local/bin/lockscreen.sh"
-# theme="material"
-theme="rounded-nord-dark"
+
+theme="material"
+
+# theme="nord"
+
+# theme="rounded-blue-dark"
+# theme="rounded-green-dark"
+# theme="rounded-nord-dark"
+# theme="rounded-purple-dark"
+
+# theme="squared-everforest"
+# theme="squared-material-red"
+# theme="squared-nord"
+
+# theme="windows11-list-dark"
 
 # ---------------------------------------------------------------------------
 #  Build the menu

@@ -17,10 +17,10 @@ setxkbmap us
 setxkbmap -option "caps:escape"
 
 # Configure my monitors
-/usr/local/bin/monitor
+${HOME}/.config/qtile/scripts/monitors.sh &
 
-# Applet for the network manager
-iwgtk -i &
+# Restore the wallpaper
+waypaper --restore &
 
 #Applet for bluetooth
 blueman-applet &
@@ -35,24 +35,21 @@ dunst &
 # Turn on redshift
 redshift &
 
-# Restore the wallpaper
-waypaper --restore &
-
 # Start keepassxc
 keepassxc &
 
 # Start flameshot for screenshots
-flameshot &
-
-# STart the screen saver after 5 minutes of inactivity
-xss-lock -- i3lock-color -n -i /data/wallpaper/richard/dark-abstract.png &
-xset s 300 300   # 5 minutes
-
-# Standby, suspend, off
-xset dpms 900 1200 3600
+# flameshot &
 
 # Make sure to sue a dark theme for gnome applications
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+
+# Start the screen saver after 5 minutes of inactivity
+xss-lock -- i3lock-color -n -i /data/wallpaper/richard/dark-abstract.png &
+xset s 300 300
+
+# Standby, suspend, off
+xset dpms 900 1200 3600
 
 ### eof #####################################################################

@@ -36,17 +36,21 @@ myCalendar = "gnome-calendar"
 myChat = "signal-desktop"
 myEditor = "zeditor"
 myFilemanager = "nautilus"
-myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
 myMusic = "spotify-launcher %U"
 myPowermenu = home + "/.config/qtile/scripts/powermenu.sh"
 myPrtScr = "flameshot gui"
 myPrtScrFull = "flameshot full -c -p " + home + "/Pictures/"
 mySlack = "slack"
 mySysMonitor = "stacer"
-myTerminal = "alacritty"
+myTerminal = "ghostty"
 myTerminal2 = "alacritty"
 myWallpaper = "waypaper"
 myWeather = "gnome-weather"
+
+# myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
+# myMenu = "rofi -theme launchpad -show drun -show-icons"
+myMenu = "rofi -theme material -show drun -show-icons"
+# myMenu = "rofi -theme windows11-list-dark -show drun -show-icons"
 
 # ---------------------------------------------------------------------------
 #  Colours
@@ -69,7 +73,7 @@ grey = ["#111111", "#222222", "#333333", "#444444", "#555555", "#666666",
 # ---------------------------------------------------------------------------
 
 myBarHeight = 28
-myBorderColour = magenta
+myBorderColour = cyan
 myBorderWith = 3
 myFont = "JetBrainsMono Nerd Font"
 # myFont = "Iosevka Nerd Font"

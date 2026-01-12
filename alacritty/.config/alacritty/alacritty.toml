@@ -43,12 +43,12 @@ style = "Regular"
 # family = "BlexMono Nerd Font"
 # family = "FiraCode Nerd Font"
 # family = "Hack Nerd Font"
-# family = "Iosevka Nerd Font"
+family = "Iosevka Nerd Font"
 # family = "JetBrainsMono Nerd Font"
 # family = "LiterationMono Nerd Font"
 # family = "NotoMono Nerd Font"
 # family = "RobotoMono Nerd Font"
-family = "SauceCodePro Nerd Font"
+# family = "SauceCodePro Nerd Font"
 # family = "UbuntuMono Nerd Font"
 
 [scrolling]
@@ -61,8 +61,8 @@ dynamic_padding = true
 opacity = 1.00
 
 [window.padding]
-x = 10
-y = 10
+x = 5
+y = 5
 
 [mouse]
 hide_when_typing = true
