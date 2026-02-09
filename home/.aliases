@@ -33,10 +33,6 @@ fi
 
 alias man='batman'
 
-alias lsblkc='lsblk | bat -l conf -p'
-alias freec='free -h | bat -l conf -p'
-alias dfc='df -h --total -x tmpfs | bat -l conf -p'
-
 # ---------------------------------------------------------------------------
 #  Switched to eza (suckless tools)
 # ---------------------------------------------------------------------------
@@ -56,7 +52,7 @@ alias ltr='eza -alghr -sold'
 # ---------------------------------------------------------------------------
 
 # Use zoxide for easy directory navigation
-# alias cd='z'
+alias cd='z'
 
 alias up='cd ..'
 alias .l='cd ..;ls'
@@ -96,7 +92,6 @@ alias iso='cd /data/iso'
 # Projects i'm working on right now
 alias conf='cd ~/Work/eduarte/school-configs'
 alias infra='cd ~/Work/eduarte/tf-school-infra'
-alias nftp='cd ~/Work/temp/sftp'
 alias power='cd ~/Work/powershell/scripts'
 
 # ---------------------------------------------------------------------------
@@ -202,7 +197,8 @@ alias h='history -i 0 | tail -n 48'
 alias i='yay -S'
 alias j='vim ~/.zshrc && source ~/.zshrc'
 alias k='kubectl'
-alias m='/usr/local/bin/monitor'
+# alias m='${HOME}/.config/qtile/scripts/monitors.sh'
+alias m='/usr/local/bin/monitor-hyprland arrange_workspaces'
 alias n='newsboat -r'
 alias o='cd ~/Notes; vim index.md; cd -'
 alias p='vim ~/.config/picom/picom.conf && pkill picom && picom --daemon --config ~/.config/picom/picom.conf'

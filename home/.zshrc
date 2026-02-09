@@ -184,10 +184,10 @@ function y() {
 # ---------------------------------------------------------------------------
 
 clear
-bible_verse | cowsay | lolcat
+# bible_verse | cowsay | lolcat
 # echo; ucal; echo
 # echo; dierenriem; echo
 
-# fastfetch --logo arch --config examples/8
+fastfetch --logo arch --config examples/8
 
 ### eof #####################################################################

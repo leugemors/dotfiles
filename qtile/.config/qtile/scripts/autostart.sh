@@ -22,8 +22,11 @@ ${HOME}/.config/qtile/scripts/monitors.sh &
 # Restore the wallpaper
 waypaper --restore &
 
-#Applet for bluetooth
+# Applet for bluetooth
 blueman-applet &
+
+# Applet for network
+nm-applet &
 
 # Lightweight compositor for X11
 picom --daemon --config "${HOME}/.config/picom/picom.conf" &
@@ -39,7 +42,7 @@ redshift &
 keepassxc &
 
 # Start flameshot for screenshots
-# flameshot &
+flameshot &
 
 # Make sure to sue a dark theme for gnome applications
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

@@ -101,7 +101,7 @@ filetype plugin indent on
 set autoread                   " Auto read when file has changed from outside
 set backspace=start,eol,indent " Better use of backspace
 set clipboard=unnamedplus      " Copy/paste between vim and other programs
-" set colorcolumn=80             " Show line at column 80
+set colorcolumn=80             " Show line at column 80
 set cursorline                 " Underline current line
 set hidden                     " Needed to keep multiple buffers open
 set history=2000               " How many lines of history should vim remember
@@ -178,7 +178,7 @@ nmap <leader>x :bp<bar>bd#<cr>   " Close current buffer
 
 set number
 set relativenumber
-set wrap
+set nowrap
 
 map <F3> :set number!<cr>
 map <F4> :set relativenumber!<cr>
@@ -365,24 +365,24 @@ set fillchars+=vert:│   " <Ctrl><K> <v><v>
 " let g:airline_theme = 'catppuccin_frappe'
 " let g:airline_theme = 'catppuccin_latte'
 " let g:airline_theme = 'catppuccin_macchiato'
-let g:airline_theme = 'catppuccin_mocha'
+" let g:airline_theme = 'catppuccin_mocha'
 " colorscheme catppuccin_frappe
 " colorscheme catppuccin_latte
 " colorscheme catppuccin_macchiato
-colorscheme catppuccin_mocha
+" colorscheme catppuccin_mocha
 
 " Dracula colour theme
-" let g:airline_theme='dracula'
-" let g:dracula_bold = 1                        " include bold attributes in highlighting
-" let g:dracula_italic = 1                      " include italic attributes in highlighting
-" let g:dracula_strikethrough = 1               " include strikethrough attributes in highlighting
-" let g:dracula_underline = 1                   " include underline attributes in highlighting
-" let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
-" let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
-" let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
-" let g:dracula_inverse = 1                     " include inverse attributes in highlighting
-" let g:dracula_colorterm = 0                   " include background fill colors (0 for transp bg)
-" colorscheme dracula
+let g:airline_theme='dracula'
+let g:dracula_bold = 1                        " include bold attributes in highlighting
+let g:dracula_italic = 1                      " include italic attributes in highlighting
+let g:dracula_strikethrough = 1               " include strikethrough attributes in highlighting
+let g:dracula_underline = 1                   " include underline attributes in highlighting
+let g:dracula_undercurl = 1                   " include undercurl attributes in highlighting
+let g:dracula_full_special_attrs_support = 1  " declare full support for special attributes
+let g:dracula_high_contrast_diff = 1          " use high-contrast color when in diff mode
+let g:dracula_inverse = 1                     " include inverse attributes in highlighting
+let g:dracula_colorterm = 1                   " include background fill colors (0 for transp bg)
+colorscheme dracula
 
 " Grubbox colour theme
 " let g:airline_theme='gruvbox'
@@ -391,7 +391,7 @@ colorscheme catppuccin_mocha
 
 " Tokyo night colour theme
 " let g:airline_theme = "tokyonight"
-" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_style = 'storm' " available: night, storm
 " let g:tokyonight_enable_italic = 1
 " let g:tokyonight_transparent_background = 1
 " colorscheme tokyonight

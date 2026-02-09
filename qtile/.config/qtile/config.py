@@ -12,7 +12,7 @@
 import os
 import subprocess
 
-from libqtile import bar, hook, layout, qtile
+from libqtile import bar, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.lazy import lazy
 from libqtile.dgroups import simple_key_binder
@@ -21,13 +21,14 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
 
 # ---------------------------------------------------------------------------
-#  Set the home dir for the current user
+#  Set the home dir for the current user, and some environment variables
 # ---------------------------------------------------------------------------
 
 home = os.path.expanduser("~")
+os.environ["XCURSOR_SIZE"] = "16"
 
 # ---------------------------------------------------------------------------
-#  Default applications
+#  My default applications
 # ---------------------------------------------------------------------------
 
 myBrowser = "librewolf"
@@ -42,18 +43,23 @@ myPrtScr = "flameshot gui"
 myPrtScrFull = "flameshot full -c -p " + home + "/Pictures/"
 mySlack = "slack"
 mySysMonitor = "stacer"
-myTerminal = "ghostty"
+# myTerminal = "ghostty"
+myTerminal = "alacritty"
 myTerminal2 = "alacritty"
 myWallpaper = "waypaper"
 myWeather = "gnome-weather"
 
-# myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
+# ---------------------------------------------------------------------------
+# My application launcher
+# ---------------------------------------------------------------------------
+
+myMenu = "rofi -theme rounded-nord-dark -show drun -show-icons"
 # myMenu = "rofi -theme launchpad -show drun -show-icons"
-myMenu = "rofi -theme material -show drun -show-icons"
+# myMenu = "rofi -theme material -show drun -show-icons"
 # myMenu = "rofi -theme windows11-list-dark -show drun -show-icons"
 
 # ---------------------------------------------------------------------------
-#  Colours
+#  My colours
 # ---------------------------------------------------------------------------
 
 black = "#21222c"
@@ -72,15 +78,18 @@ grey = ["#111111", "#222222", "#333333", "#444444", "#555555", "#666666",
 #  Default configuration
 # ---------------------------------------------------------------------------
 
-myBarHeight = 28
+myBarHeight = 24
 myBorderColour = cyan
 myBorderWith = 3
-myFont = "JetBrainsMono Nerd Font"
+# myfont = "FiraCode Nerd Font"
 # myFont = "Iosevka Nerd Font"
-myFontSize = 16
-myLayout = "Columns"
-myMargin = [15, 15, 15, 15]  # [top, right, bottom, left]
-myBarMargin = [15, 15, 0, 15]  # [top, right, bottom, left]
+myFont = "JetBrainsMono Nerd Font"
+# myfont = "SauceCodePro Nerd Font"
+myFontSize = 18
+myLayout = "MonadTall"
+myMonadMargin = 15
+myColumnMargin = [15, 15, 15, 15]  # [top, right, bottom, left]
+myBarMargin = [10, 15, 0, 15]  # [top, right, bottom, left]
 
 # ---------------------------------------------------------------------------
 #  Keybindings
@@ -149,6 +158,7 @@ keys = [
     Key([mod, "shift"], "f", lazy.spawn(myFilemanager), desc = "Open file manager"),
     Key([mod, "shift"], "g", lazy.spawn(myChat), desc = "Open chat program"),
     Key([mod, "shift"], "s", lazy.spawn(mySlack), desc = "Open Slack"),
+    Key([mod, "shift"], "w", lazy.spawn("waypaper --restore"), desc = "Restore wallpaper"),
     Key([mod, "shift"], "z", lazy.spawn(myEditor), desc = "Open a code editor"),
 
     # Special function keys for sound an brightness
@@ -210,16 +220,26 @@ keys.extend([
 
 layout_theme = {
     "border_width": myBorderWith,
-    "margin": myMargin,
+    "margin": myColumnMargin,
     "border_focus": myBorderColour,
     "border_normal": grey[5],
 }
 
+# MonadTall specific settings - use integer margin instead of list
+monad_theme = {
+    "border_width": myBorderWith,
+    "margin": myMonadMargin,  # MonadTall requires integer, not list
+    "border_focus": myBorderColour,
+    "border_normal": grey[5],
+    "single_border_width": myBorderWith,
+    "single_margin": myMonadMargin,
+}
+
 layouts = [
     layout.Columns(**layout_theme),
-    layout.MonadTall(**layout_theme),
-    layout.MonadWide(**layout_theme),
-    layout.MonadThreeCol(**layout_theme),
+    layout.MonadTall(**monad_theme),
+    layout.MonadWide(**monad_theme),
+    layout.MonadThreeCol(**monad_theme),
     layout.Tile(**layout_theme),
     layout.Max(**layout_theme),
     # layout.Floating(),
@@ -240,18 +260,18 @@ layouts = [
 
 decor_left = {
     "decorations": [PowerLineDecoration(
-        # path = "arrow_left"
+        path = "arrow_left"
         # path = "rounded_left"
-        path = "forward_slash"
+        # path = "forward_slash"
         # path = "back_slash"
     )],
 }
 
 decor_right = {
     "decorations": [PowerLineDecoration(
-        # path = "arrow_right"
+        path = "arrow_right"
         # path = "rounded_right"
-        path = "forward_slash"
+        # path = "forward_slash"
         # path = "back_slash"
     )],
 }
@@ -287,6 +307,9 @@ def open_wallpaper():
 def open_weather():
     qtile.cmd_spawn(myWeather)
 
+def open_network():
+    qtile.cmd_spawn(myTerminal + " -e iwctl")
+
 # ---------------------------------------------------------------------------
 #  Setup widget style defaults
 # ---------------------------------------------------------------------------
@@ -310,8 +333,7 @@ def init_widgets_list():
             **decor_left,
             foreground = white,
             background = magenta,
-            # background = black,
-            fontsize = myFontSize + 14,
+            fontsize = myFontSize + 8,
             margin = 10,
             text = " 󰣇 ",
             mouse_callbacks = {"Button1": open_launcher},
@@ -323,7 +345,7 @@ def init_widgets_list():
             **decor_left,
             foreground = white,
             background = blue,
-            fontsize = myFontSize + 2,
+            fontsize = myFontSize,
             padding = 0,
             highlight_method = "block",
             active = white,
@@ -338,9 +360,9 @@ def init_widgets_list():
 
        widget.GenPollCommand(
             **decor_left,
-            foreground = black,
-            background = grey[7],
-            fmt = " {}",
+            foreground = white,
+            background = grey[2],
+            fmt = "  {} ",
             cmd = "waybar_dominidi",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -348,9 +370,9 @@ def init_widgets_list():
 
        widget.GenPollCommand(
             **decor_left,
-            foreground = black,
-            background = grey[6],
-            fmt = " {}",
+            foreground = white,
+            background = grey[4],
+            fmt = "  {} ",
             cmd = "waybar_maya",
             shell = True,
             mouse_callbacks = {"Button1": open_feestdagen},
@@ -361,7 +383,7 @@ def init_widgets_list():
             foreground = white,
             background = grey[5],
             location = {"Arnhem": "Arnhem"},   # city or lat,long
-            format = "%c %t",                  # condition + temperature
+            format = " %c %t ",                # condition + temperature
             units = "m",                       # 'm' metric, 'u' US, 'M' old metric style
             update_interval = 900,             # seconds (15 min)
             timeout = 10,                      # seconds per request
@@ -373,25 +395,25 @@ def init_widgets_list():
 
         widget.CurrentLayoutIcon(
             **decor_left,
-            background = grey[4],
+            background = grey[6],
             padding = 0,
             scale = 0.7,
         ),
 
         widget.CurrentLayout(
             **decor_left,
-            background = grey[4],
+            background = grey[6],
         ),
 
         widget.Prompt(
             **decor_left,
             foreground = white,
-            background = grey[3],
+            background = black,
         ),
 
         widget.WindowName(
             **decor_left,
-            background = grey[3],
+            background = black,
             format = "{}",
             # format = " {name} ",
             # empty_group_string = " Desktop ",
@@ -399,44 +421,44 @@ def init_widgets_list():
 
         widget.TextBox(
             **decor_right,
-            background = grey[3],
+            background = black,
         ),
 
         widget.ThermalSensor(
             **decor_right,
             foreground = white,
-            background = grey[3],
+            background = grey[6],
             update_interval = 2,
-            format = " {temp:.0f}{unit}",
+            format = "  {temp:.0f}{unit} ",
             mouse_callbacks = {'Button1': open_stacer},
         ),
 
         widget.CheckUpdates(
             **decor_right,
             foreground = white,
-            background = grey[4],
+            background = grey[5],
             distro = "Arch_checkupdates",
             update_interval = 60,
             colour_have_updates = red,
             colour_no_updates = green,
-            display_format = "Upd: {updates}",
-            no_update_string = "Upd: 0",
+            display_format = " Upd: {updates} ",
+            no_update_string = " Upd: 0 ",
         ),
 
         widget.Backlight(
             **decor_right,
             foreground = white,
-            background = grey[5],
+            background = grey[4],
             backlight_name="amdgpu_bl1",
             step=5,
-            format="  {percent:.0%}",
+            format="   {percent:.0%} ",
             update_interval=0.5,
         ),
 
         widget.Battery(
             **decor_right,
             foreground = white,
-            background = grey[6],
+            background = grey[3],
             battery = 'BAT1',
             charge_char = "▲",
             discharge_char = "▼",
@@ -444,24 +466,25 @@ def init_widgets_list():
             full_char = "●",
             not_charging_char = "",
             unknown_char = "?",
-            format = "🔋{char} {percent:2.0%}",
+            format = "🔋{char} {percent:2.0%} ",
         ),
 
         widget.Volume(
             **decor_right,
-            foreground = black,
-            background = grey[7],
+            foreground = white,
+            background = grey[2],
             emoji_list = ["🔇", "🔈", "🔉", "🔊"],
             emoji = False,
-            fmt = "󰕾 {}",
+            fmt = " 󰕾 {} ",
         ),
 
         widget.Clock(
             **decor_right,
-            foreground = black,
-            background = grey[8],
-            format = "%a %d/%m - %H:%M.%S",
+            foreground = white,
+            background = grey[1],
+            format = "%a %d, %H:%M ",
             mouse_callbacks = {'Button1': open_calendar},
+            # mouse_callbacks={ 'Button1': lambda: os.system('notify-send -a qtile "$(date "+%Y-%m-%d %H:%M")" "$(cal)"') },
         ),
 
         widget.Spacer(background = blue, length = 5,),
@@ -472,11 +495,12 @@ def init_widgets_list():
             background = blue,
         ),
 
+        widget.Spacer(**decor_right, background = blue, length = 5,),
+
         widget.TextBox(
             foreground = white,
             background = magenta,
-            # background = black,
-            fontsize = myFontSize + 8,
+            fontsize = myFontSize + 2,
             text = " ⏻  ",
             mouse_callbacks = {'Button1': open_powermenu},
         ),
