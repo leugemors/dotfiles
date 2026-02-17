@@ -15,11 +15,11 @@
 # ---------------------------------------------------------------------------
 
 if [ -x /usr/bin/dircolors ]; then
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias diff='diff --color=auto'
-    alias ip='ip --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+  alias diff='diff --color=auto'
+  alias ip='ip --color=auto'
 fi
 
 # ---------------------------------------------------------------------------
@@ -30,8 +30,6 @@ fi
 # alias l='ls -lF
 # alias la='ls -AF'
 # alias ll='ls --group-directories-first -AlF'
-
-alias man='batman'
 
 # ---------------------------------------------------------------------------
 #  Switched to eza (suckless tools)
@@ -114,14 +112,12 @@ alias purge='git branch --merged | grep -Ev "(^\*|main|master|dev)" | xargs git 
 alias push='git push origin'
 alias status='git status'
 alias tag='git tag'
+
 alias mpp='main; pull; purge' # Because I am lazy :-)
 
 # ---------------------------------------------------------------------------
 #  Some handy aliasses
 # ---------------------------------------------------------------------------
-
-alias vi='vim'
-# alias vim='nvim'
 
 alias activate="source bin/activate"
 alias check="shellcheck --color=auto -o all -x -S style"
@@ -131,8 +127,9 @@ alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias hex='hexedit --color'
 alias hw='hwinfo --short'
 alias jctl='journalctl -p 3 -xb'
-alias keyb='vim ~/.config/hypr/conf/keybindings/richard.conf'
-alias moni='vim ~/.config/hypr/conf/monitors/richard.conf'
+alias keyb='vim ~/.config/hypr/bindings.conf'
+alias man='batman'
+alias mon='vim ~/.config/hypr/monitors.conf'
 alias ncdu='ncdu -x -e --color dark'
 alias ports='netstat -tlpn'
 alias pscpu='ps auxf | sort -nr -k 3 | head -10'
@@ -151,10 +148,9 @@ alias wget='wget -c'
 # ---------------------------------------------------------------------------
 
 alias apt='man pacman' # :-)
-alias cleanup='sudo pacman -Rns $(pacman -Qdtq) && sudo pacman -Sc && sudo pacman -Scc'
+alias cleanup='yay -Rns $(yay -Qdtq) && yay -Sc && yay -Scc'
 alias fixpacman='sudo rm -rf /var/lib/pacman/db.lck && sudo pacman -Syyu'
 alias list='yay -Q | grep --color=auto $1'
-alias mirror='sudo cachyos-rate-mirrors'
 alias update='yes | yay -Syyu'
 
 # ---------------------------------------------------------------------------
@@ -169,56 +165,48 @@ alias say='espeak -a 200 -g 4 -p 40 -v "nl"'
 alias starwars='telnet towel.blinkenlights.nl'
 alias verse='/usr/bin/random_verse'
 alias weer='curl wttr.in/malburgen'
-alias wetter='curl wttr.in/wasserliesch'
 
 # ---------------------------------------------------------------------------
 #  Some fastfetch aliasses
 # ---------------------------------------------------------------------------
 
-alias motd='cat /etc/motd'
-
 alias ff='clear; fastfetch'
 alias f1='clear; fastfetch --logo arch --config examples/13'
 alias f8='clear; fastfetch --logo arch --config examples/8'
 
+alias motd='cat /etc/motd'
 alias cls='f8' # for old time sake :-)
 
 # ---------------------------------------------------------------------------
 #  One letter aliases
 # ---------------------------------------------------------------------------
 
+# alias w='echo "This letter is not available."'
+# alias y='echo "This letter is not available."'
+# alias z='echo "This letter is not available."'
+
 alias a='vim ~/.aliases && source ~/.aliases'
+alias b='echo "No alias defined for this letter."'
 alias c='cmatrix -bsu3 -C magenta'
 alias d='ncdu -x -e --color dark'
+alias e='echo "No alias defined for this letter."'
 alias f='echo; df -hlT --total -x tmpfs 2> /dev/null; echo'
 alias g='lazygit'
 alias h='history -i 0 | tail -n 48'
 alias i='yay -S'
 alias j='vim ~/.zshrc && source ~/.zshrc'
 alias k='kubectl'
-# alias m='${HOME}/.config/qtile/scripts/monitors.sh'
 alias m='/usr/local/bin/monitor-hyprland arrange_workspaces'
 alias n='newsboat -r'
 alias o='cd ~/Notes; vim index.md; cd -'
-alias p='vim ~/.config/picom/picom.conf && pkill picom && picom --daemon --config ~/.config/picom/picom.conf'
-alias q='vim ~/.config/qtile/config.py'
+alias p='echo -e ${PATH//:/\\n} | bat'
+alias q='echo "No alias defined for this letter."'
+alias r='echo "No alias defined for this letter."'
 alias s='yay -Ss'
-# alias t='vim ~/.config/alacritty/alacritty.toml'
 alias t='vim ~/.config/ghostty/config'
 alias u='cd ~/Notes; vim eduarte/admin/uren-schrijven.md; cd -'
 alias v='vim ~/.vim/vimrc'
-
-# alias w='echo "This letter is not available."'
-# alias y='echo "This letter is not available."'
-# alias z='echo "This letter is not available."'
-
-alias b='echo "No alias defined for this letter."'
-alias e='echo "No alias defined for this letter."'
-alias r='echo "No alias defined for this letter."'
 alias x='echo "No alias defined for this letter."'
-
-# alias p='echo -e ${PATH//:/\\n} | bat'
-# alias q='cd ~/.config/qtile; vim ~/.config/qtile/config.py && qtile cmd-obj -o cmd -f restart; cd -'
 
 # ---------------------------------------------------------------------------
 #  Set font for text terminals
