@@ -6,9 +6,7 @@
 ##  |_|  |_|\_\_|
 ##
 ##  My personal zsh configuration, using a nice starship prompt
-##
-##  -------------------------------------------------------------------------
-##
+##  -----------------------------------------------------------------------
 ##  I expect some suckless tools to be installed, like bat, eza, fzf,
 ##  ripgrep, zoxide, etc. And obviously starship.
 ##
@@ -18,13 +16,11 @@
 #  Setting environment variables
 # ---------------------------------------------------------------------------
 
-export ANSIBLE_NOCOWS=1                           # no cows for ansible
-export EDITOR=vim                                 # set default editor
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set bat as manpager
-# export MANROFFOPT="-c"
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"    # add my local bin to PATH
-export PROMPT_EOL_MARK=""                         # hide EOL sign ('%')
-export TERM="xterm-256color"                      # support 256 colours
+export ANSIBLE_NOCOWS=1                         # no cows for ansible
+export EDITOR=vim                               # set default editor
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"  # add my local bin to PATH
+export PROMPT_EOL_MARK=""                       # hide EOL sign ('%')
+export TERM="xterm-256color"                    # support 256 colours
 
 # ---------------------------------------------------------------------------
 #  Don't consider certain characters part of the word
@@ -39,8 +35,8 @@ export WORDCHARS=${WORDCHARS//\/}
 setopt autocd              # change directory just by typing its name
 setopt correct             # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
-setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
-setopt nonomatch           # hide error message if there is no match for the pattern
+setopt magicequalsubst     # enable filename expansion for arguments 
+setopt nonomatch           # hide error message when no match for the pattern
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
@@ -52,7 +48,7 @@ setopt extended_glob       # match ~ # ^
 #  Configure key keybindings
 # ---------------------------------------------------------------------------
 
-# bindkey -v                                     # use vim key bindings
+bindkey -v                                     # use vim key bindings
 bindkey ' ' magic-space                        # do history expansion on space
 bindkey '^[[3;5~' kill-word                    # ctrl + Supr
 bindkey '^[[3~' delete-char                    # delete
@@ -90,16 +86,16 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # ---------------------------------------------------------------------------
 
 HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=10000
+SAVEHIST=10000
 
 HISTORY_IGNORE="(ls|cd|cd -|cd ..|pwd|exit|history)"
 HISTTIMEFORMAT="[%F %T] - "
 
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_expire_dups_first # delete dups when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
+setopt hist_verify            # show command history expansion before running 
 setopt share_history          # share history data between zsh sessions
 
 # ---------------------------------------------------------------------------
@@ -119,26 +115,24 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ---------------------------------------------------------------------------
 
 if [ -f /etc/zsh_command_not_found ]; then
-    source /etc/zsh_command_not_found
+  source /etc/zsh_command_not_found
 fi
 
 # ---------------------------------------------------------------------------
 #  Load my plugins
 # ---------------------------------------------------------------------------
 
-# "zsh-autocomplete"
-   
 plugins=(
-    "zsh-autosuggestions"
-    "zsh-history-substring-search"
-    "zsh-syntax-highlighting"
+  "zsh-autosuggestions"
+  "zsh-history-substring-search"
+  "zsh-syntax-highlighting"
 )
 
 for p in "${plugins[@]}"; do
-    if [ -f /usr/share/zsh/plugins/${p}/${p}.zsh ]; then
-        echo "Loading plugin: ${p}..."
-        source /usr/share/zsh/plugins/${p}/${p}.zsh
-    fi
+  if [ -f /usr/share/zsh/plugins/${p}/${p}.zsh ]; then
+    echo "Loading plugin: ${p}..."
+    source /usr/share/zsh/plugins/${p}/${p}.zsh
+  fi
 done
 
 # ---------------------------------------------------------------------------
@@ -152,8 +146,8 @@ source <(kubectl completion zsh)
 # ---------------------------------------------------------------------------
 
 if [ -f ~/.aliases ]; then
-    echo "Loading custom aliasses..."
-    source ~/.aliases
+  echo "Loading custom aliasses..."
+  source ~/.aliases
 fi
 
 # ---------------------------------------------------------------------------
