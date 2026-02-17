@@ -34,7 +34,7 @@ your config directory (`~/.config`), e.g.:
 
 ```bash
 cd ~/dotfiles
-stow alacritty
+stow ghostty
 ```
 
 Repeat this for each configuration you want to use. Or use the included bash
@@ -47,19 +47,19 @@ other below configuration files.
 
 - .aliases
 - .gitconfig
+- .gtkrc-2.0
 - .tmux.conf
 - .zshrc
 - .vim/vimrc
 
 ## Various configuration files
 
-I'm using Alacritty as my preferred shell. Kitty and Terminator are only
-here for testing purposes (I like to play around :-) ).
-
 | tool       | description                                    |
 | ---------- | ---------------------------------------------- |
 | alacritty  | My favourite terminal emulator                 |
 | btop       | System monitoring                              |
+| fastfetch  | A nice CLI system info tool                    |
+| ghostty    | Terminal emulator written in Rust              |
 | gtk-4.0    | Some GTK settings                              |
 | gtk-3.0    | Some GTK settings                              |
 | htop       | CLI system monitoring                          |
@@ -67,6 +67,7 @@ here for testing purposes (I like to play around :-) ).
 | lazygit    | Very handy CLI tool for working with git       |
 | mc         | CLI file manager (like Norton Commander)       |
 | newsboat   | Read RRS feeds from the CLI                    |
+| nvim       | My 2nd favourite text editor (vim is #1)       |
 | picom      | Compositor for qtile                           |
 | powershell | I need this for my work, sadly enough          |
 | qtile      | My current dynamic tiling window manager       |
